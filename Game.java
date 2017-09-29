@@ -17,37 +17,32 @@ public class Game
 
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office, bed, toilet, kitchen;
-      
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        bed = new Room("in a very comfortable bed");
-        toilet = new Room("in a pretty clean toilet compared to most toilets");
-        kitchen = new Room("in a huge kitchen with a lot of chocolate everywhere");
+        Room outside, lobby, toilet, kitchen, basement, room1;
         
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        lobby = new Room("inside the the lobby");
+        toilet = new Room("in the room with toilets");
+        kitchen = new Roomm("in the kitchen. It smells good in here");
+        basement = new Room("in the basement. It's a little dark");
+        room1 = new Room("in room #1");
+        outside = new Room("outside the hotel");
+        
+        outside.setExit("east", lobby); //Edit exits according to map
         
 
-        theatre.setExit("west", outside);
-        theatre.setExit("east", lab);
+        theatre.setExit("west", outside); //Edit exits according to map
 
-        pub.setExit("east", outside);
+        pub.setExit("east", outside); //Edit exits according to map
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        lab.setExit("north", outside); //Edit exits according to map
+        lab.setExit("east", office); //Edit exits according to map
 
-        office.setExit("west", lab);
+        office.setExit("west", lab); //Edit exits according to map
         
-        bed.setExit("north", lab);
+        bed.setExit("north", lab); //Edit exits according to map
         
-        toilet.setExit("north", bed);
+        toilet.setExit("north", bed); //Edit exits according to map
         
-        kitchen.setExit("north", toilet);
+        kitchen.setExit("north", toilet); //Edit exits according to map
 
         currentRoom = outside;
     }
