@@ -136,8 +136,9 @@ public class Game
 
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are a private detective hired to find a murderer");
+        System.out.println("Go around the motel and investigate. Use the commands");
+        System.out.println("Use the commands 'north', 'south', 'east' and 'west' to navigate from room to room);
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
