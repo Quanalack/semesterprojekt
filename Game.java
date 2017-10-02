@@ -6,44 +6,86 @@ package worldofzuul;
  */
 public class Game 
 {
+    //Initializing parser and room objects
     private Parser parser;
     private Room currentRoom;
         
-    public Game() //Constructor
+    public Game() //Constructor to start the game.
     {
         createRooms();
         parser = new Parser();
     }
 
+    //Method to generate all the rooms necessary and connect them to eachother
     private void createRooms()
     {
+        //Defining room names
         Room outside, lobby, toilet, kitchen, basement, room1;
         
+        //Setting description of rooms
+        outside = new Room("outside the hotel");
         lobby = new Room("inside the the lobby");
+        hallwayNorth = new Room("the northern hallway to the kitchen and toilet");
+        hallwayWest = new Room("the western hallway to room 1 and 2")
+        hallwayEast = new Room("the eastern hallway to room 3 and 4");
+        room1 = new Room("in room #1");
+        room2 = new Room("in room #2");
+        room3 = new Room("in room #3");
+        room4 = new Room("in room #4");
         toilet = new Room("in the room with toilets");
         kitchen = new Roomm("in the kitchen. It smells good in here");
         basement = new Room("in the basement. It's a little dark");
-        room1 = new Room("in room #1");
-        outside = new Room("outside the hotel");
         
-        outside.setExit("east", lobby); //Edit exits according to map
         
-
-        theatre.setExit("west", outside); //Edit exits according to map
-
-        pub.setExit("east", outside); //Edit exits according to map
-
-        lab.setExit("north", outside); //Edit exits according to map
-        lab.setExit("east", office); //Edit exits according to map
-
-        office.setExit("west", lab); //Edit exits according to map
+        //Defining which rooms are connected to eachother
         
-        bed.setExit("north", lab); //Edit exits according to map
+        //Exits from outside
+        outside.setExit("north", lobby); 
         
-        toilet.setExit("north", bed); //Edit exits according to map
+        //Exits from the lobby
+        lobby.setExit("west", hallwayWest);
+        lobby.setExit("east", hallwayEast);
+        lobby.setExit("north", hallwayNorth);
+        lobby.setExit("south", outside);
         
-        kitchen.setExit("north", toilet); //Edit exits according to map
-
+        //Exits from the western hallway     
+        hallwayWest.setExit("south", room1);
+        hallwayWest.setExit("north", room2);
+        hallwayWest.setExit("east", lobby);
+        
+        //Exit from room 1
+        room1.setExit("south", hallwayWest);
+        
+        //Exit from room 2
+        room2.setExit("north", hallwayWest);
+        
+        //Exits from the eastern hallway     
+        hallwayEast.setExit("south", room3);
+        hallwayEast.setExit("north", room4);
+        hallwayEast.setExit("west", lobby);
+        
+        //Exit from room 3
+        room3.setExit("south", hallwayEast);
+        
+        //Exit from room 4
+        room4.setExit("north", hallwayEast);
+        
+        //Exits from the northern hallway
+        hallwayNorth.setExit("west", kitchen);
+        hallwayNorth.setExit("east", toilet);
+        hallwayNorth.setExit("north", basement);
+        hallwaynorth.setExit("south", lobby);
+        
+        //Exit from kitchen
+        kitchen.setExit("east", hallwayNorth);
+        
+        //Exit from toilet
+        toilet.setExit("west", hallwayNorth);
+        
+        //exit from basement
+        basement.setExit("south", hallwatNorth);
+        
+        //Which room to start at
         currentRoom = outside;
     }
 
