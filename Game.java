@@ -27,7 +27,7 @@ public class Game
         bed = new Room("in a very comfortable bed");
         toilet = new Room("in a pretty clean toilet compared to most toilets");
         kitchen = new Room("in a huge kitchen with a lot of chocolate everywhere");
-        
+	
         outside.setExit("east", theatre);
         outside.setExit("south", lab);
         outside.setExit("west", pub);
