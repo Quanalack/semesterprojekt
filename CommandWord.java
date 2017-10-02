@@ -6,8 +6,8 @@ package worldofzuul;
  */
 public enum CommandWord
 {
-    //Predefined enums
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    //Predefined enums for commands
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INVESTIGATE("investigate"), PICKUP("pickup"), TALK("talk"), LOGBOOK("logbook"), DROP("drop");
     
     private String commandString;
     
