@@ -11,16 +11,20 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
-    ArrayList<Item> inventory = new ArrayList<Item>(); 
+    ArrayList<Item> inventory = new ArrayList<Item>();
     //Our arraylist will hold the inventory items for our game
+    ArrayList<Character> characters = new ArrayList<>();
+    //The arraylist will hold the characters for our game
     
     public Game() 
     {
         createRooms();
         parser = new Parser();
+        createCharacters();
     }
 
-    public void createCharacters(){
+    private void createCharacters(){
+        //Create objects of characters
         Character janitor = new Character("Carl", "Carl is the janitor here. He cleans the toilets", lobby);
         Character corpse = new Character("Dead guy", "Yeahhh he dead. Very dead", lobby);
         Character receptionist = new Character("Receptionist", "He waits for you at the desk", lobby);
@@ -28,8 +32,27 @@ public class Game
         Character guest1 = new Character("Guest 1", "A man", lobby);
         Character guest2 = new Character("Guest 2", "A woman", lobby);
         
+        //Add to character arraylist
+        characters.add(janitor);
+        characters.add(corpse);
+        characters.add(receptionist);
+        characters.add(cleaningLady);
+        characters.add(guest1);
+        characters.add(guest2);
         
     }
+    
+    public String getCharacterString() {
+            
+            for (Character c : characters) {
+                String inRoom = null;
+                if (currentRoom == c.getCurrentRoom()) {
+                    inRoom += c.getName() + " ";
+                }
+                return inRoom;
+            }
+            return "None";
+        }
     
     private void createRooms()
     {
