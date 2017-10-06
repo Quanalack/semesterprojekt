@@ -6,18 +6,15 @@ package motelmurders;
  */
 public enum CommandWord
 {
-    //Predefined enums for commands
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INVESTIGATE("investigate"), PICKUP("pickup"), TALK("talk"), LOGBOOK("logbook"), DROP("drop");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INVENTORY("inventory"), PICKUP("pickup");
     
     private String commandString;
     
-    //Setter method
     CommandWord(String commandString)
     {
         this.commandString = commandString;
     }
     
-    //getter method
     public String toString()
     {
         return commandString;
