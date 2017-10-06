@@ -18,7 +18,9 @@ public class MotelMurders {
     //Testkommentar
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello world!");
+        Game game = new Game();
+    
+        game.play();
     }
     
 }
