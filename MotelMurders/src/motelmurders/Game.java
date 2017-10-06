@@ -1,4 +1,4 @@
-package worldofzuul;
+package motelmurders;
 
 /**
  * @author  Michael Kolling and David J. Barnes

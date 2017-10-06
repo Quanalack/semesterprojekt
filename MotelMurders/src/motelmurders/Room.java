@@ -1,4 +1,4 @@
-package worldofzuul;
+package motelmurders;
 
 import java.util.Set;
 import java.util.HashMap;
