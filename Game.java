@@ -20,7 +20,7 @@ public class Game
     private void createRooms()
     {
         //Defining room names
-        Room outside, lobby, toilet, kitchen, basement, room1;
+        Room outside, lobby, toilet, kitchen, basement, room1, room2, room3, room4, hallwayNorth, hallwayWest, hallwayEast;
         
         //Setting description of rooms
         outside = new Room("outside the hotel");
@@ -33,7 +33,7 @@ public class Game
         room3 = new Room("in room #3");
         room4 = new Room("in room #4");
         toilet = new Room("in the room with toilets");
-        kitchen = new Roomm("in the kitchen. It smells good in here");
+        kitchen = new Room("in the kitchen. It smells good in here");
         basement = new Room("in the basement. It's a little dark");
         
         
@@ -74,7 +74,7 @@ public class Game
         hallwayNorth.setExit("west", kitchen);
         hallwayNorth.setExit("east", toilet);
         hallwayNorth.setExit("north", basement);
-        hallwaynorth.setExit("south", lobby);
+        hallwayNorth.setExit("south", lobby);
         
         //Exit from kitchen
         kitchen.setExit("east", hallwayNorth);
@@ -140,7 +140,7 @@ public class Game
     {
         System.out.println("You are a private detective hired to find a murderer");
         System.out.println("Go around the motel and investigate. Use the commands");
-        System.out.println("Use the commands 'north', 'south', 'east' and 'west' to navigate from room to room);
+        System.out.println("Use the commands 'north', 'south', 'east' and 'west' to navigate from room to room");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
