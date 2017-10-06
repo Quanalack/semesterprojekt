@@ -80,6 +80,8 @@ public class Room
             if (items.get(i).getDescription().equals(itemName)) {
                 items.remove(i);
             }
+        }
+     }
     /*
     * Set a item in the room
     */
@@ -97,6 +99,9 @@ public class Room
             return output;
     
 }
+}
+
+
 
 
 
