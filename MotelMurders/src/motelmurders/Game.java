@@ -20,6 +20,17 @@ public class Game
         parser = new Parser();
     }
 
+    public void createCharacters(){
+        Character janitor = new Character("Carl", "Carl is the janitor here. He cleans the toilets", lobby);
+        Character corpse = new Character("Dead guy", "Yeahhh he dead. Very dead", lobby);
+        Character receptionist = new Character("Receptionist", "He waits for you at the desk", lobby);
+        Character cleaningLady = new Character("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
+        Character guest1 = new Character("Guest 1", "A man", lobby);
+        Character guest2 = new Character("Guest 2", "A woman", lobby);
+        
+        
+    }
+    
     private void createRooms()
     {
         
