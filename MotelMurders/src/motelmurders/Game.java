@@ -34,32 +34,45 @@ public class Game
     private void createRooms()
     {
         
-      
-        outside = new Room("outside");
-        lobby = new Room("lobby");
-        room1 = new Room("in motele room 1");
-        room2 = new Room("in motel room 2");
-        room3 = new Room("in motel room 3");
-        room4 = new Room("in motel room4");
-        WC = new Room("Motel WC");
-        kitchen = new Room("kitchen");
-        basement = new Room("Basement");
-        hallwayN = new Room("Hallway North");
-        hallwayE = new Room("Hallway East");
-        hallwayW = new Room("Hallway West");
+        //Room descriptions when you arrive in a room
+        outside = new Room("The wind is blowing, you stand infront of the motels old facade.");
+        lobby = new Room("You stand in the lobby of the motel, you see a receptionist and even a vending machine, "
+                + "you also see hallways leading to various rooms both left, right and up.");
+        room1 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
+                + "a bath, bed, chair, table, vase, lamps and a window."
+                + "Guest 1 sleeps here.");
+        room2 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
+                + "a bath, bed, chair, table, vase, lamps and a window."
+                + "Guest 2 sleeps here.");
+        room3 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
+                + "a bath, bed, chair, table, vase, lamps and a window."
+                + "Guest 3 sleeps here.");
+        room4 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
+                + "a bath, bed, chair, table, vase, lamps and a window."
+                + "The victim used to sleep here, now he sleeps forever.");
+        WC = new Room("A motel standard WC, except there is an unpleasent stence in here!");
+        kitchen = new Room("It a little kitchen, nothing much, here is a pleasant smell!");
+        basement = new Room("It is abit dark but from the little light, you can spot a workbench to you right and a big boiler in the back.");
+        hallwayN = new Room("You stand in the north hallway, the door to your left leads to the kitchen "
+                + "and the door to the right leads to a WC, there seems to be steps further ahead.");
+        hallwayE = new Room("You stand in the east hallway, the door to your left leads to the room 3 "
+                + "and the door to the right leads to room 4");
+        hallwayW = new Room("You stand in the west hallway, the door to your left leads to the room 1 "
+                + "and the door to the right leads to room 2");
         
         
-        
+        //Move set in all rooms
         outside.setExit("forward", lobby);
+        
         lobby.setExit("right", hallwayE);
         lobby.setExit("left", hallwayW);
-
         lobby.setExit("back", outside);
-        
         lobby.setExit("forward", hallwayN);
+        
         hallwayE.setExit("right", room4);
         hallwayE.setExit("left", room3);
         hallwayE.setExit("back", lobby);
+        
         //Walk directly from the room to the toilet located in the north section of the motel
         hallwayW.setExit("right", room2);
         hallwayW.setExit("left", room1);
@@ -69,13 +82,21 @@ public class Game
         hallwayN.setExit("left", kitchen);
         hallwayN.setExit("forward", basement);
         hallwayN.setExit("back", lobby);
+        
         basement.setExit("back", hallwayN);
+        
         kitchen.setExit("back", hallwayN);
+        
         WC.setExit("back", hallwayN);
+        
         room1.setExit("back", hallwayW);
+        
         room2.setExit("back", hallwayW);
+        
         room3.setExit("back", hallwayE);
+        
         room4.setExit("back", hallwayE);
+        
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
         outside.setItem(new Item("chair"));
