@@ -87,12 +87,12 @@ public class Game
         
         
         //Move set in all rooms
-        outside.setExit("forward", lobby);
+        outside.setExit("up", lobby);
         
         lobby.setExit("right", hallwayE);
         lobby.setExit("left", hallwayW);
         lobby.setExit("back", outside);
-        lobby.setExit("forward", hallwayN);
+        lobby.setExit("up", hallwayN);
         
         hallwayE.setExit("right", room4);
         hallwayE.setExit("left", room3);
@@ -105,7 +105,7 @@ public class Game
         
         hallwayN.setExit("right", WC);
         hallwayN.setExit("left", kitchen);
-        hallwayN.setExit("forward", basement);
+        hallwayN.setExit("up", basement);
         hallwayN.setExit("back", lobby);
         
         basement.setExit("back", hallwayN);
