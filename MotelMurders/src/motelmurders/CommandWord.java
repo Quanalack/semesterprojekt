@@ -6,7 +6,7 @@ package motelmurders;
  */
 public enum CommandWord
 {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INVENTORY("inventory"), PICKUP("pickup"), DROP("drop item"), INVESTIGATE("investigate"), TALK("talk"), USEITEM("use item");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), INVENTORY("inventory"), PICKUP("pickup"), DROP("drop"), INVESTIGATE("investigate"), TALK("talk"), USE("use");
     
     private String commandString;
     
