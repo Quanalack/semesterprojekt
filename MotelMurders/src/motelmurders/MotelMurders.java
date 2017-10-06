@@ -14,6 +14,8 @@ public class MotelMurders {
     /**
      * @param args the command line arguments
      */
+    
+    //Testkommentar
     public static void main(String[] args) {
         // TODO code application logic here
     }

@@ -26,7 +26,7 @@ public class Game
         outside = new Room("outside the hotel");
         lobby = new Room("inside the the lobby");
         hallwayNorth = new Room("the northern hallway to the kitchen and toilet");
-        hallwayWest = new Room("the western hallway to room 1 and 2")
+        hallwayWest = new Room("the western hallway to room 1 and 2");
         hallwayEast = new Room("the eastern hallway to room 3 and 4");
         room1 = new Room("in room #1");
         room2 = new Room("in room #2");
@@ -83,7 +83,7 @@ public class Game
         toilet.setExit("west", hallwayNorth);
         
         //exit from basement
-        basement.setExit("south", hallwatNorth);
+        basement.setExit("south", hallwayNorth);
         
         //Which room to start at
         currentRoom = outside;
