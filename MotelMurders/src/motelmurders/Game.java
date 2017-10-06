@@ -60,30 +60,30 @@ public class Game
     {
         
         //Room descriptions when you arrive in a room
-        outside = new Room("The wind is blowing, you stand infront of the motels old facade.");
-        lobby = new Room("You stand in the lobby of the motel, you see a receptionist and even a vending machine, "
-                + "you also see hallways leading to various rooms both left, right and up.");
-        room1 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
-                + "a bath, bed, chair, table, vase, lamps and a window."
-                + "Guest 1 sleeps here.");
-        room2 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
-                + "a bath, bed, chair, table, vase, lamps and a window."
-                + "Guest 2 sleeps here.");
-        room3 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
-                + "a bath, bed, chair, table, vase, lamps and a window."
-                + "Guest 3 sleeps here.");
-        room4 = new Room("It is a standard guest room on this \"fine\" establishment, it is filled with most needed interior like: "
-                + "a bath, bed, chair, table, vase, lamps and a window."
-                + "The victim used to sleep here, now he sleeps forever.");
-        WC = new Room("A motel standard WC, except there is an unpleasent stence in here!");
-        kitchen = new Room("It a little kitchen, nothing much, here is a pleasant smell!");
-        basement = new Room("It is abit dark but from the little light, you can spot a workbench to you right and a big boiler in the back.");
-        hallwayN = new Room("You stand in the north hallway, the door to your left leads to the kitchen "
-                + "and the door to the right leads to a WC, there seems to be steps further ahead.");
-        hallwayE = new Room("You stand in the east hallway, the door to your left leads to the room 3 "
-                + "and the door to the right leads to room 4");
-        hallwayW = new Room("You stand in the west hallway, the door to your left leads to the room 1 "
-                + "and the door to the right leads to room 2");
+        outside = new Room("outside, the wind is blowing, you see the motels old facade infront of you.");
+        lobby = new Room("in the lobby of the motel, you see a receptionist and even a vending machine, "
+                + " you also see hallways leading to various rooms both left, right and up.");
+        room1 = new Room("in Guest room 1 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " Guest 1 sleeps here.");
+        room2 = new Room("in Guest room 2 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " Guest 2 sleeps here.");
+        room3 = new Room("in Guest room 3 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " Guest 3 sleeps here.");
+        room4 = new Room("in Guest room 4 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " The victim used to sleep here, now he sleeps forever.");
+        WC = new Room("in the motel WC, except there is an unpleasent stence in here!");
+        kitchen = new Room("in a little kitchen, nothing much, here is a pleasant smell!");
+        basement = new Room("in the basement, it is a bit dark but from a little light, you can spot a workbench to you right and a big boiler in the back.");
+        hallwayN = new Room("in the north hallway, the door to your left leads to the kitchen "
+                + " and the door to the right leads to a WC, there seems to be steps further ahead.");
+        hallwayE = new Room("in the east hallway, the door to your left leads to the room 3 "
+                + " and the door to the right leads to room 4");
+        hallwayW = new Room("in the west hallway, the door to your left leads to the room 1 "
+                + " and the door to the right leads to room 2");
         
         
         //Move set in all rooms
