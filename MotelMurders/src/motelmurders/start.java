@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication;
+package worldofzuul;
 
 /**
  *
- * @author Eskil
+ * @author malte
  */
-public class JavaApplication {
 
-    /**
-     * @param args the command line arguments
-     */
+public class start {
+    
     public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Hello");
+        
+        Game game = new Game();
+    
+        game.play();
+    
     }
     
 }
