@@ -31,6 +31,7 @@ public class Game
         Character cleaningLady = new Character("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
         Character guest1 = new Character("Guest 1", "A man", lobby);
         Character guest2 = new Character("Guest 2", "A woman", lobby);
+        Character guest3 = new Character("Guest 3", "Some old perosn", lobby);
         
         //Add to character arraylist
         characters.add(janitor);
@@ -39,6 +40,7 @@ public class Game
         characters.add(cleaningLady);
         characters.add(guest1);
         characters.add(guest2);
+        characters.add(guest3);
         
     }
     
