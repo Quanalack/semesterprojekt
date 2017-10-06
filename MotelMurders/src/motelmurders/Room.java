@@ -1,5 +1,6 @@
 package motelmurders;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,45 +14,89 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    ArrayList<Item> items = new ArrayList<Item>(); 
 
-    public Room(String description) //Constructor for Room
+    public Room(String description) 
     {
-        this.description = description; // Room description
-        exits = new HashMap<String, Room>(); //Room exits in a hashmap
+        this.description = description;
+        exits = new HashMap<String, Room>();
     }
 
-    //Method for setting exits from one room to another
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
     }
 
-    //Method to return the description of a specified room
     public String getShortDescription()
     {
         return description;
     }
 
-    //Method for showing description and exits
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + getItemString();
     }
 
-	//Method for showing all possible exits
 	private String getExitString()
     {
         String returnString = "Exits:";
-        Set<String> keys = exits.keySet(); // The keySet() returns a set view of the keys contained in the exits hashmap
-        for(String exit : keys) { //For loop to run through all the keys in exit. Hence exit : keys
-            returnString += " " + exit; //Adds the existing exit to the return string
+        Set<String> keys = exits.keySet();
+        for(String exit : keys) {
+            returnString += " " + exit;
         }
         return returnString;
     }
+        private String getItemString() {
+            String returnString = "\nItems in room:\n";
+            returnString += getRoomItems();
+            
+            return returnString;
+        }
+                
 
     public Room getExit(String direction) 
     {
         return exits.get(direction);
     }
+    /*
+    * Get items from the room
+    */
+    public Item getItem(int index) {
+        return items.get(index);
+    }
+    public Item getItem(String itemName) {
+      //pointing to nothing in memory. Nullpointerexception; cant grab things u havent created
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getDescription().equals(itemName)) {
+                return items.get(i);
+            }
+         
+     }
+        return null;
+    }
+     public void removeItem(String itemName) {
+      //pointing to nothing in memory. Nullpointerexception; cant grab things u havent created
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getDescription().equals(itemName)) {
+                items.remove(i);
+            }
+    /*
+    * Set a item in the room
+    */
+    public void setItem(Item newitem) {
+        items.add(newitem);
+    }
+    /*
+    * Description of items in room
+    */
+    public String getRoomItems() {
+       String output = "";
+        for (int i = 0; i < items.size(); i++) {
+            output += items.get(i).getDescription() + "  ";
+        }
+            return output;
+    
 }
+
+
 

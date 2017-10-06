@@ -1,119 +1,102 @@
 package motelmurders;
 
+import java.util.ArrayList;
+
 /**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 public class Game 
 {
-    //Initializing parser and room objects
     private Parser parser;
     private Room currentRoom;
-        
-    public Game() //Constructor to start the game.
+    Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
+    ArrayList<Item> inventory = new ArrayList<Item>(); 
+    //Our arraylist will hold the inventory items for our game
+    
+    public Game() 
     {
         createRooms();
         parser = new Parser();
     }
 
-    //Method to generate all the rooms necessary and connect them to eachother
     private void createRooms()
     {
-        //Defining room names
-        Room outside, lobby, toilet, kitchen, basement, room1, room2, room3, room4, hallwayNorth, hallwayWest, hallwayEast;
         
-        //Setting description of rooms
-        outside = new Room("outside the hotel");
-        lobby = new Room("inside the the lobby");
-        hallwayNorth = new Room("the northern hallway to the kitchen and toilet");
-        hallwayWest = new Room("the western hallway to room 1 and 2");
-        hallwayEast = new Room("the eastern hallway to room 3 and 4");
-        room1 = new Room("in room #1");
-        room2 = new Room("in room #2");
-        room3 = new Room("in room #3");
-        room4 = new Room("in room #4");
-        toilet = new Room("in the room with toilets");
-        kitchen = new Room("in the kitchen. It smells good in here");
-        basement = new Room("in the basement. It's a little dark");
+      
+        outside = new Room("outside");
+        lobby = new Room("lobby");
+        room1 = new Room("in motele room 1");
+        room2 = new Room("in motel room 2");
+        room3 = new Room("in motel room 3");
+        room4 = new Room("in motel room4");
+        WC = new Room("Motel WC");
+        kitchen = new Room("kitchen");
+        basement = new Room("Basement");
+        hallwayN = new Room("Hallway North");
+        hallwayE = new Room("Hallway East");
+        hallwayW = new Room("Hallway West");
         
         
-        //Defining which rooms are connected to eachother
         
-        //Exits from outside
-        outside.setExit("north", lobby); 
+        outside.setExit("forward", lobby);
+        lobby.setExit("right", hallwayE);
+        lobby.setExit("left", hallwayW);
+
+        lobby.setExit("back", outside);
         
-        //Exits from the lobby
-        lobby.setExit("west", hallwayWest);
-        lobby.setExit("east", hallwayEast);
-        lobby.setExit("north", hallwayNorth);
-        lobby.setExit("south", outside);
+        lobby.setExit("forward", hallwayN);
+        hallwayE.setExit("right", room4);
+        hallwayE.setExit("left", room3);
+        hallwayE.setExit("back", lobby);
+        //Walk directly from the room to the toilet located in the north section of the motel
+        hallwayW.setExit("right", room2);
+        hallwayW.setExit("left", room1);
+        hallwayW.setExit("back", lobby);
         
-        //Exits from the western hallway     
-        hallwayWest.setExit("south", room1);
-        hallwayWest.setExit("north", room2);
-        hallwayWest.setExit("east", lobby);
-        
-        //Exit from room 1
-        room1.setExit("south", hallwayWest);
-        
-        //Exit from room 2
-        room2.setExit("north", hallwayWest);
-        
-        //Exits from the eastern hallway     
-        hallwayEast.setExit("south", room3);
-        hallwayEast.setExit("north", room4);
-        hallwayEast.setExit("west", lobby);
-        
-        //Exit from room 3
-        room3.setExit("south", hallwayEast);
-        
-        //Exit from room 4
-        room4.setExit("north", hallwayEast);
-        
-        //Exits from the northern hallway
-        hallwayNorth.setExit("west", kitchen);
-        hallwayNorth.setExit("east", toilet);
-        hallwayNorth.setExit("north", basement);
-        hallwayNorth.setExit("south", lobby);
-        
-        //Exit from kitchen
-        kitchen.setExit("east", hallwayNorth);
-        
-        //Exit from toilet
-        toilet.setExit("west", hallwayNorth);
-        
-        //exit from basement
-        basement.setExit("south", hallwayNorth);
-        
-        //Which room to start at
+        hallwayN.setExit("right", WC);
+        hallwayN.setExit("left", kitchen);
+        hallwayN.setExit("forward", basement);
+        hallwayN.setExit("back", lobby);
+        basement.setExit("back", hallwayN);
+        kitchen.setExit("back", hallwayN);
+        WC.setExit("back", hallwayN);
+        room1.setExit("back", hallwayW);
+        room2.setExit("back", hallwayW);
+        room3.setExit("back", hallwayE);
+        room4.setExit("back", hallwayE);
+        //east and west should maybe be right + left
+        inventory.add(new Item("Magnifying Glass"));
+        outside.setItem(new Item("chair"));
         currentRoom = outside;
     }
 
-    //play method to begin the game
     public void play() 
     {            
-        printWelcome(); //Print the welcome message
+        printWelcome();
 
         boolean finished = false;
-        while (! finished) { // while not finished play game
-            Command command = parser.getCommand();//Recieve command through parser
-            finished = processCommand(command); //Process command through method processCommand
+        while (! finished) {
+            Command command = parser.getCommand();
+            finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye."); //When finished while loop is broken to here
+        System.out.println("Thank you for playing.  Good bye.");
     }
 
-    private void printWelcome() // welcome message
+    private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to Motel Murder");
+        System.out.println("You're private detective Jack Crawford");
+        System.out.println("You've been summoned to a murder in a motel");
+        System.out.println("The Motel has been evacuated");
+        System.out.println("Your task is to solve the murder");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription()); //Gets the description og the startroom
+        System.out.println(currentRoom.getLongDescription());
     }
 
-    
-    private boolean processCommand(Command command)
+    private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
 
@@ -133,14 +116,47 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        else if (commandWord == commandWord.INVENTORY) {
+            printInventory();
+        }
+        else if (commandWord == commandWord.PICKUP) {
+                    pickupItem(command);
+                    
+        }
         return wantToQuit;
     }
+    private void pickupItem(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Pick up what?");
+            return;
+        }
 
+        String item = command.getSecondWord();
+
+        Item nextItem = currentRoom.getItem(item);
+
+        if (nextItem == null) {
+            System.out.println("There is no item named that!");
+        }
+        else {
+            inventory.add(nextItem);
+            currentRoom.removeItem(item);
+            System.out.println("Picked up:" + item);
+        }
+    }
+    private void printInventory() {
+        String output = "";
+        for (int i = 0; i < inventory.size(); i++) {
+            output += inventory.get(i).getDescription() + "  ";
+            System.out.println("You're currently carrying:");  
+            System.out.println(output);
+        }
+    }
     private void printHelp() 
     {
-        System.out.println("You are a private detective hired to find a murderer");
-        System.out.println("Go around the motel and investigate. Use the commands");
-        System.out.println("Use the commands 'north', 'south', 'east' and 'west' to navigate from room to room");
+        System.out.println("You are lost. You are alone. You wander");
+        System.out.println("around at the motel.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -176,4 +192,6 @@ public class Game
             return true;
         }
     }
+
+   
 }

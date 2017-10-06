@@ -12,32 +12,31 @@ public class Parser
     private CommandWords commands;
     private Scanner reader;
 
-    public Parser() //Constructor for parser
+    public Parser() 
     {
         commands = new CommandWords();
         reader = new Scanner(System.in);
     }
 
-    //Method to get command
     public Command getCommand() 
     {
-        String inputLine; // The user inputline
-        String word1 = null; //Both string are NULL for now 
+        String inputLine;
+        String word1 = null;
         String word2 = null;
 
         System.out.print("> ");
 
-        inputLine = reader.nextLine(); //Reads user input
+        inputLine = reader.nextLine();
 
-        Scanner tokenizer = new Scanner(inputLine); //Create a tokenizer with scanner and use the user input as argument
-        if(tokenizer.hasNext()) { //if the "tokenizer" meaning the user input has a word
-            word1 = tokenizer.next(); //word1 is defined as the first word from the user
-            if(tokenizer.hasNext()) { //if the "tokenizer" meaning the user input has another word after the first
-                word2 = tokenizer.next(); //Word2 is defined as that word
+        Scanner tokenizer = new Scanner(inputLine);
+        if(tokenizer.hasNext()) {
+            word1 = tokenizer.next();
+            if(tokenizer.hasNext()) {
+                word2 = tokenizer.next();
             }
         }
 
-        return new Command(commands.getCommandWord(word1), word2); // returns the words. Note that if user only types one word it will return (word1, NULL)
+        return new Command(commands.getCommandWord(word1), word2);
     }
 
     public void showCommands()
