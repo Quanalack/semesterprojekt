@@ -122,7 +122,7 @@ public class Game
         
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
-        outside.setItem(new Item("chair"));
+        outside.setItem(new Item("stone"));
         currentRoom = outside;
     }
 
