@@ -89,29 +89,31 @@ public class Game
         currentRoom = outside;
     }
 
+    //play method to begin the game
     public void play() 
     {            
-        printWelcome();
+        printWelcome(); //Print the welcome message
 
         boolean finished = false;
-        while (! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
+        while (! finished) { // while not finished play game
+            Command command = parser.getCommand();//Recieve command through parser
+            finished = processCommand(command); //Process command through method processCommand
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing.  Good bye."); //When finished while loop is broken to here
     }
 
-    private void printWelcome()
+    private void printWelcome() // welcome message
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getLongDescription()); //Gets the description og the startroom
     }
 
-    private boolean processCommand(Command command) 
+    
+    private boolean processCommand(Command command)
     {
         boolean wantToQuit = false;
 
