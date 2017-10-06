@@ -25,13 +25,13 @@ public class Game
 
     private void createCharacters(){
         //Create objects of characters
-        Character janitor = new Character("Carl", "Carl is the janitor here. He cleans the toilets", lobby);
+        Character janitor = new Character("Carl", "Carl is the janitor here. He repairs stuff", lobby);
         Character corpse = new Character("Dead guy", "Yeahhh he dead. Very dead", lobby);
         Character receptionist = new Character("Receptionist", "He waits for you at the desk", lobby);
         Character cleaningLady = new Character("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
         Character guest1 = new Character("Guest 1", "A man", lobby);
         Character guest2 = new Character("Guest 2", "A woman", lobby);
-        Character guest3 = new Character("Guest 3", "Some old perosn", lobby);
+        Character guest3 = new Character("Guest 3", "Some old person", lobby);
         
         //Add to character arraylist
         characters.add(janitor);
