@@ -263,7 +263,7 @@ public class Game
             wantToQuit = accuse(command);
         } else if (commandWord == commandWord.INVESTIGATE) {
             //Call investigate to investigate an item in a room
-            investigate(command);
+            investigate();
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
@@ -385,7 +385,7 @@ public class Game
         return  true; // Once you have accused the game ends. You either win or loose
     }
     
-    private void investigate(Command command) {
+    private void investigate() {
         
         System.out.println(currentRoom.getInvestigateString());
 
