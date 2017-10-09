@@ -79,6 +79,8 @@ public class Game
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
         outside.setItem(new Item("chair"));
+        outside.setItem(new Item("chair2"));
+        outside.setItem(new Item("chair3"));
         currentRoom = outside;
     }
 
@@ -149,11 +151,14 @@ public class Game
 
         if (nextItem == null) {
             System.out.println("There is no item named that!");
+            
         }
         else {
             inventory.add(nextItem);
             currentRoom.removeItem(item);
             System.out.println("Picked up:" + item);
+            
+            
         }
     }
     private void printInventory() {

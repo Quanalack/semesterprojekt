@@ -34,7 +34,7 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString() + getItemString();
+        return "Current location: " + description + ".\n" + getExitString() + getItemString();
     }
 
 	private String getExitString()
@@ -98,6 +98,7 @@ public class Room
         }
             return output;
     }
+}
 
 
 
