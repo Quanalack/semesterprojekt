@@ -73,29 +73,30 @@ public class Game
     {
         
         //Room descriptions when you arrive in a room
-        outside = new Room("outside, the wind is blowing, you see the motels old facade infront of you.");
-        lobby = new Room("in the lobby of the motel, you see a receptionist and even a vending machine, "
+        outside = new Room("Outside, the wind is blowing, you see the motels old facade infront of you.");
+        lobby = new Room("Lobby, you see a receptionist and even a vending machine, "
                 + " you also see hallways leading to various rooms both left, right and up.");
-        room1 = new Room("in Guest room 1 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
+        room1 = new Room("Guest room 1, on this \"fine\" establishment, it is filled with most needed interior like:\n "
+                + " a bath, bed, chair, table, vase, lamps and a window.\n"
                 + " Guest 1 sleeps here.");
-        room2 = new Room("in Guest room 2 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
+        room2 = new Room("Guest room 2, on this \"fine\" establishment, it is filled with most needed interior like:\n "
+                + " a bath, bed, chair, table, vase, lamps and a window.\n"
                 + " Guest 2 sleeps here.");
-        room3 = new Room("in Guest room 3 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
+        room3 = new Room("Guest room 3, on this \"fine\" establishment, it is filled with most needed interior like:\n "
+                + " a bath, bed, chair, table, vase, lamps and a window.\n"
                 + " Guest 3 sleeps here.");
-        room4 = new Room("in Guest room 4 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
+        room4 = new Room("Guest room 4, on this \"fine\" establishment, it is filled with most needed interior like:\n "
+                + " a bath, bed, chair, table, vase, lamps and a window.\n"
                 + " The victim used to sleep here, now he sleeps forever.");
-        WC = new Room("in the motel WC, except there is an unpleasent stence in here!");
-        kitchen = new Room("in a little kitchen, nothing much, here is a pleasant smell!");
-        basement = new Room("in the basement, it is a bit dark but from a little light, you can spot a workbench to you right and a big boiler in the back.");
-        hallwayN = new Room("in the north hallway, the door to your left leads to the kitchen "
+        WC = new Room("Motel WC, except there is an unpleasent stence in here!");
+        kitchen = new Room("Kitchen, nothing much, here is a pleasant smell!");
+        basement = new Room("Basement, it is a bit dark but from a little light,\n "
+                + "you can spot a workbench to you right and a big boiler in the back.");
+        hallwayN = new Room("North hallway, the door to your left leads to the kitchen\n "
                 + " and the door to the right leads to a WC, there seems to be steps further ahead.");
-        hallwayE = new Room("in the east hallway, the door to your left leads to the room 3 "
+        hallwayE = new Room("East hallway, the door to your left leads to the room 3\n "
                 + " and the door to the right leads to room 4");
-        hallwayW = new Room("in the west hallway, the door to your left leads to the room 1 "
+        hallwayW = new Room("West hallway, the door to your left leads to the room 1\n "
                 + " and the door to the right leads to room 2");
         
         
@@ -138,9 +139,14 @@ public class Game
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
 
-        outside.setItem(new Item("chair"));
-        outside.setItem(new Item("chair2"));
-        outside.setItem(new Item("chair3"));
+        room1.setItem(new Item("chair"));
+        room1.setItem(new Item("lamp"));
+        room2.setItem(new Item("chair"));
+        room2.setItem(new Item("lamp"));
+        room3.setItem(new Item("chair"));
+        room3.setItem(new Item("lamp"));
+        room4.setItem(new Item("chair"));
+        room4.setItem(new Item("lamp"));
 
         outside.setItem(new Item("stone"));
         
@@ -157,7 +163,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Goodbye.");
+        System.out.println("Thank you for playing. Goodbye.");
     }
 
     private void printWelcome()
