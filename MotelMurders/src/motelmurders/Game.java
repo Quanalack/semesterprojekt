@@ -26,13 +26,13 @@ public class Game
 
     private void createCharacters(){
         //Create objects of characters
-        Character janitor = new Character("Carl", "Carl is the janitor here. He repairs stuff", lobby);
-        Character corpse = new Character("Dead guy", "Yeahhh he dead. Very dead", lobby);
+        Character janitor = new Character("Carl", "Carl is the janitor here. He repairs stuff", basement);
+        Character corpse = new Character("Dead guy", "Yeahhh he dead. Very dead", room4);
         Character receptionist = new Character("Receptionist", "He waits for you at the desk", lobby);
         Character cleaningLady = new Character("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
-        Character guest1 = new Character("Guest 1", "A man", lobby);
-        Character guest2 = new Character("Guest 2", "A woman", lobby);
-        Character guest3 = new Character("Guest 3", "Some old person", lobby);
+        Character guest1 = new Character("Guest 1", "A man", room1);
+        Character guest2 = new Character("Guest 2", "A woman", room2);
+        Character guest3 = new Character("Guest 3", "Some old person", room3);
         
         //Add to character arraylist
         characters.add(janitor);
@@ -47,9 +47,10 @@ public class Game
         int murderer = -1;
         
         while (murderer != 1 && murderer < 0)   {
-            murderer = 0 + (int)(Math.random() * characters.size());
+            murderer = 0 + (int)(Math.random() * characters.size()); // Random int from 0 to the amount of characters
         }
         
+        //Set the murderes boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
         //System.out.println("The murderer is: " + characters.get(murderer).getName());
         
