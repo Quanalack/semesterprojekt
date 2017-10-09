@@ -25,12 +25,13 @@ public class Game
 
     private void createCharacters(){
         //Create objects of characters
-        Character janitor = new Character("Carl", "Carl is the janitor here. He cleans the toilets", lobby);
+        Character janitor = new Character("Carl", "Carl is the janitor here. He repairs stuff", lobby);
         Character corpse = new Character("Dead guy", "Yeahhh he dead. Very dead", lobby);
         Character receptionist = new Character("Receptionist", "He waits for you at the desk", lobby);
         Character cleaningLady = new Character("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
         Character guest1 = new Character("Guest 1", "A man", lobby);
         Character guest2 = new Character("Guest 2", "A woman", lobby);
+        Character guest3 = new Character("Guest 3", "Some old person", lobby);
         
         //Add to character arraylist
         characters.add(janitor);
@@ -39,6 +40,7 @@ public class Game
         characters.add(cleaningLady);
         characters.add(guest1);
         characters.add(guest2);
+        characters.add(guest3);
         
     }
     
@@ -57,32 +59,45 @@ public class Game
     private void createRooms()
     {
         
-      
-        outside = new Room("outside");
-        lobby = new Room("lobby");
-        room1 = new Room("in motele room 1");
-        room2 = new Room("in motel room 2");
-        room3 = new Room("in motel room 3");
-        room4 = new Room("in motel room4");
-        WC = new Room("Motel WC");
-        kitchen = new Room("kitchen");
-        basement = new Room("Basement");
-        hallwayN = new Room("Hallway North");
-        hallwayE = new Room("Hallway East");
-        hallwayW = new Room("Hallway West");
+        //Room descriptions when you arrive in a room
+        outside = new Room("outside, the wind is blowing, you see the motels old facade infront of you.");
+        lobby = new Room("in the lobby of the motel, you see a receptionist and even a vending machine, "
+                + " you also see hallways leading to various rooms both left, right and up.");
+        room1 = new Room("in Guest room 1 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " Guest 1 sleeps here.");
+        room2 = new Room("in Guest room 2 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " Guest 2 sleeps here.");
+        room3 = new Room("in Guest room 3 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " Guest 3 sleeps here.");
+        room4 = new Room("in Guest room 4 on this \"fine\" establishment, it is filled with most needed interior like: "
+                + " a bath, bed, chair, table, vase, lamps and a window."
+                + " The victim used to sleep here, now he sleeps forever.");
+        WC = new Room("in the motel WC, except there is an unpleasent stence in here!");
+        kitchen = new Room("in a little kitchen, nothing much, here is a pleasant smell!");
+        basement = new Room("in the basement, it is a bit dark but from a little light, you can spot a workbench to you right and a big boiler in the back.");
+        hallwayN = new Room("in the north hallway, the door to your left leads to the kitchen "
+                + " and the door to the right leads to a WC, there seems to be steps further ahead.");
+        hallwayE = new Room("in the east hallway, the door to your left leads to the room 3 "
+                + " and the door to the right leads to room 4");
+        hallwayW = new Room("in the west hallway, the door to your left leads to the room 1 "
+                + " and the door to the right leads to room 2");
         
         
+        //Move set in all rooms
+        outside.setExit("up", lobby);
         
-        outside.setExit("forward", lobby);
         lobby.setExit("right", hallwayE);
         lobby.setExit("left", hallwayW);
-
         lobby.setExit("back", outside);
+        lobby.setExit("up", hallwayN);
         
-        lobby.setExit("forward", hallwayN);
         hallwayE.setExit("right", room4);
         hallwayE.setExit("left", room3);
         hallwayE.setExit("back", lobby);
+        
         //Walk directly from the room to the toilet located in the north section of the motel
         hallwayW.setExit("right", room2);
         hallwayW.setExit("left", room1);
@@ -90,18 +105,26 @@ public class Game
         
         hallwayN.setExit("right", WC);
         hallwayN.setExit("left", kitchen);
-        hallwayN.setExit("forward", basement);
+        hallwayN.setExit("up", basement);
         hallwayN.setExit("back", lobby);
+        
         basement.setExit("back", hallwayN);
+        
         kitchen.setExit("back", hallwayN);
+        
         WC.setExit("back", hallwayN);
+        
         room1.setExit("back", hallwayW);
+        
         room2.setExit("back", hallwayW);
+        
         room3.setExit("back", hallwayE);
+        
         room4.setExit("back", hallwayE);
+        
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
-        outside.setItem(new Item("chair"));
+        outside.setItem(new Item("stone"));
         currentRoom = outside;
     }
 
