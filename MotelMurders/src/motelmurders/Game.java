@@ -19,10 +19,15 @@ public class Game
         this.currentRoom = currentRoom;
     }
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
-    ArrayList<Item> inventory = new ArrayList<>();
+    
     //Our arraylist will hold the inventory items for our game
-    ArrayList<Character> characters = new ArrayList<>();
+    ArrayList<Item> inventory = new ArrayList<>();
+    
     //The arraylist will hold the characters for our game
+    ArrayList<Character> characters = new ArrayList<>();
+    
+    //Holds the rooms for the game
+    ArrayList<Room> rooms = new ArrayList<>();
     
     public Game() 
     {
@@ -125,6 +130,21 @@ public class Game
         hallwayN.setInvestigateString("Nothing here. Btw I'm blind");
         hallwayE.setInvestigateString("Nothing here. Btw I'm blind");
         hallwayW.setInvestigateString("Nothing here. Btw I'm blind");
+        
+        //Add rooms to list
+        rooms.add(outside);
+        rooms.add(lobby);
+        rooms.add(room1);
+        rooms.add(room2);
+        rooms.add(room3);
+        rooms.add(room4);
+        rooms.add(WC);
+        rooms.add(kitchen);
+        rooms.add(basement);
+        rooms.add(hallwayN);
+        rooms.add(hallwayE);
+        rooms.add(hallwayW);
+        
         
         //Move set in all rooms
         outside.setExit("up", lobby);
@@ -368,9 +388,13 @@ public class Game
     private String investigate(Command command) {
         String roomToInvestigate = command.getCommandWord().toString();
         
+        for (int i = 0; i < rooms.size(); i++) {
+            if (roomToInvestigate.equalsIgnoreCase(rooms.get(i).getRoomName())) {
+                return rooms.get(i).getInvestigateString();
+            }
+        }
         
-        
-        return "fuck";
+        return "Nothing to investigate";
         
     }
 
