@@ -213,17 +213,9 @@ public class Game
         else {
             inventory.add(nextItem);
             currentRoom.removeItem(item);
-//<<<<<<< HEAD
+            
             System.out.println("Picked up:" + item);
             
-            
-//=======
-            System.out.println("Picked up: " + item);
-//>>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
-
-            System.out.println("Picked up :" + item);
-                        
-
         }
     }
     
