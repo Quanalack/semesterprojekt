@@ -124,14 +124,13 @@ public class Game
         
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
-<<<<<<< HEAD
+
         outside.setItem(new Item("chair"));
         outside.setItem(new Item("chair2"));
         outside.setItem(new Item("chair3"));
-=======
+
         outside.setItem(new Item("stone"));
         
->>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
         currentRoom = outside;
     }
 
@@ -213,13 +212,11 @@ public class Game
         else {
             inventory.add(nextItem);
             currentRoom.removeItem(item);
-<<<<<<< HEAD
+
             System.out.println("Picked up:" + item);
-            
-            
-=======
+                        
             System.out.println("Picked up: " + item);
->>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
+
         }
     }
     
