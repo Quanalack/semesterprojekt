@@ -156,6 +156,8 @@ public class Game
         else if (commandWord == commandWord.PICKUP) {
                     pickupItem(command);
                     
+        } else if (commandWord == commandWord.ACCUSE) {
+            //Call accuse method
         }
         return wantToQuit;
     }
@@ -214,6 +216,11 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    private boolean accuse(Character c) {
+        
+        return c.getIsMurderer(); // check if the caracter accused is the murderer
     }
 
     private boolean quit(Command command) 
