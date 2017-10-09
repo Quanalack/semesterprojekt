@@ -6,12 +6,12 @@ class Item {
     private String description;
     
     public Item(String newdescription) { //constructor
-        description = newdescription;
+        this.description = newdescription;
         
     }
     
     public String getDescription() {
-        return description;
+        return this.description;
         //passing back this string when i need a item for it
     }
     
