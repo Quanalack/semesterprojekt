@@ -243,7 +243,7 @@ public class Game
         Item nextItem = null;
         int index = 0;
         for (int i = 0; i < inventory.size(); i++) {
-            if (inventory.get(i).getDescription().equals(item)) {
+            if (inventory.get(i).getDescription().equalsIgnoreCase(item)) {
                 nextItem = inventory.get(i);
                 index = i;
             }
@@ -308,7 +308,7 @@ public class Game
         for (int i = 0; i < characters.size(); i++) {
             if (characterName.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
                 System.out.println("You found the murderer!");
-                return true;
+                return true; 
             }
         }
         

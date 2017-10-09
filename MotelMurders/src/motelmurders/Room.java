@@ -67,7 +67,7 @@ public class Room
     public Item getItem(String itemName) {
       //pointing to nothing in memory. Nullpointerexception; cant grab things u havent created
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDescription().equals(itemName)) {
+            if (items.get(i).getDescription().equalsIgnoreCase(itemName)) {
                 return items.get(i);
             }
          
@@ -77,7 +77,7 @@ public class Room
      public void removeItem(String itemName) {
       
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDescription().equals(itemName)) {
+            if (items.get(i).getDescription().equalsIgnoreCase(itemName)) {
                 items.remove(i);
             }
         }    
