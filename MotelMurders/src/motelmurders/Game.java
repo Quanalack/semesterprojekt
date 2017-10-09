@@ -125,6 +125,7 @@ public class Game
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
         outside.setItem(new Item("stone"));
+        
         currentRoom = outside;
     }
 
@@ -181,6 +182,10 @@ public class Game
                     
         } else if (commandWord == commandWord.ACCUSE) {
             //Call accuse method
+        } else if (commandWord == commandWord.INVESTIGATE) {
+            //Call investigate
+        } else if (commandWord == commandWord.DROP) {
+            dropItem(command);
         }
         return wantToQuit;
     }
@@ -201,9 +206,30 @@ public class Game
         else {
             inventory.add(nextItem);
             currentRoom.removeItem(item);
-            System.out.println("Picked up:" + item);
+            System.out.println("Picked up: " + item);
         }
     }
+    
+    private void dropItem(Command command) {
+        if(!command.hasSecondWord()) {
+            System.out.println("Drop what?");
+            return;
+        }
+
+        String item = command.getSecondWord();
+
+        Item nextItem = new Item(item);
+
+        if (!(inventory.contains(nextItem))) {
+        System.out.println("There is no item named: " + nextItem.getDescription());
+        }
+        else {
+            inventory.remove(nextItem);
+            currentRoom.setItem(nextItem);
+            System.out.println("Dropped: " + item);
+        }
+    }
+    
     private void printInventory() {
         String output = "";
         for (int i = 0; i < inventory.size(); i++) {
