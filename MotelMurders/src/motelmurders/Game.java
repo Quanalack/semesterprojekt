@@ -213,7 +213,7 @@ public class Game
             inventory.add(nextItem);
             currentRoom.removeItem(item);
 
-            System.out.println("Picked up:" + item);
+            System.out.println("Picked up :" + item);
                         
 
         }
@@ -241,11 +241,13 @@ public class Game
     
     private void printInventory() {
         String output = "";
+        System.out.println("You're currently carrying:"); 
         for (int i = 0; i < inventory.size(); i++) {
-            output += inventory.get(i).getDescription() + "  ";
-            System.out.println("You're currently carrying:");  
-            System.out.println(output);
+            output += inventory.get(i).getDescription() + ",  ";
+             
+            
         }
+        System.out.println(output);
     }
     private void printHelp() 
     {
