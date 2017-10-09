@@ -13,6 +13,7 @@ import java.util.Iterator;
 public class Room 
 {
     private String description;
+    private String investigateString;
     private String roomName;
     private HashMap<String, Room> exits;
     ArrayList<Item> items = new ArrayList<Item>();
@@ -40,6 +41,14 @@ public class Room
     public String getShortDescription()
     {
         return description;
+    }
+    
+    public String getInvestigateString() {
+        return investigateString;
+    }
+
+    public void setInvestigateString(String investigateString) {
+        this.investigateString = investigateString;
     }
 
     public String getLongDescription()

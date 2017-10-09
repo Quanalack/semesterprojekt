@@ -112,6 +112,19 @@ public class Game
         hallwayW = new Room("in the west hallway, the door to your left leads to the room 1 "
         + " and the door to the right leads to room 2", "hallwayW");
         
+        //Set the investigate string for each room. The string showing when user uses the investigate command
+        outside.setInvestigateString("Nothing here. Btw I'm blind");
+        lobby.setInvestigateString("Nothing here. Btw I'm blind");
+        room1.setInvestigateString("Nothing here. Btw I'm blind");
+        room2.setInvestigateString("Nothing here. Btw I'm blind");
+        room3.setInvestigateString("Nothing here. Btw I'm blind");
+        room4.setInvestigateString("Nothing here. Btw I'm blind");
+        WC.setInvestigateString("Nothing here. Btw I'm blind");
+        kitchen.setInvestigateString("Nothing here. Btw I'm blind");
+        basement.setInvestigateString("Nothing here. Btw I'm blind");
+        hallwayN.setInvestigateString("Nothing here. Btw I'm blind");
+        hallwayE.setInvestigateString("Nothing here. Btw I'm blind");
+        hallwayW.setInvestigateString("Nothing here. Btw I'm blind");
         
         //Move set in all rooms
         outside.setExit("up", lobby);
@@ -230,6 +243,7 @@ public class Game
             wantToQuit = accuse(command);
         } else if (commandWord == commandWord.INVESTIGATE) {
             //Call investigate to investigate an item in a room
+            investigate(command);
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
@@ -349,6 +363,15 @@ public class Game
         
         
         return  true; // Once you have accused the game ends. You either win or loose
+    }
+    
+    private String investigate(Command command) {
+        String roomToInvestigate = command.getCommandWord().toString();
+        
+        
+        
+        return "fuck";
+        
     }
 
     private boolean quit(Command command) 
