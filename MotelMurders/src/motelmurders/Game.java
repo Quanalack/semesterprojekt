@@ -215,7 +215,6 @@ public class Game
 
             System.out.println("Picked up:" + item);
                         
-            System.out.println("Picked up: " + item);
 
         }
     }
