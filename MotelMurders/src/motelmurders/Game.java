@@ -144,7 +144,7 @@ public class Game
 
         outside.setItem(new Item("stone"));
         
-//>>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
+
         currentRoom = outside;
     }
 
