@@ -14,7 +14,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
-    ArrayList<Item> items = new ArrayList<Item>(); 
+    ArrayList<Item> items = new ArrayList<Item>();
 
     public Room(String description) 
     {
@@ -52,7 +52,7 @@ public class Room
             
             return returnString;
         }
-                
+        
 
     public Room getExit(String direction) 
     {

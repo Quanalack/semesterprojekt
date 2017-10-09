@@ -3,7 +3,7 @@ package motelmurders;
 
 class Item {
     
-    String description;
+    private String description;
     
     public Item(String newdescription) { //constructor
         description = newdescription;
