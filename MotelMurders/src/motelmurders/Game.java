@@ -124,14 +124,14 @@ public class Game
         
         //east and west should maybe be right + left
         inventory.add(new Item("Magnifying Glass"));
-<<<<<<< HEAD
+
         outside.setItem(new Item("chair"));
         outside.setItem(new Item("chair2"));
         outside.setItem(new Item("chair3"));
-=======
+
         outside.setItem(new Item("stone"));
         
->>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
+//>>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
         currentRoom = outside;
     }
 
@@ -213,13 +213,13 @@ public class Game
         else {
             inventory.add(nextItem);
             currentRoom.removeItem(item);
-<<<<<<< HEAD
+//<<<<<<< HEAD
             System.out.println("Picked up:" + item);
             
             
-=======
+//=======
             System.out.println("Picked up: " + item);
->>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
+//>>>>>>> e2df8801590714f013b18fae7f11b9bb0db95952
         }
     }
     
@@ -231,14 +231,24 @@ public class Game
 
         String item = command.getSecondWord();
 
-        Item nextItem = new Item(item);
-
+        Item nextItem = null;
+        int index = 0;
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getDescription().equals(item)) {
+                nextItem = inventory.get(i);
+                index = i;
+            }
+            
+        }
+        if (nextItem == null) {
+            System.out.println("It's not in your inventory");
+        }
         if (!(inventory.contains(nextItem))) {
         System.out.println("There is no item named: " + nextItem.getDescription());
         }
         else {
-            inventory.remove(nextItem);
-            currentRoom.setItem(nextItem);
+            inventory.remove(index);
+            currentRoom.setItem(new Item(item));
             System.out.println("Dropped: " + item);
         }
     }
