@@ -13,12 +13,22 @@ import java.util.Iterator;
 public class Room 
 {
     private String description;
+    private String roomName;
     private HashMap<String, Room> exits;
     ArrayList<Item> items = new ArrayList<Item>();
 
-    public Room(String description) 
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public Room(String description, String roomName) 
     {
         this.description = description;
+        this.roomName = roomName;
         exits = new HashMap<String, Room>();
     }
 
@@ -34,7 +44,8 @@ public class Room
 
     public String getLongDescription()
     {
-        return "Current location: " + description + ".\n" + getExitString() + getItemString();
+        
+        return "Current location: " + roomName + "."+ description + ".\n" + getExitString() + getItemString();
     }
 
 	private String getExitString()
@@ -98,6 +109,7 @@ public class Room
         }
             return output;
     }
+
 }
 
 

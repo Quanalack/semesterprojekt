@@ -19,7 +19,7 @@ public class Character {
                 this.name = name;
                 this.description = description;
                 this.isMurderer = false;
-                this.currentRoom = new Room(startRoom.getLongDescription());
+                this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
         }
 
     public String getName() {

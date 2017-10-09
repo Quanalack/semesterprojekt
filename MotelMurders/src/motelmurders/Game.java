@@ -10,6 +10,14 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
     ArrayList<Item> inventory = new ArrayList<>();
     //Our arraylist will hold the inventory items for our game
@@ -56,46 +64,53 @@ public class Game
         
     }
     
-    public String getCharacterString() {
+    public void getCharacterString() {
+            String inRoom = "";
             
-            for (Character c : characters) {
-                String inRoom = null;
-                if (currentRoom == c.getCurrentRoom()) {
-                    inRoom += c.getName() + " ";
+            System.out.println("Characters in room:");
+            for (int i = 0; i < characters.size(); i++) {
+                
+                if (currentRoom.getRoomName().equals(characters.get(i).getCurrentRoom().getRoomName())) {
+
+                    inRoom += characters.get(i).getName() + ", ";
                 }
-                return inRoom;
             }
-            return "None";
+            
+            if (inRoom.equalsIgnoreCase("")) {
+            inRoom = "None";
+        }
+            
+            System.out.println(inRoom);
         }
     
     private void createRooms()
     {
         
         //Room descriptions when you arrive in a room
-        outside = new Room("outside, the wind is blowing, you see the motels old facade infront of you.");
+        outside = new Room("outside, the wind is blowing, you see the motels old facade infront of you." , "outside");
         lobby = new Room("in the lobby of the motel, you see a receptionist and even a vending machine, "
-                + " you also see hallways leading to various rooms both left, right and up.");
+                + " you also see hallways leading to various rooms both left, right and up." , "lobby");
         room1 = new Room("in Guest room 1 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " Guest 1 sleeps here.");
+        + " a bath, bed, chair, table, vase, lamps and a window."
+        + " Guest 1 sleeps here.", "room1");
         room2 = new Room("in Guest room 2 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " Guest 2 sleeps here.");
+        + " a bath, bed, chair, table, vase, lamps and a window."
+        + " Guest 2 sleeps here.", "room2");
         room3 = new Room("in Guest room 3 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " Guest 3 sleeps here.");
+        + " a bath, bed, chair, table, vase, lamps and a window."
+        + " Guest 3 sleeps here.", "room3");
         room4 = new Room("in Guest room 4 on this \"fine\" establishment, it is filled with most needed interior like: "
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " The victim used to sleep here, now he sleeps forever.");
-        WC = new Room("in the motel WC, except there is an unpleasent stence in here!");
-        kitchen = new Room("in a little kitchen, nothing much, here is a pleasant smell!");
-        basement = new Room("in the basement, it is a bit dark but from a little light, you can spot a workbench to you right and a big boiler in the back.");
+        + " a bath, bed, chair, table, vase, lamps and a window."
+        + " The victim used to sleep here, now he sleeps forever.", "room4");
+        WC = new Room("in the motel WC, except there is an unpleasent stence in here!", "WC");
+        kitchen = new Room("in a little kitchen, nothing much, here is a pleasant smell!", "kitchen");
+        basement = new Room("in the basement, it is a bit dark but from a little light, you can spot a workbench to you right and a big boiler in the back.", "basement");
         hallwayN = new Room("in the north hallway, the door to your left leads to the kitchen "
-                + " and the door to the right leads to a WC, there seems to be steps further ahead.");
+        + " and the door to the right leads to a WC, there seems to be steps further ahead.", "hallwayN");
         hallwayE = new Room("in the east hallway, the door to your left leads to the room 3 "
-                + " and the door to the right leads to room 4");
+        + " and the door to the right leads to room 4", "hallwayE");
         hallwayW = new Room("in the west hallway, the door to your left leads to the room 1 "
-                + " and the door to the right leads to room 2");
+        + " and the door to the right leads to room 2", "hallwayW");
         
         
         //Move set in all rooms
@@ -150,6 +165,7 @@ public class Game
     public void play() 
     {            
         printWelcome();
+        
 
         boolean finished = false;
         while (! finished) {
@@ -174,6 +190,7 @@ public class Game
 
     private boolean processCommand(Command command) 
     {
+        
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
@@ -188,6 +205,8 @@ public class Game
         }
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
+            getCharacterString();
+
         }
         else if (commandWord == CommandWord.QUIT) {
             //Method to quit game
@@ -337,18 +356,5 @@ public class Game
             return true;
         }
     }
-
-       public void getCharactersInRoom() {
-        System.out.println("Characters in this room: ");
-        
-        /*String charactersInRoom = "";
-        for (int i = 0; i < characters.size(); i++) {
-        if (currentRoom == characters.get(i).getCurrentRoom()) {
-        charactersInRoom += characters.get(i).getName() + " ";
-        }
-        }
-        return charactersInRoom;*/
-        
-        }
     
 }
