@@ -1,6 +1,7 @@
 package motelmurders;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -41,6 +42,17 @@ public class Game
         characters.add(guest1);
         characters.add(guest2);
         characters.add(guest3);
+        
+        //Set one of them as murderer
+        int murderer = -1;
+        
+        while (murderer != 1 && murderer < 0)   {
+            murderer = 0 + (int)(Math.random() * characters.size());
+        }
+        
+        characters.get(murderer).setIsMurderer(true);
+        //System.out.println("The murderer is: " + characters.get(murderer).getName());
+        
         
     }
     
