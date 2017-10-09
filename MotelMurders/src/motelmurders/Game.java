@@ -385,16 +385,10 @@ public class Game
         return  true; // Once you have accused the game ends. You either win or loose
     }
     
-    private String investigate(Command command) {
-        String roomToInvestigate = command.getCommandWord().toString();
+    private void investigate(Command command) {
         
-        for (int i = 0; i < rooms.size(); i++) {
-            if (roomToInvestigate.equalsIgnoreCase(rooms.get(i).getRoomName())) {
-                return rooms.get(i).getInvestigateString();
-            }
-        }
-        
-        return "Nothing to investigate";
+        System.out.println(currentRoom.getInvestigateString());
+
         
     }
 
