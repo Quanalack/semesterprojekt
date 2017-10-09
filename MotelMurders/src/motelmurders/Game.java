@@ -1,7 +1,6 @@
 package motelmurders;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -12,7 +11,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
-    ArrayList<Item> inventory = new ArrayList<Item>();
+    ArrayList<Item> inventory = new ArrayList<>();
     //Our arraylist will hold the inventory items for our game
     ArrayList<Character> characters = new ArrayList<>();
     //The arraylist will hold the characters for our game
@@ -345,5 +344,17 @@ public class Game
         }
     }
 
-   
+       public void getCharactersInRoom() {
+        System.out.println("Characters in this room: ");
+        
+        /*String charactersInRoom = "";
+        for (int i = 0; i < characters.size(); i++) {
+        if (currentRoom == characters.get(i).getCurrentRoom()) {
+        charactersInRoom += characters.get(i).getName() + " ";
+        }
+        }
+        return charactersInRoom;*/
+        
+        }
+    
 }
