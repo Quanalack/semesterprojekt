@@ -191,19 +191,24 @@ public class Game
             goRoom(command);
         }
         else if (commandWord == CommandWord.QUIT) {
+            //Method to quit game
             wantToQuit = quit(command);
         }
         else if (commandWord == commandWord.INVENTORY) {
+            //Print out the content of the inventory
             printInventory();
         }
         else if (commandWord == commandWord.PICKUP) {
-                    pickupItem(command);
+            //Pick up an item from a room
+            pickupItem(command);
                     
         } else if (commandWord == commandWord.ACCUSE) {
-            accuse(command);
+            //Call accuse method to accuse a character of being the murderer
+            wantToQuit = accuse(command);
         } else if (commandWord == commandWord.INVESTIGATE) {
-            //Call investigate
+            //Call investigate to investigate an item in a room
         } else if (commandWord == commandWord.DROP) {
+            //Drop an item fom inventory
             dropItem(command);
         }
         return wantToQuit;
@@ -304,16 +309,23 @@ public class Game
     private boolean accuse(Command command) {
         
         String characterName = command.getSecondWord();
+        //Boolean to determine wheter or not the corrct person is accused
+        boolean isMurdererFound = false;
         
         for (int i = 0; i < characters.size(); i++) {
             if (characterName.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
                 System.out.println("You found the murderer!");
-                return true; 
+                
+                isMurdererFound = true;
+                
             }
+        } 
+        if (!isMurdererFound) {
+            System.out.println("Not the murderer! You lost!");
         }
         
-        System.out.println("Not the murderer!");
-        return  false; // check if the caracter accused is the murderer
+        
+        return  true; // Once you have accused the game ends. You either win or loose
     }
 
     private boolean quit(Command command) 
