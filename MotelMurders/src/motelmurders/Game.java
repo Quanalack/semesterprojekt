@@ -52,7 +52,7 @@ public class Game
         
         //Set the murderes boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
-        //System.out.println("The murderer is: " + characters.get(murderer).getName());
+        System.out.println("The murderer is: " + characters.get(murderer).getName());
         
         
     }
@@ -200,7 +200,7 @@ public class Game
                     pickupItem(command);
                     
         } else if (commandWord == commandWord.ACCUSE) {
-            //Call accuse method
+            accuse(command);
         } else if (commandWord == commandWord.INVESTIGATE) {
             //Call investigate
         } else if (commandWord == commandWord.DROP) {
@@ -301,9 +301,19 @@ public class Game
         }
     }
     
-    private boolean accuse(Character c) {
+    private boolean accuse(Command command) {
         
-        return c.getIsMurderer(); // check if the caracter accused is the murderer
+        String characterName = command.getSecondWord();
+        
+        for (int i = 0; i < characters.size(); i++) {
+            if (characterName.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
+                System.out.println("You found the murderer!");
+                return true;
+            }
+        }
+        
+        System.out.println("Not the murderer!");
+        return  false; // check if the caracter accused is the murderer
     }
 
     private boolean quit(Command command) 
