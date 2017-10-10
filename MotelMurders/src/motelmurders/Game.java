@@ -93,28 +93,29 @@ public class Game
         
         //Room descriptions when you arrive in a room
         outside = new Room("\nThe wind is blowing, you see the motels old facade infront of you." , "outside");
-        lobby = new Room("\nYou see a receptionist and even a vending machine, "
+        lobby = new Room("\nYou see a receptionist and even a vending machine,"
                 + " you also see hallways leading to various rooms both left, right and up." , "lobby");
-        room1 = new Room("\nIt is filled with most needed interior like: "
+        room1 = new Room("\nIt is filled with most needed interior like:"
         + " a bath, bed, chair, table, vase, lamps and a window."
         + " Guest 1 sleeps here.", "room1");
-        room2 = new Room("\nIt is filled with most needed interior like: "
+        room2 = new Room("\nIt is filled with most needed interior like:"
         + " a bath, bed, chair, table, vase, lamps and a window."
         + " Guest 2 sleeps here.", "room2");
-        room3 = new Room("\nIt is filled with most needed interior like: "
+        room3 = new Room("\nIt is filled with most needed interior like:"
         + " a bath, bed, chair, table, vase, lamps and a window."
         + " Guest 3 sleeps here.", "room3");
-        room4 = new Room("\nIt is filled with most needed interior like: "
+        room4 = new Room("\nIt is filled with most needed interior like:"
         + " a bath, bed, chair, table, vase, lamps and a window."
         + " The victim used to sleep here, now he sleeps forever.", "room4");
         WC = new Room("\nThere is an unpleasent stence in here!", "WC");
         kitchen = new Room("\nNothing much, here is a pleasant smell!", "kitchen");
-        basement = new Room("\nIt is a bit dark but from a little light, you can spot a workbench to you right and a big boiler in the back.", "basement");
-        hallwayN = new Room("\nThe door to your left leads to the kitchen "
+        basement = new Room("\nIt is a bit dark but from a little light, "
+                + "you can spot a workbench to you right and a big boiler in the back.", "basement");
+        hallwayN = new Room("\nThe door to your left leads to the kitchen"
         + " and the door to the right leads to a WC, there seems to be steps further ahead.", "hallwayN");
-        hallwayE = new Room("\nThe door to your left leads to the room 3 "
+        hallwayE = new Room("\nThe door to your left leads to the room 3"
         + " and the door to the right leads to room 4", "hallwayE");
-        hallwayW = new Room("\nThe door to your left leads to the room 1 "
+        hallwayW = new Room("\nThe door to your left leads to the room 1"
         + " and the door to the right leads to room 2", "hallwayW");
         
         //Set the investigate string for each room. The string showing when user uses the investigate command
