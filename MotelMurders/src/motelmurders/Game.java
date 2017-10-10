@@ -263,7 +263,7 @@ public class Game
             wantToQuit = accuse(command);
         } else if (commandWord == commandWord.INVESTIGATE) {
             //Call investigate to investigate an item in a room
-            investigate(command);
+            investigate();
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
@@ -336,8 +336,8 @@ public class Game
     }
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the motel.");
+        System.out.println("You are a detective trying to solve a murder.");
+        System.out.println("Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -385,16 +385,10 @@ public class Game
         return  true; // Once you have accused the game ends. You either win or loose
     }
     
-    private String investigate(Command command) {
-        String roomToInvestigate = command.getCommandWord().toString();
+    private void investigate() {
         
-        for (int i = 0; i < rooms.size(); i++) {
-            if (roomToInvestigate.equalsIgnoreCase(rooms.get(i).getRoomName())) {
-                return rooms.get(i).getInvestigateString();
-            }
-        }
-        
-        return "Nothing to investigate";
+        System.out.println(currentRoom.getInvestigateString());
+
         
     }
 
