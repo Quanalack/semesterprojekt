@@ -64,6 +64,7 @@ public class Game
         
         //Set the murderes boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
+        //Print for testing and debugging
         System.out.println("The murderer is: " + characters.get(murderer).getName());
         
         
