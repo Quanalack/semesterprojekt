@@ -305,7 +305,7 @@ public class Game
         String item = command.getSecondWord();
         
         if (item.equalsIgnoreCase("magnifying")) {
-            System.out.println("You cannot drop this");
+            System.out.println("You cannot drop your magnifying glass! You need it!");
             return;
         }
         
