@@ -314,7 +314,7 @@ public class Game
         }
         if (nextItem == null) {
             System.out.println("It's not in your inventory");
-        }
+        } else {
         if (!(inventory.contains(nextItem))) {
         System.out.println("There is no item named: " + nextItem.getDescription());
         }
@@ -322,6 +322,7 @@ public class Game
             inventory.remove(index);
             currentRoom.setItem(new Item(item));
             System.out.println("Dropped: " + item);
+        }
         }
     }
     
