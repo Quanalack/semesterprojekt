@@ -303,7 +303,12 @@ public class Game
         }
 
         String item = command.getSecondWord();
-
+        
+        if (item.equalsIgnoreCase("magnifying")) {
+            System.out.println("You cannot drop this");
+            return;
+        }
+        
         Item nextItem = null;
         int index = 0;
         for (int i = 0; i < inventory.size(); i++) {
