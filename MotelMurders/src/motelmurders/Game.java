@@ -305,7 +305,7 @@ public class Game
         String item = command.getSecondWord();
         
         if (item.equalsIgnoreCase("magnifying")) {
-            System.out.println("You cannot drop this");
+            System.out.println("You cannot drop your magnifying glass! You need it!");
             return;
         }
         
@@ -318,17 +318,18 @@ public class Game
             }
             
         }
+        
         if (nextItem == null) {
             System.out.println("It's not in your inventory");
         } else {
-        if (!(inventory.contains(nextItem))) {
-        System.out.println("There is no item named: " + nextItem.getDescription());
-        }
-        else {
-            inventory.remove(index);
-            currentRoom.setItem(new Item(item));
-            System.out.println("Dropped: " + item);
-        }
+                if (!(inventory.contains(nextItem))) {
+                System.out.println("There is no item named: " + nextItem.getDescription());
+                }
+                else {
+                    inventory.remove(index);
+                    currentRoom.setItem(new Item(item));
+                    System.out.println("Dropped: " + item);
+                }
         }
     }
     
