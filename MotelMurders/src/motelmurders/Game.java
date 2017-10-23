@@ -11,7 +11,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private int maxLimit = 4; //Number of items in inventory including magnifying glass
-
+    
     public Room getCurrentRoom() {
         return currentRoom;
     }
@@ -287,7 +287,7 @@ public class Game
     {
         
         if (inventory.size() == maxLimit) {
-            System.out.println("No more room");
+            System.out.println("There is no more room in your inventory.");
         }
         else {
         if(!command.hasSecondWord()) {
@@ -389,7 +389,7 @@ public class Game
         }
     }
     
-      private void dialog(Command command) {    //Need help with connecting dialogs to characters
+    private void dialog(Command command) {    //Need help with connecting dialogs to characters
         if (!command.hasSecondWord()) {
             System.out.println("Talk to who?");
             return;
@@ -401,10 +401,18 @@ public class Game
 
         if (nextCharacter == null) {
             System.out.println("There is no here one named that!");
+            return;
 
-        } else if (characterName.equalsIgnoreCase(characters.getName())) {
+        } else if (characterName.equalsIgnoreCase("receptionist")) {
+            //How to call specific dialog?
             
+        } else if (characterName.equalsIgnoreCase("janitor")) {
+            //How to call specific dialog?
+            
+        } else if (characterName.equalsIgnoreCase("guest1")) {
+            //How to call specific dialog?
         }
+            
     }
     
     private boolean accuse(Command command) {
