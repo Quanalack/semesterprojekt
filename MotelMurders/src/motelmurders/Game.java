@@ -10,6 +10,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private int maxLimit = 4; //Number of items in inventory including magnifying glass
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -247,10 +248,14 @@ public class Game
             goRoom(command);
             getCharacterString();
             
+            //15 % chance of moving cleaning Lady
             if (Math.random() <= 0.15) {
                 moveCleaningLady();
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> 72e7fbc6b977074e057043ebf2724c32390d8c16
         }
         else if (commandWord == CommandWord.QUIT) {
             //Method to quit game
@@ -280,6 +285,11 @@ public class Game
     }
     private void pickupItem(Command command) 
     {
+        
+        if (inventory.size() == maxLimit) {
+            System.out.println("No more room");
+        }
+        else {
         if(!command.hasSecondWord()) {
             System.out.println("Pick up what?");
             return;
@@ -299,6 +309,7 @@ public class Game
             
             System.out.println("Picked up:" + item);
             
+        }
         }
     }
     
