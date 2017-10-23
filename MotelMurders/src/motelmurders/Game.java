@@ -246,6 +246,11 @@ public class Game
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
             getCharacterString();
+            
+            if (Math.random() <= 0.15) {
+                moveCleaningLady();
+            }
+            
 
         }
         else if (commandWord == CommandWord.QUIT) {
@@ -410,6 +415,21 @@ public class Game
         else {
             return true;
         }
+    }
+    
+    private void moveCleaningLady() {
+        
+        //Declaring cleaningLady character object 
+        Character CleaningLady = characters.get(3);
+        
+        //Get a random room out of all possible rooms
+        Room randomRoom = rooms.get(0 + (int)(Math.random() * rooms.size()));
+        
+        //Move to the random room
+        CleaningLady.setCurrentRoom(randomRoom);
+        
+        //Print to player the location of her now
+        System.out.println("The cleaning lady is in room: " + randomRoom.getRoomName());
     }
     
 }

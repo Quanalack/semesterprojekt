@@ -73,11 +73,12 @@ public class Room
             return returnString;
         }
         
-
+        
     public Room getExit(String direction) 
     {
         return exits.get(direction);
     }
+    
     /*
     * Get items from the room
     */
