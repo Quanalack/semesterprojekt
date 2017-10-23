@@ -381,13 +381,14 @@ public class Game
         for (int i = 0; i < characters.size(); i++) {
             if (characterName.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
                 System.out.println("You found the murderer!");
-                
+                System.out.println("Your score:");
                 isMurdererFound = true;
                 
             }
         } 
         if (!isMurdererFound) {
             System.out.println("Not the murderer! You lost!");
+            System.out.println("Your score:");
         }
         
         
