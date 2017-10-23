@@ -251,7 +251,6 @@ public class Game
                 moveCleaningLady();
             }
             
-
         }
         else if (commandWord == CommandWord.QUIT) {
             //Method to quit game
@@ -274,6 +273,8 @@ public class Game
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
+        } else if (commandWord == commandWord.TALK) {
+            dialog(command);
         }
         return wantToQuit;
     }
@@ -374,6 +375,24 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+      private void dialog(Command command) {    //Need help with connecting dialogs to characters
+        if (!command.hasSecondWord()) {
+            System.out.println("Talk to who?");
+            return;
+        }
+
+        String characterName = command.getSecondWord();
+
+        Character nextCharacter = currentRoom.getCharacter(characterName);
+
+        if (nextCharacter == null) {
+            System.out.println("There is no here one named that!");
+
+        } else if (characterName.equalsIgnoreCase(characters.getName())) {
+            
         }
     }
     
