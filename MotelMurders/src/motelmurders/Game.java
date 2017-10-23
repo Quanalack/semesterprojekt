@@ -10,6 +10,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private int maxLimit = 4; //Number of items in inventory including magnifying glass
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -246,7 +247,11 @@ public class Game
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
             getCharacterString();
-
+            
+            //15 % chance of moving cleaning Lady
+            if (Math.random() <= 0.15) {
+                moveCleaningLady();
+            }
         }
         else if (commandWord == CommandWord.QUIT) {
             //Method to quit game
@@ -274,6 +279,11 @@ public class Game
     }
     private void pickupItem(Command command) 
     {
+        
+        if (inventory.size() == maxLimit) {
+            System.out.println("No more room");
+        }
+        else {
         if(!command.hasSecondWord()) {
             System.out.println("Pick up what?");
             return;
@@ -293,6 +303,7 @@ public class Game
             
             System.out.println("Picked up:" + item);
             
+        }
         }
     }
     
@@ -411,6 +422,21 @@ public class Game
         else {
             return true;
         }
+    }
+    
+    private void moveCleaningLady() {
+        
+        //Declaring cleaningLady character object 
+        Character CleaningLady = characters.get(3);
+        
+        //Get a random room out of all possible rooms
+        Room randomRoom = rooms.get(0 + (int)(Math.random() * rooms.size()));
+        
+        //Move to the random room
+        CleaningLady.setCurrentRoom(randomRoom);
+        
+        //Print to player the location of her now
+        System.out.println("The cleaning lady is in room: " + randomRoom.getRoomName());
     }
     
 }

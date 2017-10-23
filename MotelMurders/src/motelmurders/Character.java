@@ -16,6 +16,10 @@ public class Character {
     private String description;
     private boolean isMurderer;
     private Room currentRoom;
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
         
         //Constructer Character: Name, Description, Room
         public Character(String name, String description, Room startRoom) {
