@@ -249,7 +249,7 @@ public class Game
             getCharacterString();
             
             //15 % chance of moving cleaning Lady
-            if (Math.random() <= 0.15) {
+            if (Math.random() <= 0.25) {
                 moveCleaningLady();
             }
         }
