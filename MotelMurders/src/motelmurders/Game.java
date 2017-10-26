@@ -252,10 +252,6 @@ public class Game
             if (Math.random() <= 0.15) {
                 moveCleaningLady();
             }
-<<<<<<< HEAD
-            
-=======
->>>>>>> 72e7fbc6b977074e057043ebf2724c32390d8c16
         }
         else if (commandWord == CommandWord.QUIT) {
             //Method to quit game
