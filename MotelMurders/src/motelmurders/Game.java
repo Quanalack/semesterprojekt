@@ -275,7 +275,7 @@ public class Game
             //Drop an item fom inventory
             dropItem(command);
         } else if (commandWord == commandWord.TALK) {
-            dialog(command);
+            //dialog(command);
         }
         return wantToQuit;
     }
@@ -385,31 +385,31 @@ public class Game
         }
     }
     
-    private void dialog(Command command) {    //Need help with connecting dialogs to characters
-        if (!command.hasSecondWord()) {
-            System.out.println("Talk to who?");
-            return;
-        }
-
-        String characterName = command.getSecondWord();
-
-        Character nextCharacter = currentRoom.getCharacter(characterName);
-
-        if (nextCharacter == null) {
-            System.out.println("There is no here one named that!");
-            return;
-
-        } else if (characterName.equalsIgnoreCase("receptionist")) {
-            //How to call specific dialog?
-            
-        } else if (characterName.equalsIgnoreCase("janitor")) {
-            //How to call specific dialog?
-            
-        } else if (characterName.equalsIgnoreCase("guest1")) {
-            //How to call specific dialog?
-        }
-            
-    }
+//    private void dialog(Command command) {    //Need help with connecting dialogs to characters
+//        if (!command.hasSecondWord()) {
+//            System.out.println("Talk to who?");
+//            return;
+//        }
+//
+//        String characterName = command.getSecondWord();
+//
+//        Character nextCharacter = currentRoom.getCharacter(characterName);
+//
+//        if (nextCharacter == null) {
+//            System.out.println("There is no here one named that!");
+//            return;
+//
+//        } else if (characterName.equalsIgnoreCase("receptionist")) {
+//            //How to call specific dialog?
+//            
+//        } else if (characterName.equalsIgnoreCase("janitor")) {
+//            //How to call specific dialog?
+//            
+//        } else if (characterName.equalsIgnoreCase("guest1")) {
+//            //How to call specific dialog?
+//        }
+//            
+//    }
     
     private boolean accuse(Command command) {
         
