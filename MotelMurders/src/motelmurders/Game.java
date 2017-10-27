@@ -1,6 +1,7 @@
 package motelmurders;
 
 import java.util.ArrayList;
+import com.google.common.base.Stopwatch;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -11,6 +12,8 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private int maxLimit = 4; //Number of items in inventory including magnifying glass
+    
+    Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -206,6 +209,8 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
+        long seconds = stopwatch.elapsedMillis()/1000;
+        System.out.println("You finished the game in " + seconds + " seconds.");
         System.out.println("Thank you for playing. Goodbye.");
     }
 
@@ -222,8 +227,13 @@ public class Game {
     }
 
     private boolean processCommand(Command command) {
-
+        
         boolean wantToQuit = false;
+        
+        if (stopwatch.elapsedMillis()/1000 >= 10) {
+            wantToQuit = true;
+            System.out.println("Times up! Noob");
+        }
 
         CommandWord commandWord = command.getCommandWord();
 
