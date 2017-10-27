@@ -392,25 +392,22 @@ public class Game {
 //            
 //    }
     private boolean accuse(Command command) {
-<<<<<<< HEAD
         
         String accusedCharacter = command.getSecondWord();
         
         //Checks if the accused character exists
+        
         boolean accusedExists = false; //Accused has not been found yet
+        
         for (int i = 0; i < characters.size(); i++) {
             if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName())) {
                 //Name has been found in characters
                 accusedExists = true;
             } 
         }
+        
         if (accusedExists) {
             //Boolean to determine wheter or not the corrct person is accused
-=======
-
-        String characterName = command.getSecondWord();
-        //Boolean to determine wheter or not the corrct person is accused
->>>>>>> 02bd7ad341aee2ce3fc2d9e1c50dbf4d42b61fd5
         boolean isMurdererFound = false;
 
         for (int i = 0; i < characters.size(); i++) {
@@ -424,19 +421,12 @@ public class Game {
         if (!isMurdererFound) {
             System.out.println("Not the murderer! You lost!");
         }
-<<<<<<< HEAD
-        
         
         return  true; // Once you have accused the game ends. You either win or loose
         } else {
             System.out.println("The accused person does not exist");
             return false;
         }
-        
-=======
-
-        return true; // Once you have accused the game ends. You either win or loose
->>>>>>> 02bd7ad341aee2ce3fc2d9e1c50dbf4d42b61fd5
     }
 
     private void investigate() {
