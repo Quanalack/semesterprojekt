@@ -14,36 +14,36 @@ import java.util.Scanner;
 public class Dialog {
 
     
-    public Scanner input = new Scanner(System.in);
-    public String question;
-    public String user = "";
-    public boolean runDialog = false;
+    private Scanner input = new Scanner(System.in);
+    private String question;
+    private String user = "";
+    private boolean runDialog = false;
     
     
     
-    //The startDialog-method is to determine which of the dialog-methods is to be called
-    public int startDialog(int initiator) {
-        boolean dialog;
-
-        System.out.println("This is currently the dialog in the game.\n "
-                + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
-        
-        if (initiator <= 0) {
-            System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
-        } else {
-            if (initiator == 1) {
-                dialog = initialDialog();
-            } else {
-                if (initiator == 2) {
-                    dialog = receptionistDialog();
-                } else {
-                    if (initiator > 2) {
-                        System.out.println("ERROR! Enter a positive number. TRY AGAIN");
-                    }
-                } 
-            }
-        } return startDialog(initiator);
-    }        
+//    //The startDialog-method is to determine which of the dialog-methods is to be called
+//    public int startDialog(int initiator) {
+//        boolean dialog;
+//
+//        System.out.println("This is currently the dialog in the game.\n "
+//                + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
+//        
+//        if (initiator <= 0) {
+//            System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
+//        } else {
+//            if (initiator == 1) {
+//                dialog = initialDialog();
+//            } else {
+//                if (initiator == 2) {
+//                    dialog = receptionistDialog();
+//                } else {
+//                    if (initiator > 2) {
+//                        System.out.println("ERROR! Enter a positive number. TRY AGAIN");
+//                    }
+//                } 
+//            }
+//        } return startDialog(initiator);
+//    }        
             
             //This is an example of how the start dialog could work.
             //First of two examples:
@@ -179,8 +179,8 @@ public class Dialog {
                         System.out.println("\"question\" is " + question); //Shows what the question value is now
                         //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("Be serious! We don't have time to fool around!");
-                        System.exit(0);
-                        break;
+                        return false;
+                        
                 }
             }
         }
