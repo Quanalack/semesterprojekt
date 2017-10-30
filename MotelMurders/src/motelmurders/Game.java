@@ -11,7 +11,7 @@ public class Game {
 
     private Parser parser;
     private Room currentRoom;
-    private int maxLimit = 4; //Number of items in inventory including magnifying glass
+    private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
     
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
 
