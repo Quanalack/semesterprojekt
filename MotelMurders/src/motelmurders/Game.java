@@ -241,6 +241,7 @@ public class Game {
         if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds
             wantToQuit = true;
             System.out.println("Times up! The murderer got away!");
+            System.out.println("Times up! Noob.");
         }
 
         CommandWord commandWord = command.getCommandWord();
@@ -279,8 +280,8 @@ public class Game {
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
-        } else if (commandWord == commandWord.TALK) {
-            //dialog(command);
+//        } else if (commandWord == commandWord.TALK) {
+//            dialog(command);
         }
         return wantToQuit;
     }
@@ -384,28 +385,27 @@ public class Game {
         }
     }
 
-//    private void dialog(Command command) {    //Need help with connecting dialogs to characters
+//    private void dialog(Command command) {    
 //        if (!command.hasSecondWord()) {
 //            System.out.println("Talk to who?");
 //            return;
 //        }
 //
-//        String characterName = command.getSecondWord();
+//        String name = command.getSecondWord();
 //
-//        Character nextCharacter = currentRoom.getCharacter(characterName);
+//        Character nextCharacter = currentRoom.getCharacter(name);
 //
 //        if (nextCharacter == null) {
 //            System.out.println("There is no here one named that!");
 //            return;
 //
-//        } else if (characterName.equalsIgnoreCase("receptionist")) {
-//            //How to call specific dialog?
+//        } else if (name.equalsIgnoreCase("receptionist")) {
+//            Dialog receptionist = new receptionistDialog();
 //            
-//        } else if (characterName.equalsIgnoreCase("janitor")) {
-//            //How to call specific dialog?
 //            
-//        } else if (characterName.equalsIgnoreCase("guest1")) {
-//            //How to call specific dialog?
+//        } else if (name.equalsIgnoreCase("janitor")) {
+//            Dialog janitor = new janitorDialog();
+//            
 //        }
 //            
 //    }
