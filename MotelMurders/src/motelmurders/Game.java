@@ -452,9 +452,8 @@ public class Game {
             
         } else {
             System.out.println("Accuse who?");
-            return false;
+            return false; //Returns false because there was an error from the players side
         }
-        
     }
 
     private void investigate() {
