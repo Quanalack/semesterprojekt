@@ -27,17 +27,14 @@ public class Dialog {
 //
 //        System.out.println("This is currently the dialog in the game.\n "
 //                + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
-//        
+//       
 //        if (initiator <= 0) {
 //            System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
-//        } else {
-//            if (initiator == 1) {
+//        } else if (initiator == 1){
 //                dialog = initialDialog();
-//            } else {
-//                if (initiator == 2) {
+//            } else if (initiator == 2){
 //                    dialog = receptionistDialog();
-//                } else {
-//                    if (initiator > 2) {
+//                } else if (initiator > 2){
 //                        System.out.println("ERROR! Enter a positive number. TRY AGAIN");
 //                    }
 //                } 
@@ -54,7 +51,7 @@ public class Dialog {
 
         //Dialog loop
         while (true) {
-            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will terminate
                 return false;
             } else {
                 switch (question) {
@@ -134,7 +131,7 @@ public class Dialog {
                         System.out.println("I am the receptionist at this motel. My name is \"????\".\n"
                                 + "I heard you're looking for clues. Can I help you?\n[1] Yes\n[2] No");
                         question = "1A";
-                        break;
+                        break; //Could add a break statement to increase control of flow
 
                     case "1A":
                         System.out.println("\"question\" is " + question); //Shows what the question value is now
@@ -146,7 +143,7 @@ public class Dialog {
                                 //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                                 System.out.println("I'm happy to help!");
                                 question = "1B";
-                                break;
+                                break; //Could add a break statement to increase control of flow
 
                             case "2": //if "no" in Q0, terminate dialog
                                 System.out.println("\"question\" is " + question); //Shows what the question value is now
