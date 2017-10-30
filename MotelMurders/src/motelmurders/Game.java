@@ -65,7 +65,7 @@ public class Game {
     
     public void setMurderer () {
         
-        int murderer = -1;
+        int murderer;
         
         //Set one of them as murderer
         do {
