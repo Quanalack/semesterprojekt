@@ -21,26 +21,26 @@ public class Dialog {
     
     
     
-//    //The startDialog-method is to determine which of the dialog-methods is to be called
-//    public int startDialog(int initiator) {
-//        boolean dialog;
-//
-//        System.out.println("This is currently the dialog in the game.\n "
-//                + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
-//       
-//        if (initiator <= 0) {
-//            System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
-//        } else if (initiator == 1){
-//                dialog = initialDialog();
-//            } else if (initiator == 2){
-//                    dialog = receptionistDialog();
-//                } else if (initiator > 2){
-//                        System.out.println("ERROR! Enter a positive number. TRY AGAIN");
-//                    }
-//                } 
-//            }
-//        } return startDialog(initiator);
-//    }        
+    //The startDialog-method is to determine which of the dialog-methods is to be called
+    public int startDialog(int initiator) {
+        boolean dialog;
+
+        System.out.println("This is currently the dialog in the game.\n "
+                + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
+       
+        if (initiator <= 0) {
+            System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
+        } else if (initiator == 1){
+                dialog = initialDialog();
+            } else if (initiator == 2){
+                    dialog = receptionistDialog();
+                } else if (initiator > 2){
+                        System.out.println("ERROR! Enter a positive number. TRY AGAIN");
+                    }
+                } 
+            }
+        } return startDialog(initiator);
+    }        
             
             //This is an example of how the start dialog could work.
             //First of two examples:
