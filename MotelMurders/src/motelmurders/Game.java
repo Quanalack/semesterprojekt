@@ -64,6 +64,15 @@ public class Game {
 
     }
     
+    public String getMurderer() {
+        for (Character character : characters) {
+            if (character.getIsMurderer() == true) {
+                return character.getName();
+            }
+        }
+        return "Murderer not found";
+    }
+    
     public void setMurderer () {
         
         int murderer;
@@ -220,6 +229,7 @@ public class Game {
         }
         long seconds = stopwatch.elapsedMillis()/1000;
         System.out.println("You finished the game in " + seconds + " seconds.");
+        System.out.println("The murderer was: " + getMurderer());
         System.out.println("Thank you for playing. Goodbye.");
     }
 
