@@ -37,10 +37,10 @@ public class Dialog {
                 } else if (initiator > 2){
                         System.out.println("ERROR! Enter a positive number. TRY AGAIN");
                     }
-                 
-            
-        return startDialog(initiator);
-        }        
+                } 
+            }
+        } return startDialog(initiator);
+    }        
             
             //This is an example of how the start dialog could work.
             //First of two examples:
