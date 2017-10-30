@@ -260,8 +260,9 @@ public class Game {
 
             //15 % chance of moving cleaning Lady
             if (Math.random() <= 1) {
-                moveCleaningLady();
+            moveCleaningLady();
             }
+            
         } else if (commandWord == CommandWord.QUIT) {
             //Method to quit game
             wantToQuit = quit(command);
@@ -470,9 +471,6 @@ public class Game {
 
         //Get a random room out of all possible rooms
         Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));
-        
-        System.out.println(CleaningLady.getCurrentRoom().getRoomName());
-        System.out.println(CleaningLady.getCurrentRoom().getNeighbors());
 
         //Move to the random room
         CleaningLady.setCurrentRoom(randomRoom);
