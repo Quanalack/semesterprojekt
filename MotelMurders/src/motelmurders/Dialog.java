@@ -186,4 +186,73 @@ public class Dialog {
         }
 
     }
+    
+     public boolean janitorDialog() {
+
+        question = "0";
+        runDialog = false;
+
+        while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("\"question\" is " + question); //Shows what the question value is now
+                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
+                        System.out.println("I am RICK, the JANITOR at this motel.\n"
+                                + "I heard you're looking for clues. Need help? *belch!*\n[1] Yes\n[2] No");
+                        question = "1A";
+                        break;
+
+                    case "1A":
+                        System.out.println("\"question\" is " + question); //Shows what the question value is now
+                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
+                        switch (user = input.next()) //Switch to either continue conversation or terminate
+                        {
+                            case "1":
+                                System.out.println("\"question\" is " + question); //Shows what the question value is now
+                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
+                                System.out.println("I'm too drunk to help!");
+                                question = "1B";
+                                break;
+
+                            case "2": //if "no" in Q0, terminate dialog
+                                System.out.println("\"question\" is " + question); //Shows what the question value is now
+                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
+                                System.out.println("Okay, bye! *belch!*");
+                                return false;
+                        }
+
+                    case "1B":
+                        System.out.println("\"question\" is " + question); //Shows what the question value is now
+                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
+                        System.out.println("How can I NOT help you...?\n[1] ?\n[2] ?\n[3] ?");
+
+                        switch (user = input.next()) {
+                            //Unfinished cases (Options for dialog)
+                            case "1":
+                                System.out.println("Good.");
+                                return false;
+
+                            case "2":
+                                System.out.println("Not good.");
+                                return false;
+
+                            case "3":
+                                System.out.println("Very bad.");
+                                return false;
+                        }
+
+                    default: //if input is wrong and not an actual option
+                        System.out.println("\"question\" is " + question); //Shows what the question value is now
+                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
+                        System.out.println("Be serious! We don't have time to not be drinking! Cheers!");
+                        return false;
+                        
+                }
+            }
+        }
+
+    }
 }
