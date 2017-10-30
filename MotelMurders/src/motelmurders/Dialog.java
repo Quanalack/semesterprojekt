@@ -24,7 +24,7 @@ public class Dialog {
     //The startDialog-method is to determine which of the dialog-methods is to be called
     public int startDialog(int initiator) {
         boolean dialog;
-
+        
         System.out.println("This is currently the dialog in the game.\n "
                 + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
        
@@ -35,10 +35,9 @@ public class Dialog {
             } else if (initiator == 2){
                     dialog = receptionistDialog();
                 } else if (initiator > 2){
-                        System.out.println("ERROR! Enter a positive number. TRY AGAIN");
+                        System.out.println("This dialog is not yet complete.");
                     }
-                 
-            
+        
         return startDialog(initiator);
         }        
             
@@ -197,7 +196,7 @@ public class Dialog {
                     case "0":
                         System.out.println("\"question\" is " + question); //Shows what the question value is now
                         //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                        System.out.println("I am RICK, the JANITOR at this motel.\n"
+                        System.out.println("I am CARL, the JANITOR at this motel.\n"
                                 + "I heard you're looking for clues. Need help? *belch!*\n[1] Yes\n[2] No");
                         question = "1A";
                         break;

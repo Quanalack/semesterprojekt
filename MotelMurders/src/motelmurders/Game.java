@@ -402,11 +402,10 @@ public class Game {
 //            return;
 //
 //        } else if (name.equalsIgnoreCase("receptionist")) {
-//            Dialog startDialog(int 1);
+//            int dialog = startDialog(1);
 //            
 //        } else if (name.equalsIgnoreCase("janitor")) {
-//            Dialog dialog;
-//            dialog = new startDialog(int 2);
+//            int dialog = startDialog(2);
 //            
 //        }
 //    }
