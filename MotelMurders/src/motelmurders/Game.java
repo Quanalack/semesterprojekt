@@ -2,6 +2,7 @@ package motelmurders;
 
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
+import java.awt.Dialog;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -391,15 +392,15 @@ public class Game {
 //            return;
 //
 //        } else if (name.equalsIgnoreCase("receptionist")) {
-//            Dialog receptionist = new receptionistDialog();
-//            
+//            Dialog startDialog(int 1);
 //            
 //        } else if (name.equalsIgnoreCase("janitor")) {
-//            Dialog janitor = new janitorDialog();
+//            Dialog dialog;
+//            dialog = new startDialog(int 2);
 //            
 //        }
-//            
 //    }
+    
     private boolean accuse(Command command) {
         
         String accusedCharacter = command.getSecondWord();
