@@ -73,7 +73,14 @@ public class Room
             return returnString;
         }
         
-        
+        public String getNeighbors() {
+            Game game = new Game();
+            String neighbors = "";
+           for (String key: exits.keySet()) {
+           neighbors += exits.get(key);
+        }
+           return neighbors;
+        }
     public Room getExit(String direction) 
     {
         return exits.get(direction);
