@@ -35,8 +35,8 @@ public class Game {
     ArrayList<Room> rooms = new ArrayList<>();
 
     public Game() {
-        createRooms();
         parser = new Parser();
+        createRooms();
         createCharacters();
     }
 
@@ -58,19 +58,27 @@ public class Game {
         characters.add(guest1);
         characters.add(guest2);
         characters.add(guest3);
+        
+        //Set a murderer
+        setMurderer();
 
-        //Set one of them as murderer
+    }
+    
+    public void setMurderer () {
+        
         int murderer = -1;
-
-        while (murderer != 1 && murderer < 0) {
-            murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
+        
+        //Set one of them as murderer
+        do {
+             murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
         }
-
-        //Set the murderes boolean isMurderer to true
+        while (murderer != 1 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
+           
+        //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
+        
         //Print for testing and debugging
         System.out.println("The murderer is: " + characters.get(murderer).getName());
-
     }
 
     public void getCharacterString() {
@@ -231,8 +239,9 @@ public class Game {
         
         boolean wantToQuit = false;
         
-        if (stopwatch.elapsedMillis()/1000 >= 10) {
+        if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds
             wantToQuit = true;
+            System.out.println("Times up! The murderer got away!");
             System.out.println("Times up! Noob.");
         }
 
@@ -250,7 +259,7 @@ public class Game {
             getCharacterString();
 
             //15 % chance of moving cleaning Lady
-            if (Math.random() <= 0.25) {
+            if (Math.random() <= 1) {
                 moveCleaningLady();
             }
         } else if (commandWord == CommandWord.QUIT) {
@@ -461,6 +470,9 @@ public class Game {
 
         //Get a random room out of all possible rooms
         Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));
+        
+        System.out.println(CleaningLady.getCurrentRoom().getRoomName());
+        System.out.println(CleaningLady.getCurrentRoom().getNeighbors());
 
         //Move to the random room
         CleaningLady.setCurrentRoom(randomRoom);
