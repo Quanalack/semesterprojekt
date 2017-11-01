@@ -1,42 +1,42 @@
-package worldofzuul;
+package motelmurders;
 
 /** 
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 
+//Class Command
 public class Command
 {
     private CommandWord commandWord;
     private String secondWord;
 
-    //Constructor for command class
-    //Creates a command with two words
+    //Constructor, Command
     public Command(CommandWord commandWord, String secondWord)
     {
         this.commandWord = commandWord;
         this.secondWord = secondWord;
     }
 
-    //Getter method to get the commandword
+    //Getter
     public CommandWord getCommandWord()
     {
         return commandWord;
     }
 
-    //Getter metod to get the second word 
+    //Getter
     public String getSecondWord()
     {
         return secondWord;
     }
 
-    //Method to return true or false whether the typed commandword exists or not
+    //Return unknown
     public boolean isUnknown()
     {
         return (commandWord == CommandWord.UNKNOWN);
     }
 
-    //Method to determine wheter a command has a seconds word. True or false
+    //Return secondword
     public boolean hasSecondWord()
     {
         return (secondWord != null);
