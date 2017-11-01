@@ -397,28 +397,29 @@ public class Game {
         }
     }
 
-//    private void dialog(Command command) {    
-//        if (!command.hasSecondWord()) {
-//            System.out.println("Talk to who?");
-//            return;
-//        }
-//
-//        String name = command.getSecondWord();
-//
-//        Character nextCharacter = currentRoom.getCharacter(name);
-//
-//        if (nextCharacter == null) {
-//            System.out.println("There is no here one named that!");
-//            return;
-//
-//        } else if (name.equalsIgnoreCase("receptionist")) {
-//            int dialog = startDialog(1);
-//            
-//        } else if (name.equalsIgnoreCase("janitor")) {
-//            int dialog = startDialog(2);
-//            
-//        }
-//    }
+    /*
+    private void dialog(Command command) {    
+        if (!command.hasSecondWord()) {
+            System.out.println("Talk to who?");
+            return;
+        }
+
+        String name = command.getSecondWord();
+
+        Character nextCharacter = currentRoom.getCharacter(name);
+
+        if (nextCharacter == null) {
+            System.out.println("There is no here one named that!");
+            return;
+
+        } else if (name.equalsIgnoreCase("receptionist")) {
+            int dialog = startDialog(1);
+            
+        } else if (name.equalsIgnoreCase("janitor")) {
+            int dialog = startDialog(2);
+            
+        }
+    }  */
     
     private boolean accuse(Command command) {
         
@@ -431,10 +432,17 @@ public class Game {
         boolean accusedExists = false; //Accused has not been found yet
         
         for (int i = 0; i < characters.size(); i++) {
-        if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName())) {
-        //Name has been found in characters
-        accusedExists = true;
-        }
+            if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName())) {
+            //Name has been found in characters
+            accusedExists = true;
+            }
+            
+            //To find cleaning lady
+            if (accusedCharacter.equalsIgnoreCase("cleaning")) {
+                accusedExists = true;
+                accusedCharacter = characters.get(3).getName();
+            }
+            
         }
         
         if (accusedExists) {
