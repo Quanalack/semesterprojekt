@@ -446,25 +446,29 @@ public class Game {
         }
         
         if (accusedExists) {
+            
         //Boolean to determine wheter or not the corrct person is accused
         boolean isMurdererFound = false;
         
-        for (int i = 0; i < characters.size(); i++) {
-        if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
-        System.out.println("You found the murderer!");
+            for (int i = 0; i < characters.size(); i++) {
+                if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
+                System.out.println("You found the murderer!");
         
-        isMurdererFound = true;
+                isMurdererFound = true;
         
-        }
-        }
-        if (!isMurdererFound) {
-        System.out.println("Not the murderer! You lost!");
-        }
+                }
+            }
+            
+            if (!isMurdererFound) {
+                System.out.println("Not the murderer! You lost!");
+            }
         
-        return  true; // Once you have accused the game ends. You either win or loose
+            return  true; // Once you have accused the game ends. You either win or loose
+            
         } else {
-        System.out.println("The accused person does not exist");
-        return false;
+            
+            System.out.println("The accused person does not exist");
+            return false;
         }
             
         } else {
@@ -475,11 +479,13 @@ public class Game {
 
     private void investigate() {
 
+        //Print out investigation string for the specific current room
         System.out.println(currentRoom.getInvestigateString());
 
     }
 
     private boolean quit(Command command) {
+        //Check for second word
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
