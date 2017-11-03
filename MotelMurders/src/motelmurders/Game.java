@@ -3,6 +3,8 @@ package motelmurders;
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
 import java.awt.Dialog;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -233,10 +235,25 @@ public class Game {
         
         int score = (int)(seconds * SCORE_MULTIPLIER);
         
+        writeScore(score);
+        
         System.out.println("You finished the game in " + seconds + " seconds.");
         System.out.println("You scored " + score + " points!");
         System.out.println("The murderer was: " + getMurderer());
         System.out.println("Thank you for playing. Goodbye.");
+    }
+    
+    private void writeScore(int score){
+        String filename = "score.txt";
+        try {
+            PrintWriter outputStream = new PrintWriter(filename);
+            outputStream.println("" + score);
+            outputStream.close();
+            System.out.println("Score saved");
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void printWelcome() {
