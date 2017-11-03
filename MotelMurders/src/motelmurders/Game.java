@@ -297,8 +297,9 @@ public class Game {
             }
             
         } else if (commandWord == CommandWord.QUIT) {
-            //Method to quit game
-            wantToQuit = quit(command);
+            //Quits game
+            wantToQuit = true;
+            
         } else if (commandWord == commandWord.INVENTORY) {
             //Print out the content of the inventory
             printInventory();
@@ -505,16 +506,6 @@ public class Game {
         //Print out investigation string for the specific current room
         System.out.println(currentRoom.getInvestigateString());
 
-    }
-
-    private boolean quit(Command command) {
-        //Check for second word
-        if (command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        } else {
-            return true;
-        }
     }
 
     private void moveCleaningLady() {
