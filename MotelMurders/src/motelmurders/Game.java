@@ -3,8 +3,10 @@ package motelmurders;
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
 import java.awt.Dialog;
+import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -244,16 +246,17 @@ public class Game {
     }
     
     private void writeScore(int score){
-        String filename = "score.txt";
-        try {
-            PrintWriter outputStream = new PrintWriter(filename);
-            outputStream.append("" + score);
-            outputStream.close();
-            System.out.println("Score saved");
-            
-        } catch (FileNotFoundException e) {
+        String filename = "score.xml";
+        
+        try(FileWriter fw = new FileWriter(filename, true); //True means to append/add to existing. Not overwrite
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw))
+        {
+                out.println(score);
+                
+        } catch (IOException e) {
             e.printStackTrace();
-        }
+}
     }
 
     private void printWelcome() {
