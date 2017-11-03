@@ -246,16 +246,14 @@ public class Game {
     }
     
     private void writeScore(int score){
-        String filename = "score.xml";
+        String filename = "score.xml"; //Name of the file
         
         try(FileWriter fw = new FileWriter(filename, true); //True means to append/add to existing. Not overwrite
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw))
+                PrintWriter out = new PrintWriter(fw)) //
         {
                 out.println(score);
                 
         } catch (IOException e) {
-            e.printStackTrace();
 }
     }
 
