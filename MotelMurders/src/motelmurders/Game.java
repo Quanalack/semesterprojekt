@@ -20,7 +20,17 @@ public class Game {
     
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
     
-    final long SCORE_MULTIPLIER = 1234;
+    final long SCORE_MULTIPLIER = 1234; //Random multiplier to "encrypt" score
+    
+    private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
+
+    public boolean playerHasQuitted() { //getter
+        return playerHasQuitted;
+    }
+
+    public void setPlayerQuits(boolean playerQuits) { //Setter
+        this.playerHasQuitted = playerQuits;
+    }
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -29,6 +39,8 @@ public class Game {
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
+    
+    //Existing rooms 
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
 
     //Our arraylist will hold the inventory items for our game
@@ -233,16 +245,20 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        long seconds = stopwatch.elapsedMillis()/1000;
         
-        int score = (int)(seconds * SCORE_MULTIPLIER);
+        if (!playerHasQuitted) {
+            long seconds = stopwatch.elapsedMillis()/1000;
         
-        writeScore(score);
+            int score = (int)(seconds * SCORE_MULTIPLIER);
         
-        System.out.println("You finished the game in " + seconds + " seconds.");
-        System.out.println("You scored " + score + " points!");
-        System.out.println("The murderer was: " + getMurderer());
-        System.out.println("Thank you for playing. Goodbye.");
+            writeScore(score);
+        
+            System.out.println("You finished the game in " + seconds + " seconds.");
+            System.out.println("You scored " + score + " points!");
+        }
+        
+            System.out.println("The murderer was: " + getMurderer());
+            System.out.println("Thank you for playing. Goodbye.");
     }
     
     private void writeScore(int score){
@@ -298,6 +314,7 @@ public class Game {
             
         } else if (commandWord == CommandWord.QUIT) {
             //Quits game
+            playerHasQuitted = true;
             wantToQuit = true;
             
         } else if (commandWord == commandWord.INVENTORY) {
