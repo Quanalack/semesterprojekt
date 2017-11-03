@@ -247,7 +247,7 @@ public class Game {
         String filename = "score.txt";
         try {
             PrintWriter outputStream = new PrintWriter(filename);
-            outputStream.println("" + score);
+            outputStream.append("" + score);
             outputStream.close();
             System.out.println("Score saved");
             
