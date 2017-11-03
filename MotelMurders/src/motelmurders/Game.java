@@ -15,6 +15,8 @@ public class Game {
     private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
     
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
+    
+    final long SCORE_MULTIPLIER = 1234;
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -228,7 +230,11 @@ public class Game {
             finished = processCommand(command);
         }
         long seconds = stopwatch.elapsedMillis()/1000;
+        
+        int score = (int)(seconds * SCORE_MULTIPLIER);
+        
         System.out.println("You finished the game in " + seconds + " seconds.");
+        System.out.println("You scored " + score + " points!");
         System.out.println("The murderer was: " + getMurderer());
         System.out.println("Thank you for playing. Goodbye.");
     }
@@ -251,8 +257,7 @@ public class Game {
         
         if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds
             wantToQuit = true;
-            System.out.println("Times up! The murderer got away!");
-            System.out.println("Times up! Noob.");
+            System.out.println("Times up!");
         }
 
         CommandWord commandWord = command.getCommandWord();
