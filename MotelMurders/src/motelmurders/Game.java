@@ -389,50 +389,67 @@ public class Game {
 
         }
 
+        //Check if item is in inventory
         if (nextItem == null) {
             System.out.println("It's not in your inventory");
         } else {
+            //Check if item exists
             if (!(inventory.contains(nextItem))) {
                 System.out.println("There is no item named: " + nextItem.getDescription());
-            } else {
+            } else { 
+                //Removes reuired irem from inventory
                 inventory.remove(index);
                 currentRoom.setItem(new Item(item));
+                
+                //Prints to console
                 System.out.println("Dropped: " + item);
             }
         }
     }
 
+    //Method to print players current inventory
     private void printInventory() {
-        String output = "";
+        String output = ""; //Empty string to output
         System.out.println("You're currently carrying:");
+        
+        //Iterate through the inventory and add to string
         for (int i = 0; i < inventory.size(); i++) {
             output += inventory.get(i).getDescription() + ",  ";
-
         }
+        //Print the generated string
         System.out.println(output);
     }
 
+    //Method to show the help text to user
     private void printHelp() {
         System.out.println("You are a detective trying to solve a murder.");
         System.out.println("Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println("Your command words are:");
+        
+        //Shows all the possible commands
         parser.showCommands();
     }
 
+    //Method to go to a new room
     private void goRoom(Command command) {
-        if (!command.hasSecondWord()) {
+        
+        if (!command.hasSecondWord()) { // Is this necessary?? Discuss later. Does goRoom interact with user input??
             System.out.println("Go where?");
             return;
         }
 
+        //Get the direction from user
         String direction = command.getSecondWord();
 
+        //Get the next room via currentroom and direction
         Room nextRoom = currentRoom.getExit(direction);
 
+        //Checks if the room has a door at the specified direction 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
+            //Change room
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
@@ -440,15 +457,18 @@ public class Game {
 
     /*
     private void dialog(Command command) {    
+    
         if (!command.hasSecondWord()) {
             System.out.println("Talk to who?");
             return;
         }
 
+        //Name of the character
         String name = command.getSecondWord();
 
         Character nextCharacter = currentRoom.getCharacter(name);
-
+        
+        //Check if character exists
         if (nextCharacter == null) {
             System.out.println("There is no here one named that!");
             return;
@@ -464,11 +484,12 @@ public class Game {
     
     private boolean accuse(Command command) {
         
+        //Check if user input has a word after "accuse"
         if (command.hasSecondWord()) {
             
             String accusedCharacter = command.getSecondWord();
         
-        //Checks if the accused character exists
+        //Checks if the accused character exists through a loop
         
         boolean accusedExists = false; //Accused has not been found yet
         
@@ -478,9 +499,14 @@ public class Game {
             accusedExists = true;
             }
             
-            //To find cleaning lady
+            /*
+            The character Cleaning lady contains two words meaning that if a user types in
+            "accuse cleaning lady". The parser will only look for the word after accuse.
+            In this case it's cleaning.
+            */
             if (accusedCharacter.equalsIgnoreCase("cleaning")) {
                 accusedExists = true;
+                //set the accused character equal to the cleaning lady's name
                 accusedCharacter = characters.get(3).getName();
             }
             
@@ -489,10 +515,15 @@ public class Game {
         if (accusedExists) {
             
         //Boolean to determine wheter or not the corrct person is accused
-        boolean isMurdererFound = false;
+        boolean isMurdererFound = false; //False as default
         
+            //For loop to check if the murderer has been found
             for (int i = 0; i < characters.size(); i++) {
+                
+                //If the accused characters name mathes and that characters IsMurderer is true
                 if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
+                    
+                //Player found the murderer
                 System.out.println("You found the murderer!");
         
                 isMurdererFound = true;
@@ -500,16 +531,18 @@ public class Game {
                 }
             }
             
+            //Player guessed wrong and looses the game
             if (!isMurdererFound) {
                 System.out.println("Not the murderer! You lost!");
             }
         
-            return  true; // Once you have accused the game ends. You either win or loose
+            return  true; // Once you have successfully accused a person the game ends. You either win or lose
             
         } else {
             
+            //The accused could not be found in the characters
             System.out.println("The accused person does not exist");
-            return false;
+            return false; //Returns false because there was an error from the players side
         }
             
         } else {
@@ -518,26 +551,61 @@ public class Game {
         }
     }
 
+    //Method to further investigate a room
     private void investigate() {
 
-        //Print out investigation string for the specific current room
+        //Print out investigation string for the current room
         System.out.println(currentRoom.getInvestigateString());
 
     }
 
+    //Method for moving the cleaning lady to a random room
     private void moveCleaningLady() {
 
         //Declaring cleaningLady character object 
-        Character CleaningLady = characters.get(3);
+        Character cleaningLady = characters.get(3);
 
-        //Get a random room out of all possible rooms
-        Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));
+        //Get a random room out of ALL POSSIBLE rooms
+        //Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));        
+        
+        //Test starts here
+        Room oldRoom = cleaningLady.getCurrentRoom();
+        
+        Room neighborRoom0 = currentRoom.getExit("up");
+        Room neighborRoom1 = currentRoom.getExit("back");
+        Room neighborRoom2 = currentRoom.getExit("left");
+        Room neighborRoom3 = currentRoom.getExit("right");
+        
+        while(cleaningLady.getCurrentRoom() != oldRoom && rooms.contains(cleaningLady.getCurrentRoom())) {
+            int randomNeighbor = (int)(0 + Math.random() * 3); //Random integer from 0 to 3
+        
+            System.out.println(randomNeighbor);
+            
+            switch (randomNeighbor) {
+                case 0:
+                cleaningLady.setCurrentRoom(neighborRoom0);
+                    break;
+                case 1:
+                    cleaningLady.setCurrentRoom(neighborRoom1);
+                    break;
+                case 2:
+                    cleaningLady.setCurrentRoom(neighborRoom2);
+                    break;
+                case 3:
+                    cleaningLady.setCurrentRoom(neighborRoom3);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
+        
+        //Test ends here
 
         //Move to the random room
-        CleaningLady.setCurrentRoom(randomRoom);
+        //CleaningLady.setCurrentRoom(randomRoom);
 
         //Print to player the location of her now
-        System.out.println("The cleaning lady is in room: " + randomRoom.getRoomName());
+        System.out.println("The cleaning lady is in room: " + cleaningLady.getCurrentRoom().getRoomName());
     }
 
 }
