@@ -475,11 +475,9 @@ public class Game {
         }
 
         //Name of the character
-
         String name = command.getSecondWord();
 
         //Checks if the accused character exists through a loop
-
         String nextCharacter = command.getSecondWord();
         
         //Check if character exists
@@ -490,15 +488,6 @@ public class Game {
             //Name has been found in characters
             characterExists = true;
             }
-        /*
-
-        
-        boolean characterExists = false; //Accused has not been found yet
-        
-        for (int i = 0; i < characters.size(); i++) {
-            if (name.equalsIgnoreCase(characters.get(i).getName())) {
-            //check if same room
-            
 
                 if (characters.get(i).getCurrentRoom().equals(currentRoom)) {
                     //Characters in room
@@ -507,13 +496,9 @@ public class Game {
                 }
             
             }
-
-        } else if (name.equalsIgnoreCase("janitor")) {
-            int dialog = startDialog(2);
-         */   
         }
 
-    }  
+     
     
     private boolean accuse(Command command) {
         
