@@ -497,8 +497,8 @@ public class Game {
             
         } else if (name.equalsIgnoreCase("janitor")) {
             int dialog = startDialog(2);
-            
-        }*/
+         */   
+        }
     }  
     
     private boolean accuse(Command command) {
