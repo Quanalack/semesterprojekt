@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 //import java.io.BufferedWriter; <---- Unused library 
 import java.io.FileWriter;
+import java.util.Scanner;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -23,6 +24,16 @@ public class Game {
     final long SCORE_MULTIPLIER = 1234; //Random multiplier to "encrypt" score
     
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
+    
+    private String username = ""; //Name of the player
+
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public boolean playerHasQuitted() { //getter
         return playerHasQuitted;
@@ -53,7 +64,9 @@ public class Game {
     ArrayList<Room> rooms = new ArrayList<>();
 
     public Game() {
+        
         parser = new Parser();
+        createUsername();
         createRooms();
         createCharacters();
     }
@@ -80,6 +93,15 @@ public class Game {
         //Set a murderer
         setMurderer();
 
+    }
+    
+    private void createUsername() {
+        Scanner output = new Scanner(System.in);
+        
+        System.out.println("What is your name?");
+        
+        setUsername(output.nextLine()); 
+        
     }
     
     public String getMurderer() {
@@ -271,8 +293,8 @@ public class Game {
 
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to Motel Murder");
-        System.out.println("You're private detective Jack Crawford");
+        System.out.println("Hello there " + getUsername() + ". Welcome to Motel Murders");
+        System.out.println("You're a private detective");
         System.out.println("You've been summoned to a murder in a motel");
         System.out.println("The Motel has been evacuated");
         System.out.println("Your task is to solve the murder");
@@ -433,7 +455,7 @@ public class Game {
 
     //Method to show the help text to user
     private void printHelp() {
-        System.out.println("You are a detective trying to solve a murder.");
+        System.out.println("Hello " + getUsername() + ".You are a detective trying to solve a murder.");
         System.out.println("Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println("Your command words are:");
