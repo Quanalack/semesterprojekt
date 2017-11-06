@@ -22,7 +22,7 @@ public class Dialog {
     
     
     //The startDialog-method is to determine which of the dialog-methods is to be called
-    public void startDialog(int initiator) {
+    public void startDialog(int i) {
         boolean dialog;
         
         System.out.println("This is currently the dialog in the game.\n "
@@ -30,7 +30,7 @@ public class Dialog {
                 + "the dialog will start now: \n");
         
         while (true)
-            switch (initiator) {
+            switch (i) {
                 case 0: //janitor dialog
                     dialog = janitorDialog();
                     break;
@@ -43,7 +43,7 @@ public class Dialog {
                     dialog = receptionistDialog();
                     break;
                 
-                case 3: //cleaning lady dialog
+/*              case 3: //cleaning lady dialog
                     dialog = cleaningladyDialog();
                     break;
                     
@@ -57,14 +57,18 @@ public class Dialog {
                     
                 case 6: //guest 3 dialog
                     dialog = guest3Dialog();
-                    break;    
+                    break;  
+*/                    
+                default:
+                    System.out.println("Error.");
+                    break;
             }
        
         }        
             
             //This is an example of how the start dialog could work.
             //First of two examples:
-    public boolean corpseDialog() {
+    public boolean testDialog() {
                 
         question = "0";
         runDialog = false;
@@ -132,9 +136,38 @@ public class Dialog {
             }
         }
     }
+    
+    public boolean corpseDialog() {
 
+        question = "0";
+        runDialog = false;
+
+        while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("This man is not very talkative...\n"
+                                + "[1] Yell \"HEEEY!\" at him.\n"
+                                + "[2] Leave the corpse be.");
+                        switch (user = input.next())
+                        {
+                            case "1":
+                                System.out.println("No response.");
+                                return false;
+                                
+                            case "2": 
+                                return false;
+                        }
+                    default:
+                        return false;
+                }
+            }
+        }
+    }
+    
     //Another method can be made here, e.i. for the receptionist.
-    //Second of two examples:
     public boolean receptionistDialog() {
 
         question = "0";
@@ -146,35 +179,25 @@ public class Dialog {
             } else {
                 switch (question) {
                     case "0":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("I am the receptionist at this motel. My name is \"????\".\n"
                                 + "I heard you're looking for clues. Can I help you?\n[1] Yes\n[2] No");
                         question = "1A";
                         break; //Could add a break statement to increase control of flow
 
                     case "1A":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1":
-                                System.out.println("\"question\" is " + question); //Shows what the question value is now
-                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                                 System.out.println("I'm happy to help!");
                                 question = "1B";
                                 break; //Could add a break statement to increase control of flow
 
                             case "2": //if "no" in Q0, terminate dialog
-                                System.out.println("\"question\" is " + question); //Shows what the question value is now
-                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                                 System.out.println("Okay, bye! Come see me if I can help.");
                                 return false;
                         }
 
                     case "1B":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("How can I help you?\n[1] ?\n[2] ?\n[3] ?");
 
                         switch (user = input.next()) {
@@ -193,17 +216,15 @@ public class Dialog {
                         }
 
                     default: //if input is wrong and not an actual option
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("Be serious! We don't have time to fool around!");
                         return false;
                         
                 }
             }
         }
-
     }
     
+    //Janitor dialog
      public boolean janitorDialog() {
 
         question = "0";
@@ -215,35 +236,25 @@ public class Dialog {
             } else {
                 switch (question) {
                     case "0":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("I am CARL, the JANITOR at this motel.\n"
                                 + "I heard you're looking for clues. Need help? *belch!*\n[1] Yes\n[2] No");
                         question = "1A";
                         break;
 
                     case "1A":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1":
-                                System.out.println("\"question\" is " + question); //Shows what the question value is now
-                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                                 System.out.println("I'm too drunk to help!");
                                 question = "1B";
                                 break;
 
                             case "2": //if "no" in Q0, terminate dialog
-                                System.out.println("\"question\" is " + question); //Shows what the question value is now
-                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                                 System.out.println("Okay, bye! *belch!*");
                                 return false;
                         }
 
                     case "1B":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("How can I NOT help you...?\n[1] ?\n[2] ?\n[3] ?");
 
                         switch (user = input.next()) {
@@ -262,8 +273,6 @@ public class Dialog {
                         }
 
                     default: //if input is wrong and not an actual option
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
                         System.out.println("Be serious! We don't have time to not be drinking! Cheers!");
                         return false;
                         
