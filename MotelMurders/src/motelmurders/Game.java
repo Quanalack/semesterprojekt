@@ -285,9 +285,9 @@ public class Game {
         
         boolean wantToQuit = false;
         
-        if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds
+        if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
             wantToQuit = true;
-            System.out.println("Times up!");
+            System.out.println("Time's up!");
         }
 
         CommandWord commandWord = command.getCommandWord();
