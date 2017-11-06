@@ -330,6 +330,7 @@ public class Game {
             //Drop an item fom inventory
             dropItem(command);
         } else if (commandWord == commandWord.TALK) {
+            //Talk to a character in current room
             dialog(command);
         } else if (commandWord == commandWord.SAVE) {
             String path = "save.xml";
@@ -484,14 +485,17 @@ public class Game {
             if (name.equalsIgnoreCase(characters.get(i).getName())) {
             //Name has been found in characters
             characterExists = true;
+                System.out.println("He/she is here."); //CONTROL OF PRESCENCE
             }
-
                 if (characters.get(i).getCurrentRoom().equals(currentRoom)) {
                     //Character is in room
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
+                } 
+                else { 
+                    System.out.println("There is no one here named that."); 
+                    break;
                 }
-            
             }
         }
 
