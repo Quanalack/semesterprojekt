@@ -329,8 +329,8 @@ public class Game {
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
-//        } else if (commandWord == commandWord.TALK) {
-//            dialog(command);
+        } else if (commandWord == commandWord.TALK) {
+            dialog(command);
         } else if (commandWord == commandWord.SAVE) {
             String path = "save.xml";
             saveGame(path);
@@ -466,7 +466,7 @@ public class Game {
         }
     }
 
-    /*
+    
     private void dialog(Command command) {    
     
         if (!command.hasSecondWord()) {
@@ -477,21 +477,22 @@ public class Game {
         //Name of the character
         String name = command.getSecondWord();
 
-        Character nextCharacter = currentRoom.getCharacter(name);
+        //Checks if the accused character exists through a loop
         
-        //Check if character exists
-        if (nextCharacter == null) {
-            System.out.println("There is no here one named that!");
-            return;
-
-        } else if (name.equalsIgnoreCase("receptionist")) {
-            int dialog = startDialog(1);
+        boolean characterExists = false; //Accused has not been found yet
+        
+        for (int i = 0; i < characters.size(); i++) {
+            if (name.equalsIgnoreCase(characters.get(i).getName())) {
+            //check if same room
             
-        } else if (name.equalsIgnoreCase("janitor")) {
-            int dialog = startDialog(2);
+                if (characters.get(i).getCurrentRoom().equals(currentRoom)) {
+                    //Characters in room
+                    Dialog dialog = new Dialog();
+                    dialog.startDialog(i);
+                }
             
-        }
-    }  */
+            }
+    }  
     
     private boolean accuse(Command command) {
         

@@ -22,29 +22,49 @@ public class Dialog {
     
     
     //The startDialog-method is to determine which of the dialog-methods is to be called
-    public int startDialog(int initiator) {
+    public void startDialog(int initiator) {
         boolean dialog;
         
         System.out.println("This is currently the dialog in the game.\n "
-                + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
-       
-        //Switch i stedet for??
-        if (initiator <= 0) {
-            System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
-        } else if (initiator == 1){
-                dialog = initialDialog();
-            } else if (initiator == 2){
-                    dialog = receptionistDialog();
-                } else if (initiator > 2){
-                        System.out.println("This dialog is not yet complete.");
-                    }
+                + "if the character is in the room when TALK command is activated, \n"
+                + "the dialog will start now: \n");
         
-        return startDialog(initiator); //Returnerer sig selv uendeligt??
+        while (true)
+            switch (initiator) {
+                case 0: //janitor dialog
+                    dialog = janitorDialog();
+                    break;
+                    
+                case 1: //corpse dialog
+                    dialog = corpseDialog();   
+                    break;
+                
+                case 2: //receptionist dialog
+                    dialog = receptionistDialog();
+                    break;
+                
+                case 3: //cleaning lady dialog
+                    dialog = cleaningladyDialog();
+                    break;
+                    
+                case 4: //guest 1 dialog
+                    dialog = guest1Dialog();
+                    break;
+                    
+                case 5: //guest 2 dialog
+                    dialog = guest2Dialog();
+                    break;
+                    
+                case 6: //guest 3 dialog
+                    dialog = guest3Dialog();
+                    break;    
+            }
+       
         }        
             
             //This is an example of how the start dialog could work.
             //First of two examples:
-    public boolean initialDialog() {
+    public boolean corpseDialog() {
                 
         question = "0";
         runDialog = false;
