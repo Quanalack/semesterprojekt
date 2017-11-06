@@ -28,6 +28,7 @@ public class Dialog {
         System.out.println("This is currently the dialog in the game.\n "
                 + "if the initiator is 1 = initial dialog, or 2 = receptionist.");
        
+        //Switch i stedet for??
         if (initiator <= 0) {
             System.out.println("ERROR! TRY AGAIN. Initiator does not exist");
         } else if (initiator == 1){
@@ -38,7 +39,7 @@ public class Dialog {
                         System.out.println("This dialog is not yet complete.");
                     }
         
-        return startDialog(initiator);
+        return startDialog(initiator); //Returnerer sig selv uendeligt??
         }        
             
             //This is an example of how the start dialog could work.
