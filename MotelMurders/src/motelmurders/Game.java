@@ -247,22 +247,18 @@ public class Game {
         }
         
         if (!playerHasQuitted) {
-            long seconds = stopwatch.elapsedMillis()/1000;
-        
-            int score = (int)(seconds * SCORE_MULTIPLIER);
-        
-            writeScore(score);
-        
-            System.out.println("You finished the game in " + seconds + " seconds.");
-            System.out.println("You scored " + score + " points!");
-        }
+            
+            //Saves the score and prints it to console
+            String path = "score.xml";
+            saveGame(path);
         
             System.out.println("The murderer was: " + getMurderer());
             System.out.println("Thank you for playing. Goodbye.");
+        }
     }
     
-    private void writeScore(int score){
-        String filename = "score.xml"; //Name of the file
+    private void writeScore(int score, String path){
+        String filename = path; //Name of the file
         
         try(FileWriter fw = new FileWriter(filename, true); //True means to append/add to existing. Not overwrite
                 PrintWriter out = new PrintWriter(fw)) //
@@ -270,7 +266,7 @@ public class Game {
                 out.println(score);
                 
         } catch (IOException e) {
-}
+            }
     }
 
     private void printWelcome() {
@@ -335,6 +331,9 @@ public class Game {
             dropItem(command);
 //        } else if (commandWord == commandWord.TALK) {
 //            dialog(command);
+        } else if (commandWord == commandWord.SAVE) {
+            String path = "save.xml";
+            saveGame(path);
         }
         return wantToQuit;
     }
@@ -365,7 +364,19 @@ public class Game {
             }
         }
     }
+    
+    private void saveGame(String path){
+        long seconds = stopwatch.elapsedMillis()/1000;
 
+        int score = (int)(seconds * SCORE_MULTIPLIER);
+        
+        writeScore(score, path);
+        
+        System.out.println("You finished the game in " + seconds + " seconds.");
+        System.out.println("You scored " + score + " points!");
+        
+        }
+    
     private void dropItem(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Drop what?");
