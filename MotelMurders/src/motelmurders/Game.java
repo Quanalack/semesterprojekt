@@ -476,21 +476,18 @@ public class Game {
 
         //Name of the character
         String name = command.getSecondWord();
-
-        //Checks if the accused character exists through a loop
-        String nextCharacter = command.getSecondWord();
         
         //Check if character exists
         boolean characterExists = false; //Character has not been found yet
         
         for (int i = 0; i < characters.size(); i++) {
-            if (nextCharacter.equalsIgnoreCase(characters.get(i).getName())) {
+            if (name.equalsIgnoreCase(characters.get(i).getName())) {
             //Name has been found in characters
             characterExists = true;
             }
 
                 if (characters.get(i).getCurrentRoom().equals(currentRoom)) {
-                    //Characters in room
+                    //Character is in room
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
                 }

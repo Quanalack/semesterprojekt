@@ -43,7 +43,7 @@ public class Dialog {
                     dialog = receptionistDialog();
                     break;
                 
-                case 3: //cleaning lady dialog
+/*                case 3: //cleaning lady dialog
                     dialog = cleaningladyDialog();
                     break;
                     
@@ -57,7 +57,11 @@ public class Dialog {
                     
                 case 6: //guest 3 dialog
                     dialog = guest3Dialog();
-                    break;    
+                    break;  
+*/                    
+                default:
+                    System.out.println("Error.");
+                    break;
             }
        
         }        
