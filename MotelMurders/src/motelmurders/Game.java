@@ -329,8 +329,8 @@ public class Game {
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
             dropItem(command);
-//        } else if (commandWord == commandWord.TALK) {
-//            dialog(command);
+        } else if (commandWord == commandWord.TALK) {
+            dialog(command);
         } else if (commandWord == commandWord.SAVE) {
             String path = "save.xml";
             saveGame(path);
@@ -466,7 +466,7 @@ public class Game {
         }
     }
 
-    /*
+    
     private void dialog(Command command) {    
     
         if (!command.hasSecondWord()) {
@@ -475,9 +475,17 @@ public class Game {
         }
 
         //Name of the character
-        String name = command.getSecondWord();
-
-        Character nextCharacter = currentRoom.getCharacter(name);
+        String nextCharacter = command.getSecondWord();
+        
+        //Check if character exists
+        boolean characterExists = false; //Character has not been found yet
+        
+        for (int i = 0; i < characters.size(); i++) {
+            if (nextCharacter.equalsIgnoreCase(characters.get(i).getName())) {
+            //Name has been found in characters
+            characterExists = true;
+            }
+        /*
         
         //Check if character exists
         if (nextCharacter == null) {
@@ -490,8 +498,8 @@ public class Game {
         } else if (name.equalsIgnoreCase("janitor")) {
             int dialog = startDialog(2);
             
-        }
-    }  */
+        }*/
+    }  
     
     private boolean accuse(Command command) {
         
