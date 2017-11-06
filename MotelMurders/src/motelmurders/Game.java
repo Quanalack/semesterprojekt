@@ -285,9 +285,9 @@ public class Game {
         
         boolean wantToQuit = false;
         
-        if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds
+        if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
             wantToQuit = true;
-            System.out.println("Times up!");
+            System.out.println("Time's up!");
         }
 
         CommandWord commandWord = command.getCommandWord();
@@ -475,9 +475,23 @@ public class Game {
         }
 
         //Name of the character
+<<<<<<< HEAD
         String name = command.getSecondWord();
 
         //Checks if the accused character exists through a loop
+=======
+        String nextCharacter = command.getSecondWord();
+        
+        //Check if character exists
+        boolean characterExists = false; //Character has not been found yet
+        
+        for (int i = 0; i < characters.size(); i++) {
+            if (nextCharacter.equalsIgnoreCase(characters.get(i).getName())) {
+            //Name has been found in characters
+            characterExists = true;
+            }
+        /*
+>>>>>>> d2b0da814aaf1d93488a6021de621f18795e8ff9
         
         boolean characterExists = false; //Accused has not been found yet
         
@@ -485,6 +499,7 @@ public class Game {
             if (name.equalsIgnoreCase(characters.get(i).getName())) {
             //check if same room
             
+<<<<<<< HEAD
                 if (characters.get(i).getCurrentRoom().equals(currentRoom)) {
                     //Characters in room
                     Dialog dialog = new Dialog();
@@ -492,6 +507,12 @@ public class Game {
                 }
             
             }
+=======
+        } else if (name.equalsIgnoreCase("janitor")) {
+            int dialog = startDialog(2);
+         */   
+        }
+>>>>>>> d2b0da814aaf1d93488a6021de621f18795e8ff9
     }  
     
     private boolean accuse(Command command) {
