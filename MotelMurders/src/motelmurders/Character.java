@@ -5,6 +5,8 @@
  */
 package motelmurders;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author malte
@@ -16,6 +18,8 @@ public class Character {
     private String description;
     private boolean isMurderer;
     private Room currentRoom;
+    
+    
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -69,5 +73,6 @@ public class Character {
             return isMurderer;
         }
         
-    
+
+        
 }
