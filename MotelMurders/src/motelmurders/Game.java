@@ -16,17 +16,12 @@ import java.util.Scanner;
 public class Game {
 
     private Parser parser;
-
-    Character maincharacter;
-    
-    MainCharacter maincharacterCasted = (MainCharacter)maincharacter;
     
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
     
     final long SCORE_MULTIPLIER = 1234; //Random multiplier to "encrypt" score
     
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
-
 
     public boolean playerHasQuitted() { //getter
         return playerHasQuitted;
@@ -39,23 +34,29 @@ public class Game {
     //Existing rooms 
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
 
-    
-
     //The arraylist will hold the characters for our game
     ArrayList<Character> characters = new ArrayList<>();
 
     //Holds the rooms for the game
     ArrayList<Room> rooms = new ArrayList<>();
 
+    //Creating the main character With no name or desc.
+    Character maincharacter = new MainCharacter("", "", outside);
+    
+    //Casting maincharacter as maincharacter
+    MainCharacter maincharacterCasted = (MainCharacter) maincharacter;
+    
+    
     public Game() {
         
+        maincharacter.setName(maincharacterCasted.getNameFromInput());
         parser = new Parser();
-        createUsername();
         createRooms();
         createCharacters();
     }
 
     private void createCharacters() {
+        
         //Create objects of characters
         Character janitor = new Character("Carl", "Carl is the janitor here. He repairs stuff", basement);
         Character corpse = new Character("Corpse", "Yeahhh he dead. Very dead", room4);
@@ -78,19 +79,7 @@ public class Game {
         setMurderer();
 
     }
-    
-    private void createUsername() {
-        Scanner output = new Scanner(System.in);
-        
-        System.out.println("What is your name?");
-        
-        String name = output.toString();
-        
-        maincharacter = new MainCharacter( name, "This is you", outside);
-        
-        
-        
-    }
+
     
     public String getMurderer() {
         for (Character character : characters) {
@@ -280,7 +269,7 @@ public class Game {
 
     private void printWelcome() {
         System.out.println();
-        System.out.println("Hello there " + maincharacterCasted.getUsername() + ". Welcome to Motel Murders");
+        System.out.println("Hello there " + maincharacter.getName() + ". Welcome to Motel Murders");
         System.out.println("You're a private detective");
         System.out.println("You've been summoned to a murder in a motel");
         System.out.println("The Motel has been evacuated");
@@ -367,7 +356,7 @@ public class Game {
 
     //Method to show the help text to user
     private void printHelp() {
-        System.out.println("Hello " + maincharacterCasted.getUsername() + ".You are a detective trying to solve a murder.");
+        System.out.println("Hello " + maincharacterCasted.getName() + ".You are a detective trying to solve a murder.");
         System.out.println("Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println("Your command words are:");

@@ -11,6 +11,18 @@ package motelmurders;
  */
 public class NPC extends Character{
     
+    private String name;
+    
+        //Getter
+    public String getName() {
+        return name;
+    }
+    
+    //Setter
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public NPC(String name, String description, Room startRoom) {
         super(name, description, startRoom);
     }

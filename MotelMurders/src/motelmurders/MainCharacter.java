@@ -6,6 +6,7 @@
 package motelmurders;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -18,10 +19,18 @@ public class MainCharacter extends Character{
     //Our arraylist will hold the inventory items for our game
     ArrayList<Item> inventory = new ArrayList<>();
     
-    private String username = ""; //Name of the player
+    private String name; //Name of the player
 
-    public String getUsername() {
-        return username;
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public String getName() {
+        return name;
     }
     
         //Method to print players current inventory
@@ -45,6 +54,8 @@ public class MainCharacter extends Character{
     
     public MainCharacter(String name, String description, Room startRoom) {
         super(name, description, startRoom);
+        
+        
     }
     
         public void dropItem(Command command) {
@@ -113,6 +124,15 @@ public class MainCharacter extends Character{
 
             }
         }
+    }
+        
+        public String getNameFromInput() {
+        Scanner output = new Scanner(System.in);
+        
+        System.out.println("What is your name?");
+        
+        return output.toString();
+
     }
     
 }

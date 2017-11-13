@@ -21,6 +21,7 @@ public class MotelMurders {
         Game game = new Game();
     
         game.play();
+        
     }
     
 }

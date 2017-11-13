@@ -15,6 +15,14 @@ import java.util.ArrayList;
 //Class Create characters
 public class Character {
     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     private String description;
     private boolean isMurderer;
     private Room currentRoom;
@@ -26,22 +34,12 @@ public class Character {
     }
         
         //Constructer Character: Name, Description, Room
-        public Character(String name, String description, Room startRoom) {
+        public Character( String name, String description, Room startRoom) {
                 this.name = name;
                 this.description = description;
                 this.isMurderer = false;    //False by default?????
                 this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
         }
-
-    //Getter
-    public String getName() {
-        return name;
-    }
-    
-    //Setter
-    public void setName(String name) {
-        this.name = name;
-    }
     
     //Getter
     public String getDescription() {
