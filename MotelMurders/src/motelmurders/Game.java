@@ -40,16 +40,13 @@ public class Game {
     //Holds the rooms for the game
     ArrayList<Room> rooms = new ArrayList<>();
 
-    //Creating the main character With no name or desc.
-    Character maincharacter = new MainCharacter("", "", outside);
-    
-    //Casting maincharacter as maincharacter
-    MainCharacter maincharacterCasted = (MainCharacter) maincharacter;
+    //Creating the main character
+    MainCharacter player = new MainCharacter();
     
     
     public Game() {
         
-        maincharacter.setName(maincharacterCasted.getNameFromInput());
+        player.setName(player.getNameFromInput());
         parser = new Parser();
         createRooms();
         createCharacters();
@@ -113,7 +110,7 @@ public class Game {
         System.out.println("Characters in room:");
         for (int i = 0; i < characters.size(); i++) {
 
-            if (maincharacter.getCurrentRoom().getRoomName().equals(characters.get(i).getCurrentRoom().getRoomName())) {
+            if (player.getCurrentRoom().getRoomName().equals(characters.get(i).getCurrentRoom().getRoomName())) {
 
                 inRoom += characters.get(i).getName() + ", ";
             }
@@ -232,7 +229,7 @@ public class Game {
 
         outside.setItem(new Item("stone"));
 
-        maincharacter.setCurrentRoom(outside);
+        player.goRoom(outside);
     }
 
     public void play() {
@@ -269,14 +266,14 @@ public class Game {
 
     private void printWelcome() {
         System.out.println();
-        System.out.println("Hello there " + maincharacter.getName() + ". Welcome to Motel Murders");
+        System.out.println("Hello there " + player.getName() + ". Welcome to Motel Murders");
         System.out.println("You're a private detective");
         System.out.println("You've been summoned to a murder in a motel");
         System.out.println("The Motel has been evacuated");
         System.out.println("Your task is to solve the murder");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(maincharacter.getCurrentRoom().getLongDescription());
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
     private boolean processCommand(Command command) {
@@ -313,13 +310,13 @@ public class Game {
             
         } else if (commandWord == commandWord.INVENTORY) {
             //Print out the content of the inventory
-            maincharacterCasted.printInventory();
+            player.printInventory();
         } else if (commandWord == commandWord.PICKUP) {
             //Pick up an item from a room
             
             
             
-            maincharacterCasted.pickupItem(command);
+            player.pickupItem(command);
 
         } else if (commandWord == commandWord.ACCUSE) {
             //Call accuse method to accuse a character of being the murderer
@@ -329,7 +326,7 @@ public class Game {
             investigate();
         } else if (commandWord == commandWord.DROP) {
             //Drop an item fom inventory
-            maincharacterCasted.dropItem(command);
+            player.dropItem(command);
         } else if (commandWord == commandWord.TALK) {
             //Talk to a character in current room
             dialog(command);
@@ -356,7 +353,7 @@ public class Game {
 
     //Method to show the help text to user
     private void printHelp() {
-        System.out.println("Hello " + maincharacterCasted.getName() + ".You are a detective trying to solve a murder.");
+        System.out.println("Hello " + player.getName() + ".You are a detective trying to solve a murder.");
         System.out.println("Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println("Your command words are:");
@@ -377,15 +374,15 @@ public class Game {
         String direction = command.getSecondWord();
 
         //Get the next room via currentroom and direction
-        Room nextRoom = maincharacterCasted.getCurrentRoom().getExit(direction);
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         //Checks if the room has a door at the specified direction 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
             //Change room
-            maincharacterCasted.setCurrentRoom(nextRoom);
-            System.out.println(maincharacterCasted.getCurrentRoom().getLongDescription());
+            player.goRoom(nextRoom);
+            System.out.println(player.getCurrentRoom().getLongDescription());
         }
     }
 
@@ -409,7 +406,7 @@ public class Game {
             characterExists = true;
                 System.out.println("He/she is here."); //CONTROL OF PRESCENCE
             }
-                if (characters.get(i).getCurrentRoom().equals(maincharacterCasted.getCurrentRoom())) {
+                if (characters.get(i).getCurrentRoom().equals(player.getCurrentRoom())) {
                     //Character is in room
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
@@ -496,7 +493,7 @@ public class Game {
     private void investigate() {
 
         //Print out investigation string for the current room
-        System.out.println(maincharacterCasted.getCurrentRoom().getInvestigateString());
+        System.out.println(player.getCurrentRoom().getInvestigateString());
 
     }
 
@@ -512,10 +509,10 @@ public class Game {
         //Test starts here
         Room oldRoom = cleaningLady.getCurrentRoom();
         
-        Room neighborRoom0 = maincharacterCasted.getCurrentRoom().getExit("up");
-        Room neighborRoom1 = maincharacterCasted.getCurrentRoom().getExit("back");
-        Room neighborRoom2 = maincharacterCasted.getCurrentRoom().getExit("left");
-        Room neighborRoom3 = maincharacterCasted.getCurrentRoom().getExit("right");
+        Room neighborRoom0 = player.getCurrentRoom().getExit("up");
+        Room neighborRoom1 = player.getCurrentRoom().getExit("back");
+        Room neighborRoom2 = player.getCurrentRoom().getExit("left");
+        Room neighborRoom3 = player.getCurrentRoom().getExit("right");
         
         while(cleaningLady.getCurrentRoom() != oldRoom && rooms.contains(cleaningLady.getCurrentRoom())) {
             int randomNeighbor = (int)(0 + Math.random() * 3); //Random integer from 0 to 3
@@ -524,16 +521,16 @@ public class Game {
             
             switch (randomNeighbor) {
                 case 0:
-                cleaningLady.setCurrentRoom(neighborRoom0);
+                cleaningLady.goRoom(neighborRoom0);
                     break;
                 case 1:
-                    cleaningLady.setCurrentRoom(neighborRoom1);
+                    cleaningLady.goRoom(neighborRoom1);
                     break;
                 case 2:
-                    cleaningLady.setCurrentRoom(neighborRoom2);
+                    cleaningLady.goRoom(neighborRoom2);
                     break;
                 case 3:
-                    cleaningLady.setCurrentRoom(neighborRoom3);
+                    cleaningLady.goRoom(neighborRoom3);
                     break;
                 default:
                     throw new AssertionError();

@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author malte
  */
-public class MainCharacter extends Character{
+public class MainCharacter implements Person{
     
     private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
     
@@ -20,6 +20,8 @@ public class MainCharacter extends Character{
     ArrayList<Item> inventory = new ArrayList<>();
     
     private String name; //Name of the player
+    private Room currentRoom;
+    private String description;
 
     public ArrayList<Item> getInventory() {
         return inventory;
@@ -50,13 +52,6 @@ public class MainCharacter extends Character{
         
     inventory.add(new Item("Magnifying Glass"));
 }
-     
-    
-    public MainCharacter(String name, String description, Room startRoom) {
-        super(name, description, startRoom);
-        
-        
-    }
     
         public void dropItem(Command command) {
         if (!command.hasSecondWord()) {
@@ -133,6 +128,31 @@ public class MainCharacter extends Character{
         
         return output.toString();
 
+    }
+
+    @Override
+    public void goRoom(Room newRoom) {
+        currentRoom = newRoom;
+    }
+
+    @Override
+    public Room getCurrentRoom() {
+        return this.currentRoom;
+    }
+
+    @Override
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }
