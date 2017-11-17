@@ -35,7 +35,7 @@ public class Game {
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
 
     //The arraylist will hold the characters for our game
-    ArrayList<Character> characters = new ArrayList<>();
+    ArrayList<NPC> characters = new ArrayList<>();
 
     //Holds the rooms for the game
     ArrayList<Room> rooms = new ArrayList<>();
@@ -47,6 +47,7 @@ public class Game {
     public Game() {
         
         player.setName(player.getNameFromInput());
+        player.addMagnifyingGlass();
         parser = new Parser();
         createRooms();
         createCharacters();
@@ -55,13 +56,13 @@ public class Game {
     private void createCharacters() {
         
         //Create objects of characters
-        Character janitor = new Character("Carl", "Carl is the janitor here. He repairs stuff", basement);
-        Character corpse = new Character("Corpse", "Yeahhh he dead. Very dead", room4);
-        Character receptionist = new Character("Receptionist", "He waits for you at the desk", lobby);
-        Character cleaningLady = new Character("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
-        Character guest1 = new Character("Ron", "A man", room1);
-        Character guest2 = new Character("Leila", "A woman", room2);
-        Character guest3 = new Character("Brian", "Some old person", room3);
+        NPC janitor = new NPC("Carl", "Carl is the janitor here. He repairs stuff", basement);
+        NPC corpse = new NPC("Corpse", "Yeahhh he dead. Very dead", room4);
+        NPC receptionist = new NPC("Receptionist", "He waits for you at the desk", lobby);
+        NPC cleaningLady = new NPC("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
+        NPC guest1 = new NPC("Ron", "A man", room1);
+        NPC guest2 = new NPC("Leila", "A woman", room2);
+        NPC guest3 = new NPC("Brian", "Some old person", room3);
 
         //Add to character arraylist
         characters.add(janitor);
@@ -79,8 +80,8 @@ public class Game {
 
     
     public String getMurderer() {
-        for (Character character : characters) {
-            if (character.getIsMurderer() == true) {
+        for (NPC character : characters) {
+            if (character.isIsMurderer() == true) {
                 return character.getName();
             }
         }
@@ -459,7 +460,7 @@ public class Game {
             for (int i = 0; i < characters.size(); i++) {
                 
                 //If the accused characters name mathes and that characters IsMurderer is true
-                if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
+                if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).isIsMurderer()) {
                     
                 //Player found the murderer
                 System.out.println("You found the murderer!");
@@ -501,7 +502,7 @@ public class Game {
     private void moveCleaningLady() {
 
         //Declaring cleaningLady character object 
-        Character cleaningLady = characters.get(3);
+        NPC cleaningLady = characters.get(3);
 
         //Get a random room out of ALL POSSIBLE rooms
         //Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));        

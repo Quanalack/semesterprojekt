@@ -48,7 +48,7 @@ public class MainCharacter implements Person{
         System.out.println(output);
     }
     
-    private void addMagnifyingGlass() {
+    public void addMagnifyingGlass() {
         
     inventory.add(new Item("Magnifying Glass"));
 }

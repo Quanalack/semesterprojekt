@@ -14,6 +14,22 @@ public class NPC implements Person{
     private String name; //Name of the NPC
     private Room currentRoom; //Current room of the NPC
     private String description; //A short description of the NPC
+    private boolean isMurderer; //Whether or not the NPC is the murderer
+    
+    public NPC( String name, String description, Room startRoom) {
+        this.name = name;
+        this.description = description;
+        this.isMurderer = false;
+        this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
+    }
+    
+    public boolean isIsMurderer() {
+        return isMurderer;
+    }
+
+    public void setIsMurderer(boolean isMurderer) {
+        this.isMurderer = isMurderer;
+    }
     
         //Getter
     public String getName() {

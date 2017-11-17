@@ -27,13 +27,13 @@ public class Character {
     private boolean isMurderer;
     private Room currentRoom;
         
-        //Constructer Character: Name, Description, Room
-        public Character( String name, String description, Room startRoom) {
-                this.name = name;
-                this.description = description;
-                this.isMurderer = false;
-                this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
-        }
+     //Constructer Character: Name, Description, Room
+    public Character( String name, String description, Room startRoom) {
+    this.name = name;
+    this.description = description;
+    this.isMurderer = false;
+    this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
+    }
     
     //Getter
     public String getDescription() {
