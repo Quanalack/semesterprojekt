@@ -31,14 +31,10 @@ public class NPC implements Person{
         this.isMurderer = isMurderer;
     }
     
-        //Getter
+    
+    @Override
     public String getName() {
         return name;
-    }
-    
-    //Setter
-    public void setName(String name) {
-        this.name = name;
     }
     
 
@@ -54,12 +50,12 @@ public class NPC implements Person{
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.description;
     }
 
     @Override
     public void setDescription(String description) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.description = description;
     }
     
 }

@@ -121,12 +121,14 @@ public class MainCharacter implements Person{
         }
     }
         
-        public String getNameFromInput() {
+        public void newName() {
         Scanner output = new Scanner(System.in);
         
         System.out.println("What is your name?");
         
-        return output.toString();
+        String newName = output.toString();
+        
+        this.name = newName;
 
     }
 
@@ -138,11 +140,6 @@ public class MainCharacter implements Person{
     @Override
     public Room getCurrentRoom() {
         return this.currentRoom;
-    }
-
-    @Override
-    public void setName(String newName) {
-        this.name = newName;
     }
 
     @Override

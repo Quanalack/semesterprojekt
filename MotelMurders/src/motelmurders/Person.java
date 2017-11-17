@@ -11,13 +11,11 @@ package motelmurders;
  */
 public interface Person {
     
-    public void goRoom(Room newRoom);
+    public void goRoom(Room newRoom); //Change currentRoom
     
-    public Room getCurrentRoom();
+    public Room getCurrentRoom(); //Get the currentRoom
     
-    public String getName();
-    
-    public void setName(String name);
+    public String getName(); //Get the name of a character
     
     public String getDescription();
     

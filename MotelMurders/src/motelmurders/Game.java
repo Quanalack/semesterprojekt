@@ -46,7 +46,7 @@ public class Game {
     
     public Game() {
         
-        player.setName(player.getNameFromInput());
+        player.newName();
         player.addMagnifyingGlass();
         parser = new Parser();
         createRooms();
@@ -60,9 +60,9 @@ public class Game {
         NPC corpse = new NPC("Corpse", "Yeahhh he dead. Very dead", room4);
         NPC receptionist = new NPC("Receptionist", "He waits for you at the desk", lobby);
         NPC cleaningLady = new NPC("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
-        NPC guest1 = new NPC("Ron", "A man", room1);
-        NPC guest2 = new NPC("Leila", "A woman", room2);
-        NPC guest3 = new NPC("Brian", "Some old person", room3);
+        NPC guest1 = new NPC("Ron", "A man living in room 1", room1);
+        NPC guest2 = new NPC("Leila", "A woman currently living in room number 2", room2);
+        NPC guest3 = new NPC("Brian", "Some old person who lives down in room 3", room3);
 
         //Add to character arraylist
         characters.add(janitor);
