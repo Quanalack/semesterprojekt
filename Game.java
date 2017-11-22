@@ -6,114 +6,75 @@ package worldofzuul;
  */
 public class Game 
 {
-    //Initializing parser and room objects
     private Parser parser;
     private Room currentRoom;
         
-    public Game() //Constructor to start the game.
+    public Game() //Constructor
     {
         createRooms();
         parser = new Parser();
     }
 
-    //Method to generate all the rooms necessary and connect them to eachother
     private void createRooms()
     {
-        //Defining room names
-        Room outside, lobby, toilet, kitchen, basement, room1, room2, room3, room4, hallwayNorth, hallwayWest, hallwayEast;
+        Room outside, theatre, pub, lab, office, bed, toilet, kitchen;
+      
+        outside = new Room("outside the main entrance of the university");
+        theatre = new Room("in a lecture theatre");
+        pub = new Room("in the campus pub");
+        lab = new Room("in a computing lab");
+        office = new Room("in the computing admin office");
+        bed = new Room("in a very comfortable bed");
+        toilet = new Room("in a pretty clean toilet compared to most toilets");
+        kitchen = new Room("in a huge kitchen with a lot of chocolate everywhere");
+	
+        outside.setExit("east", theatre);
+        outside.setExit("south", lab);
+        outside.setExit("west", pub);
         
-        //Setting description of rooms
-        outside = new Room("outside the hotel");
-        lobby = new Room("inside the the lobby");
-        hallwayNorth = new Room("the northern hallway to the kitchen and toilet");
-        hallwayWest = new Room("the western hallway to room 1 and 2")
-        hallwayEast = new Room("the eastern hallway to room 3 and 4");
-        room1 = new Room("in room #1");
-        room2 = new Room("in room #2");
-        room3 = new Room("in room #3");
-        room4 = new Room("in room #4");
-        toilet = new Room("in the room with toilets");
-        kitchen = new Room("in the kitchen. It smells good in here");
-        basement = new Room("in the basement. It's a little dark");
+
+        theatre.setExit("west", outside);
+        theatre.setExit("east", lab);
+
+        pub.setExit("east", outside);
+
+        lab.setExit("north", outside);
+        lab.setExit("east", office);
+
+        office.setExit("west", lab);
         
+        bed.setExit("north", lab);
         
-        //Defining which rooms are connected to eachother
+        toilet.setExit("north", bed);
         
-        //Exits from outside
-        outside.setExit("north", lobby); 
-        
-        //Exits from the lobby
-        lobby.setExit("west", hallwayWest);
-        lobby.setExit("east", hallwayEast);
-        lobby.setExit("north", hallwayNorth);
-        lobby.setExit("south", outside);
-        
-        //Exits from the western hallway     
-        hallwayWest.setExit("south", room1);
-        hallwayWest.setExit("north", room2);
-        hallwayWest.setExit("east", lobby);
-        
-        //Exit from room 1
-        room1.setExit("south", hallwayWest);
-        
-        //Exit from room 2
-        room2.setExit("north", hallwayWest);
-        
-        //Exits from the eastern hallway     
-        hallwayEast.setExit("south", room3);
-        hallwayEast.setExit("north", room4);
-        hallwayEast.setExit("west", lobby);
-        
-        //Exit from room 3
-        room3.setExit("south", hallwayEast);
-        
-        //Exit from room 4
-        room4.setExit("north", hallwayEast);
-        
-        //Exits from the northern hallway
-        hallwayNorth.setExit("west", kitchen);
-        hallwayNorth.setExit("east", toilet);
-        hallwayNorth.setExit("north", basement);
-        hallwayNorth.setExit("south", lobby);
-        
-        //Exit from kitchen
-        kitchen.setExit("east", hallwayNorth);
-        
-        //Exit from toilet
-        toilet.setExit("west", hallwayNorth);
-        
-        //exit from basement
-        basement.setExit("south", hallwatNorth);
-        
-        //Which room to start at
+        kitchen.setExit("north", toilet);
+
         currentRoom = outside;
     }
 
-    //play method to begin the game
     public void play() 
     {            
-        printWelcome(); //Print the welcome message
+        printWelcome();
 
         boolean finished = false;
-        while (! finished) { // while not finished play game
-            Command command = parser.getCommand();//Recieve command through parser
-            finished = processCommand(command); //Process command through method processCommand
+        while (! finished) {
+            Command command = parser.getCommand();
+            finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye."); //When finished while loop is broken to here
+        System.out.println("Thank you for playing.  Good bye.");
     }
 
-    private void printWelcome() // welcome message
+    private void printWelcome()
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription()); //Gets the description og the startroom
+        System.out.println(currentRoom.getLongDescription());
     }
 
-    
-    private boolean processCommand(Command command)
+    private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
 
@@ -138,9 +99,8 @@ public class Game
 
     private void printHelp() 
     {
-        System.out.println("You are a private detective hired to find a murderer");
-        System.out.println("Go around the motel and investigate. Use the commands");
-        System.out.println("Use the commands 'north', 'south', 'east' and 'west' to navigate from room to room");
+        System.out.println("You are lost. You are alone. You wander");
+        System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
