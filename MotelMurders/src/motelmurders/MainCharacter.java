@@ -126,7 +126,7 @@ public class MainCharacter implements Person{
         
         System.out.println("What is your name?");
         
-        String newName = output.toString();
+        String newName = output.next();
         
         this.name = newName;
 

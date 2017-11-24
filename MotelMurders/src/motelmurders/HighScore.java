@@ -60,7 +60,7 @@ public class HighScore implements Serializable
 		try 
 		{       
 			System.out.println("Higscore saved ;)");
-			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.xml"));
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
 			o.writeObject(h);
 			o.close();
 		} catch (FileNotFoundException e) {
@@ -71,14 +71,14 @@ public class HighScore implements Serializable
                 }
 	}
 	
-	//Reads the .xml file and returns the constants
+	//Reads the .txt file and returns the constants
 	public static HighScore[] getHighScores()
 	{
-		if (!new File("HighScores.xml").exists())
+		if (!new File("HighScores.txt").exists())
 			initializeFile();
 		try 
 		{
-			ObjectInputStream o=new ObjectInputStream(new FileInputStream("HighScores.xml"));
+			ObjectInputStream o=new ObjectInputStream(new FileInputStream("HighScores.txt"));
                         
 			HighScore[] h=(HighScore[]) o.readObject();
 			return h;
@@ -88,7 +88,7 @@ public class HighScore implements Serializable
 	}
 	
         
-	//Adds a new HighScore to the .xml file and maintains the proper order
+	//Adds a new HighScore to the .txt file and maintains the proper order
 	public  void addHighScore(HighScore h){
 		HighScore[] highScores=getHighScores();
 		highScores[highScores.length-1]=h;
@@ -103,7 +103,7 @@ public class HighScore implements Serializable
 		}
 		try 
 		{
-			ObjectOutputStream o=new ObjectOutputStream(new FileOutputStream("HighScores.xml"));
+			ObjectOutputStream o=new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
 			o.writeObject(highScores);
 			o.close();
 		} catch (FileNotFoundException e) {e.printStackTrace();} 

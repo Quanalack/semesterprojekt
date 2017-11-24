@@ -262,7 +262,7 @@ public class Game {
         
         int score = (int)(seconds * SCORE_MULTIPLIER);
         
-        HighScore playerHighscore = new HighScore(score, "A player name");
+        HighScore playerHighscore = new HighScore(score, player.getName());
         
         playerHighscore.addHighScore(playerHighscore);
         
