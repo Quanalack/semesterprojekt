@@ -9,7 +9,7 @@ package motelmurders;
  *
  * @author malte
  */
-public class NPC implements Person{
+public class NPC implements IPerson{
     
     private String name; //Name of the NPC
     private Room currentRoom; //Current room of the NPC
