@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author malte
  */
-public class MainCharacter implements Person{
+public class MainCharacter implements IPerson{
     
     private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
     

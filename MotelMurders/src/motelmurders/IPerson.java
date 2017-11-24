@@ -9,7 +9,7 @@ package motelmurders;
  *
  * @author malte
  */
-public interface Person {
+public interface IPerson {
     
     public void goRoom(Room newRoom); //Change currentRoom
     
