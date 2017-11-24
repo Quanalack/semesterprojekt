@@ -20,6 +20,7 @@ public class Game {
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
     
     final long SCORE_MULTIPLIER = 1234; //Random multiplier to "encrypt" score
+    final int MAXTIME = 60;
     
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
 
@@ -244,25 +245,28 @@ public class Game {
         
         if (!playerHasQuitted) {
             
-            //Saves the score and prints it to console
-            String path = "score.xml";
-            saveGame(path);
+            saveHighscore();
+            
         
             System.out.println("The murderer was: " + getMurderer());
             System.out.println("Thank you for playing. Goodbye.");
+        } else {
+            //Gem spil
         }
     }
     
-    private void writeScore(int score, String path){
-        String filename = path; //Name of the file
+    private void saveHighscore() {
         
-        try(FileWriter fw = new FileWriter(filename, true); //True means to append/add to existing. Not overwrite
-                PrintWriter out = new PrintWriter(fw)) //
-        {
-                out.println(score);
-                
-        } catch (IOException e) {
-            }
+        
+        long seconds = MAXTIME - stopwatch.elapsedMillis()/1000;
+        
+        int score = (int)(seconds * SCORE_MULTIPLIER);
+        
+        HighScore playerHighscore = new HighScore(score, "A player name");
+        
+        playerHighscore.addHighScore(playerHighscore);
+        
+        System.out.println("You scored: " + score + " points! ");
     }
 
     private void printWelcome() {
@@ -281,7 +285,7 @@ public class Game {
         
         boolean wantToQuit = false;
         
-        if (stopwatch.elapsedMillis()/1000 >= 10000) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
+        if (stopwatch.elapsedMillis()/1000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
             wantToQuit = true;
             System.out.println("Time's up!");
         }
@@ -332,25 +336,11 @@ public class Game {
             //Talk to a character in current room
             dialog(command);
         } else if (commandWord == commandWord.SAVE) {
-            String path = "save.xml";
-            saveGame(path);
+            //saveGame();
         }
         return wantToQuit;
     }
 
-
-    
-    private void saveGame(String path){
-        long seconds = stopwatch.elapsedMillis()/1000;
-
-        int score = (int)(seconds * SCORE_MULTIPLIER);
-        
-        writeScore(score, path);
-        
-        System.out.println("You finished the game in " + seconds + " seconds.");
-        System.out.println("You scored " + score + " points!");
-        
-        }
 
     //Method to show the help text to user
     private void printHelp() {
