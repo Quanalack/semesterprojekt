@@ -378,8 +378,8 @@ public class Game {
     }
 
     
-    private void dialog(Command command) {    
-    
+    private void dialog(Command command) {
+
         if (!command.hasSecondWord()) {
             System.out.println("Talk to who?");
             return;
@@ -387,27 +387,39 @@ public class Game {
 
         //Name of the character
         String name = command.getSecondWord();
-        
+
         //Check if character exists
         boolean characterExists = false; //Character has not been found yet
-        
+
         for (int i = 0; i < characters.size(); i++) {
+
             if (name.equalsIgnoreCase(characters.get(i).getName())) {
-            //Name has been found in characters
-            characterExists = true;
-                System.out.println("He/she is here."); //CONTROL OF PRESCENCE
+                characterExists = true;
             }
-                if (characters.get(i).getCurrentRoom().equals(player.getCurrentRoom())) {
-                    //Character is in room
+
+            if (characterExists) {
+
+                //Boolean to determine whether or not the corrct person is accused
+                boolean talkingTo = false; //False as default
+
+                //If the accused characters name mathes and that characters IsMurderer is true
+                if (name.equalsIgnoreCase(characters.get(i).getName())) {
+
+                    
+                    System.out.println("The person is here!");
+
+                    talkingTo = true;
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
-                } 
-                else { 
-                    System.out.println("There is no one here named that."); 
-                    break;
                 }
+
+
+            } else {
+                System.out.println("That person is not here.");
+
             }
         }
+    }
 
      
     
