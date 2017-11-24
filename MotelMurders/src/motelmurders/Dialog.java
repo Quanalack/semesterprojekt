@@ -179,7 +179,7 @@ public class Dialog {
             } else {
                 switch (question) {
                     case "0":
-                        System.out.println("I am the receptionist at this motel. My name is \"????\".\n"
+                        System.out.println("I am the receptionist at this motel. My name is Daisy.\n"
                                 + "I heard you're looking for clues. Can I help you?\n[1] Yes\n[2] No");
                         question = "1A";
                         break; //Could add a break statement to increase control of flow
@@ -188,41 +188,49 @@ public class Dialog {
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1":
-                                System.out.println("I'm happy to help!");
-                                question = "1B";
+                                System.out.println("Ask about Carl");
+                                question = "2A";
                                 break; //Could add a break statement to increase control of flow
 
-                            case "2": //if "no" in Q0, terminate dialog
-                                System.out.println("Okay, bye! Come see me if I can help.");
-                                return false;
-                        }
-
-                    case "1B":
-                        System.out.println("How can I help you?\n[1] ?\n[2] ?\n[3] ?");
-
-                        switch (user = input.next()) {
-                            //Unfinished cases (Options for dialog)
-                            case "1":
-                                System.out.println("Good.");
-                                return false;
-
-                            case "2":
-                                System.out.println("Not good.");
-                                return false;
-
+                            case "2": 
+                                System.out.println("Ask about Leila");
+                                question ="3A";
+                                break;
                             case "3":
-                                System.out.println("Very bad.");
-                                return false;
+                                System.out.println("Ask about Brian");
+                                question = "4A";
+                                break;
+                            case "4":
+                                System.out.println("Ask about Cleaning lady");
+                                question = "5A";
+                                break; 
                         }
+
+                    
+                    case "2A":
+                        System.out.println("We don’t talk much. We mostly ignore each other. He is just a lazy janitor.");
+                        return false;
+                    case "3A":
+                        System.out.println("A cocky guy, who seemed to be in a bad mood when he arrived");
+                        return false;
+                    case "4A":
+                        System.out.println("A nice and intellectual girl");
+                        return false;
+                              
+                    case "5A":
+                        System.out.println("He was very tired when he arrived. He probably spend most of the day yesterday driving");
+                        return false;
+                        
 
                     default: //if input is wrong and not an actual option
                         System.out.println("Be serious! We don't have time to fool around!");
-                        return false;
-                        
+                        break;
+                }      
                 }
             }
         }
-    }
+
+    
     
     //Janitor dialog
      public boolean janitorDialog() {
@@ -236,42 +244,62 @@ public class Dialog {
             } else {
                 switch (question) {
                     case "0":
-                        System.out.println("I am CARL, the JANITOR at this motel.\n"
-                                + "I heard you're looking for clues. Need help? *belch!*\n[1] Yes\n[2] No");
-                        question = "1A";
+                        System.out.println(" I’m just the janitor of this place most of the time you can find me in this basement.\n"
+                                + "I heard you're looking for clues. Need help? \n[1] Yes\n[2] No");
+                        question = "2A";
                         break;
 
-                    case "1A":
+                    case "2A":
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1":
-                                System.out.println("I'm too drunk to help!");
-                                question = "1B";
+                                System.out.println("Ask about Ron");
+                                question = "2B";
                                 break;
 
                             case "2": //if "no" in Q0, terminate dialog
-                                System.out.println("Okay, bye! *belch!*");
-                                return false;
-                        }
-
-                    case "1B":
-                        System.out.println("How can I NOT help you...?\n[1] ?\n[2] ?\n[3] ?");
-
-                        switch (user = input.next()) {
-                            //Unfinished cases (Options for dialog)
-                            case "1":
-                                System.out.println("Good.");
-                                return false;
-
-                            case "2":
-                                System.out.println("Not good.");
-                                return false;
-
+                                System.out.println("Ask about Leila");
+                                question = "3B";
+                                break;
+                                
                             case "3":
-                                System.out.println("Very bad.");
-                                return false;
+                                System.out.println("Ask about Brain");
+                                question = "4B";
+                                break;
+                                
+                            case "4":
+                                System.out.println("Ask about the Cleaning Lady");
+                                question = "5B";
+                                break;
+                                
+                            case "5":
+                                    System.out.println("Ask about the receptionist");
+                                question = "6B";
+                                break;
+                       
                         }
 
+                    case "2B":
+                        System.out.println("I have not seen this person in the motel");
+                            return false;
+                            
+                    case "3B":
+                        System.out.println("I have not met her");
+                            return false;
+                    
+                    case "4B":
+                        System.out.println("I fixed his table last night");
+                            return false;
+
+                    case "5B":
+                         System.out.println("Hard working lady. Always giving her best and working long hours.");
+                            return false; 
+                     
+                    case "6B":
+                         System.out.println("I don’t really like her bossing me around, but normally hard working. We dont have the best relationship.");
+                            return false; 
+                     
+                        
                     default: //if input is wrong and not an actual option
                         System.out.println("Be serious! We don't have time to not be drinking! Cheers!");
                         return false;
