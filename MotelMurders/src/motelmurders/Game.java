@@ -433,18 +433,7 @@ public class Game {
         boolean accusedExists = false; //Accused has not been found yet
         
         for (int i = 0; i < characters.size(); i++) {
-<<<<<<< HEAD
-            if (characterName.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).getIsMurderer()) {
-                System.out.println("You found the murderer!");
-                System.out.println("Your score:");
-                isMurdererFound = true;
-                
-            }
-        } 
-        if (!isMurdererFound) {
-            System.out.println("Not the murderer! You lost!");
-            System.out.println("Your score:");
-=======
+            
             if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName())) {
             //Name has been found in characters
             accusedExists = true;
@@ -461,12 +450,11 @@ public class Game {
                 accusedCharacter = characters.get(3).getName();
             }
             
->>>>>>> eb73aa1f9b2efd1d991405a6ded4799bd42d61b9
         }
         
         if (accusedExists) {
             
-        //Boolean to determine wheter or not the corrct person is accused
+        //Boolean to determine whether or not the corrct person is accused
         boolean isMurdererFound = false; //False as default
         
             //For loop to check if the murderer has been found
