@@ -266,6 +266,7 @@ public class Game {
         
         playerHighscore.addHighScore(playerHighscore);
         
+        
         System.out.println("You scored: " + score + " points! ");
     }
 

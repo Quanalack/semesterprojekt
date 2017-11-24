@@ -13,7 +13,7 @@ import java.io.*;
 
 public class HighScore implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	private int score;
 	private String name;
 	
@@ -45,6 +45,7 @@ public class HighScore implements Serializable
 		return name;
 	}
 
+        //Compares two score
 	public int compareTo(HighScore h)
 	{
 		return new Integer(this.score).compareTo(h.score);
@@ -53,7 +54,7 @@ public class HighScore implements Serializable
 	//This is called when there is an empty file in order prevent exceptions
 	private static void initializeFile()
 	{
-		HighScore[] h={new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
+		HighScore[] h = {new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
 				new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
 				new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
 				new HighScore(0," ")};
@@ -72,7 +73,7 @@ public class HighScore implements Serializable
 	}
 	
 	//Reads the .txt file and returns the constants
-	public static HighScore[] getHighScores()
+	public HighScore[] getHighScores()
 	{
 		if (!new File("HighScores.txt").exists())
 			initializeFile();
@@ -89,7 +90,7 @@ public class HighScore implements Serializable
 	
         
 	//Adds a new HighScore to the .txt file and maintains the proper order
-	public  void addHighScore(HighScore h){
+	public void addHighScore(HighScore h){
 		HighScore[] highScores=getHighScores();
 		highScores[highScores.length-1]=h;
 		for (int i=highScores.length-2; i>=0; i--)
@@ -103,7 +104,7 @@ public class HighScore implements Serializable
 		}
 		try 
 		{
-			ObjectOutputStream o=new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
 			o.writeObject(highScores);
 			o.close();
 		} catch (FileNotFoundException e) {e.printStackTrace();} 
