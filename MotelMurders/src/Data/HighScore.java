@@ -58,7 +58,7 @@ public class HighScore implements Serializable
 				new HighScore(0," ")};
 		try 
 		{       
-			System.out.println("Higscore saved ;)");
+			System.out.println("Higscore saved");
 			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
 			o.writeObject(h);
 			o.close();

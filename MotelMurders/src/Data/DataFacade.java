@@ -1,6 +1,10 @@
 package Data;
 
 import Acq.IData;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -37,7 +41,18 @@ public class DataFacade implements IData
 
     @Override
     public void SaveGame(Object[] game) {
-        
+        try 
+		{       
+			System.out.println("Game saved");
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
+			o.writeObject(game);
+			o.close();
+		} catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+		catch (IOException e) {
+                    e.printStackTrace();
+                }
     }
 
     @Override

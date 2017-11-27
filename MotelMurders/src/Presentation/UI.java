@@ -52,5 +52,10 @@ public class UI extends Application implements IUI{
     public IBusiness getBusiness(){
         return business;
     }
+
+    @Override
+    public void startApplicationText() {
+        business.startGameText();
+    }
     
 }

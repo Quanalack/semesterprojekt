@@ -36,5 +36,7 @@ public class Starter{
         
         //Start application throught the presentation layer
         ui.startApplication(args);
+        ui.startApplicationText();
+        
     }
 }
