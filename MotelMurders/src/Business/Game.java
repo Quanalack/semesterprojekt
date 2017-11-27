@@ -1,4 +1,4 @@
-package motelmurders;
+package Business;
 
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 //import java.io.BufferedWriter; <---- Unused library 
 import java.io.FileWriter;
 import java.util.Scanner;
+import motelmurders.HighScore;
 
 /**
  * @author Michael Kolling and David J. Barnes

@@ -1,4 +1,4 @@
-package motelmurders;
+package Business;
 
 import java.util.HashMap;
 
