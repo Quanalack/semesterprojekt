@@ -10,42 +10,40 @@ import java.util.LinkedList;
 
 public class DataFacade implements IData
 {
-	@Override
-	public Collection<String> getUserNames()
-	{
-		// Should fetch some data from a database or files on harddrive - a method in another class has the purpose of performing this action
-		// In this example the data are hardcoded in this method
-		Collection<String> names = new ArrayList<>();
-		names.add("Peter123");
-		names.add("Loni_a");
-		names.add("johnjohn");
-		return names;
-	}
 
-	@Override
-	public Collection<Double> getPricesOfAllSales()
-	{
-		// Should fetch some data from a database or files on harddrive - a method in another class has the purpose of performing this action
-		// In this example the data are hardcoded in this method
-		Collection<Double> salePrices = new HashSet<>();
-		salePrices.add(213.5);
-		salePrices.add(12.0);
-		salePrices.add(99.75);
-		return salePrices;
-	}
+    @Override
+    public Object LoadHighscore() {
+        HighScore highscore1 = new HighScore(1, "");
+        return highscore1.getHighScores();
+         
+    }
 
-	@Override
-	public Collection<ISale> getSales()
-	{
-		// Should fetch some data from a database or files on harddrive - a method in another class has the purpose of performing this action
-		// In this example the data are hardcoded in this method
-            /*
-		Collection<ISale> sales = new LinkedList<>();
-		sales.add(new DataSale(10, 213.5));
-		sales.add(new DataSale(2, 12));
-		sales.add(new DataSale(20, 99.75));
-		
-		return sales; */
-            return null;
-	}
+    @Override
+    public Boolean SaveHighscore(int elapsedSeconds, String playerName, int MAXTIME) {
+        
+        final int SCORE_MULTIPLIER = 1234;
+        
+        long seconds = MAXTIME - elapsedSeconds;
+        
+        int score = (int)(seconds * SCORE_MULTIPLIER);
+        
+        HighScore playerHighscore = new HighScore(score, playerName);
+        
+        playerHighscore.addHighScore(playerHighscore);
+        
+        
+        System.out.println("You scored: " + score + " points! ");
+        return true;
+        
+    }
+
+    @Override
+    public Boolean SaveGame(Object[] game) {
+        return true;
+    }
+
+    @Override
+    public Collection<Object> LoadGame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

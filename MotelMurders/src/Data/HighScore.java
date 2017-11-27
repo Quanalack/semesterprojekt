@@ -9,8 +9,10 @@ package Data;
  *
  * @author Theis
  */
-import motelmurders.*;
+
 import java.io.*;
+import Acq.IData;
+import java.util.Collection;
 
 public class HighScore implements Serializable
 {

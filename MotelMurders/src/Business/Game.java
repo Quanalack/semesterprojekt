@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 //import java.io.BufferedWriter; <---- Unused library 
 import java.io.FileWriter;
 import java.util.Scanner;
-import motelmurders.HighScore;
+
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -19,9 +19,11 @@ public class Game {
     private Parser parser;
     
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
-    
-    final long SCORE_MULTIPLIER = 1234; //Random multiplier to "encrypt" score
     final int MAXTIME = 60;
+
+    public int getMAXTIME() {
+        return MAXTIME;
+    }
     
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
 
@@ -246,7 +248,7 @@ public class Game {
         
         if (!playerHasQuitted) {
             
-            saveHighscore();
+            //saveHighscore();
             
         
             System.out.println("The murderer was: " + getMurderer());
@@ -256,20 +258,7 @@ public class Game {
         }
     }
     
-    private void saveHighscore() {
-        
-        
-        long seconds = MAXTIME - stopwatch.elapsedMillis()/1000;
-        
-        int score = (int)(seconds * SCORE_MULTIPLIER);
-        
-        HighScore playerHighscore = new HighScore(score, player.getName());
-        
-        playerHighscore.addHighScore(playerHighscore);
-        
-        
-        System.out.println("You scored: " + score + " points! ");
-    }
+
 
     private void printWelcome() {
         System.out.println();
