@@ -5,11 +5,6 @@
  */
 package Data;
 
-/**
- *
- * @author Theis
- */
-
 import java.io.*;
 import Acq.IData;
 import java.util.Collection;

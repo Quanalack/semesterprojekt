@@ -55,6 +55,8 @@ public class Game {
         parser = new Parser();
         createRooms();
         createCharacters();
+        
+        
     }
 
     private void createCharacters() {

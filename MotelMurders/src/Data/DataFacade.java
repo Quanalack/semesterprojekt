@@ -1,7 +1,6 @@
 package Data;
 
 import Acq.IData;
-import Acq.ISale;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,7 +18,7 @@ public class DataFacade implements IData
     }
 
     @Override
-    public Boolean SaveHighscore(int elapsedSeconds, String playerName, int MAXTIME) {
+    public void SaveHighscore(int elapsedSeconds, String playerName, int MAXTIME) {
         
         final int SCORE_MULTIPLIER = 1234;
         
@@ -31,15 +30,14 @@ public class DataFacade implements IData
         
         playerHighscore.addHighScore(playerHighscore);
         
-        
         System.out.println("You scored: " + score + " points! ");
-        return true;
+        
         
     }
 
     @Override
-    public Boolean SaveGame(Object[] game) {
-        return true;
+    public void SaveGame(Object[] game) {
+        
     }
 
     @Override
