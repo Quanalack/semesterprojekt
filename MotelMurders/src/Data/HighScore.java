@@ -77,9 +77,9 @@ public class HighScore implements Serializable
 			initializeFile();
 		try 
 		{
-			ObjectInputStream o=new ObjectInputStream(new FileInputStream("HighScores.txt"));
+			ObjectInputStream objectStream = new ObjectInputStream(new FileInputStream("HighScores.txt"));
                         
-			HighScore[] h=(HighScore[]) o.readObject();
+			HighScore[] h=(HighScore[]) objectStream.readObject();
 			return h;
 		} catch (IOException e) {e.printStackTrace();} 
 		catch (ClassNotFoundException e) {e.printStackTrace();}

@@ -8,4 +8,5 @@ public interface IBusiness {
         //Methods for our business layer. Make methods as abstract/generalized as possible f.eks. Collection instead of arraylist
         public Object getHighscore();
         public void startGameText();
+        public void saveHighscore();
 }

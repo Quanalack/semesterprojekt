@@ -16,17 +16,17 @@ public class DataFacade implements IData
 
     @Override
     public Object LoadHighscore() {
-        HighScore highscore1 = new HighScore(1, "");
-        return highscore1.getHighScores();
+        HighScore highscore = new HighScore(1, "");
+        return highscore.getHighScores();
          
     }
 
     @Override
-    public void SaveHighscore(int elapsedSeconds, String playerName, int MAXTIME) {
+    public void SaveHighscore(double elapsedSeconds, String playerName, int MAXTIME) {
         
         final int SCORE_MULTIPLIER = 1234;
         
-        long seconds = MAXTIME - elapsedSeconds;
+        double seconds = (MAXTIME - elapsedSeconds);
         
         int score = (int)(seconds * SCORE_MULTIPLIER);
         
@@ -34,7 +34,7 @@ public class DataFacade implements IData
         
         playerHighscore.addHighScore(playerHighscore);
         
-        System.out.println("You scored: " + score + " points! ");
+        System.out.println("Game has been saved. You scored: " + score + " points! ");
         
         
     }

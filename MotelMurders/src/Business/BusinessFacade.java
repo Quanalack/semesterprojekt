@@ -8,6 +8,7 @@ import java.util.HashSet;
 
 public class BusinessFacade implements IBusiness {
 	private IData data;
+        private Game game = new Game();
 
 	@Override
 	public void injectData(IData dataLayer) {
@@ -25,6 +26,12 @@ public class BusinessFacade implements IBusiness {
     public void startGameText() {
         Game game = new Game();
         game.play();
+    }
+
+    @Override
+    public void saveHighscore() {
+        
+        data.SaveHighscore(game.getCurrentTime(), game.player.getName(), game.MAXTIME);
     }
         
         

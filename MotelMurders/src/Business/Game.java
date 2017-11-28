@@ -311,9 +311,7 @@ public class Game {
             player.printInventory();
         } else if (commandWord == commandWord.PICKUP) {
             //Pick up an item from a room
-            
-            
-            
+
             player.pickupItem(command);
 
         } else if (commandWord == commandWord.ACCUSE) {
@@ -334,6 +332,9 @@ public class Game {
         return wantToQuit;
     }
 
+    public double getCurrentTime(){
+        return stopwatch.elapsedMillis()/1000;
+    }
 
     //Method to show the help text to user
     private void printHelp() {
