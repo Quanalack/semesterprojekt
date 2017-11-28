@@ -6,7 +6,7 @@
 package Data;
 
 import java.io.*;
-import Acq.IData;
+import Acquaintance.IData;
 import java.util.Collection;
 
 public class HighScore implements Serializable

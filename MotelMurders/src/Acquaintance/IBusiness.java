@@ -1,4 +1,4 @@
-package Acq;
+package Acquaintance;
 
 import java.util.Collection;
 

@@ -5,9 +5,9 @@
  */
 package Starter;
 
-import Acq.IBusiness;
-import Acq.IData;
-import Acq.IUI;
+import Acquaintance.IBusiness;
+import Acquaintance.IData;
+import Acquaintance.IUI;
 import Business.BusinessFacade;
 import Data.DataFacade;
 import Presentation.UI;

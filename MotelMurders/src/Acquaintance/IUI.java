@@ -1,4 +1,4 @@
-package Acq;
+package Acquaintance;
 
 public interface IUI {
 	void injectBusiness(IBusiness businessLayer);

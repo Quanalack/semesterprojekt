@@ -5,8 +5,8 @@
  */
 package Presentation;
 
-import Acq.IBusiness;
-import Acq.IUI;
+import Acquaintance.IBusiness;
+import Acquaintance.IUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

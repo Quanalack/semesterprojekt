@@ -1,7 +1,7 @@
 package Business;
 
-import Acq.IBusiness;
-import Acq.IData;
+import Acquaintance.IBusiness;
+import Acquaintance.IData;
 import java.util.Collection;
 import java.util.HashSet;
 

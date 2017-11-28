@@ -1,6 +1,6 @@
 package Data;
 
-import Acq.IData;
+import Acquaintance.IData;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
