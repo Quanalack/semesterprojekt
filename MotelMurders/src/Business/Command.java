@@ -1,4 +1,4 @@
-package motelmurders;
+package Business;
 
 /** 
  * @author  Michael Kolling and David J. Barnes

@@ -1,9 +1,9 @@
-package motelmurders;
+package Business;
 
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
+// import java.util.Iterator; <---- Unused library 
 
 
 /**
@@ -73,6 +73,14 @@ public class Room
             return returnString;
         }
         
+        public String getNeighbors() {
+            Game game = new Game();
+            String neighbors = "";
+           for (String key: exits.keySet()) {
+           neighbors += exits.get(key);
+        }
+           return neighbors;
+        }
         
     public Room getExit(String direction) 
     {

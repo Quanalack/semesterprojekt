@@ -1,5 +1,4 @@
-
-package motelmurders;
+package Business;
 
 class Item {
     
@@ -10,9 +9,10 @@ class Item {
         
     }
     
+    
     public String getDescription() {
         return this.description;
-        //passing back this string when i need a item for it
+        //passing back this string when i need an item for it
     }
     
 }

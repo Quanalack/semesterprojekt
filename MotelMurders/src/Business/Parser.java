@@ -1,7 +1,7 @@
-package motelmurders;
+package Business;
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
+//import java.util.StringTokenizer; <---- Unused library 
 
 /**
  * @author  Michael Kolling and David J. Barnes

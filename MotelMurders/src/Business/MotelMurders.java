@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package motelmurders;
+package Business;
 
 /**
  *
@@ -21,6 +21,7 @@ public class MotelMurders {
         Game game = new Game();
     
         game.play();
+        
     }
     
 }
