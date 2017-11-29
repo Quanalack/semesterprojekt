@@ -274,7 +274,7 @@ public class Game {
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
-    private boolean processCommand(Command command) {
+    public boolean processCommand(Command command) {
         
         boolean wantToQuit = false;
         

@@ -33,6 +33,12 @@ public class BusinessFacade implements IBusiness {
         
         data.SaveHighscore(game.getCurrentTime(), game.player.getName(), game.MAXTIME);
     }
+
+    @Override
+    public void processCommand(Object command) {
+        
+        game.processCommand((Command)command);
+    }
         
         
 }
