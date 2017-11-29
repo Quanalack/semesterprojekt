@@ -19,13 +19,7 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public Object getHighscore() {
-        return data.LoadHighscore();
-    }
-
-    @Override
-    public void startGameText() {
-        Game game = new Game();
-        game.play();
+        return data.getHighscore();
     }
 
     @Override

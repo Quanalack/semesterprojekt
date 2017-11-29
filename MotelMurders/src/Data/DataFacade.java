@@ -15,9 +15,9 @@ public class DataFacade implements IData
 {
 
     @Override
-    public Object LoadHighscore() {
-        HighScore highscore = new HighScore(1, "");
-        return highscore.getHighScores();
+    public Object getHighscore() {
+        HighscoreManager highscore = new HighscoreManager(1, "");
+        return highscore.getHighscores();
          
     }
 
@@ -30,9 +30,9 @@ public class DataFacade implements IData
         
         int score = (int)(seconds * SCORE_MULTIPLIER);
         
-        HighScore playerHighscore = new HighScore(score, playerName);
+        HighscoreManager playerHighscore = new HighscoreManager(score, playerName);
         
-        playerHighscore.addHighScore(playerHighscore);
+        playerHighscore.addHighscore(playerHighscore);
         
         System.out.println("Game has been saved. You scored: " + score + " points! ");
         

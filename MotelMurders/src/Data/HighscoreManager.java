@@ -9,14 +9,14 @@ import java.io.*;
 import Acquaintance.IData;
 import java.util.Collection;
 
-public class HighScore implements Serializable
+public class HighscoreManager implements Serializable
 {
 	private static final long serialVersionUID = 1L; 
 	private int score;
 	private String name;
 	
 	//The constructor
-	public HighScore(int s, String n)
+	public HighscoreManager(int s, String n)
 	{
 		score=s;
 		setName(n);
@@ -44,22 +44,23 @@ public class HighScore implements Serializable
 	}
 
         //Compares two score
-	public int compareTo(HighScore h)
+	public int compareTo(HighscoreManager h)
 	{
+            //Compare 
 		return new Integer(this.score).compareTo(h.score);
 	}
 	
 	//This is called when there is an empty file in order prevent exceptions
 	private static void initializeFile()
 	{
-		HighScore[] h = {new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
-				new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
-				new HighScore(0," "),new HighScore(0," "),new HighScore(0," "),
-				new HighScore(0," ")};
+		HighscoreManager[] h = {new HighscoreManager(0," "),new HighscoreManager(0," "),new HighscoreManager(0," "),
+				new HighscoreManager(0," "),new HighscoreManager(0," "),new HighscoreManager(0," "),
+				new HighscoreManager(0," "),new HighscoreManager(0," "),new HighscoreManager(0," "),
+				new HighscoreManager(0," ")};
 		try 
 		{       
 			System.out.println("Higscore saved");
-			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighscoreManagers.txt"));
 			o.writeObject(h);
 			o.close();
 		} catch (FileNotFoundException e) {
@@ -71,15 +72,15 @@ public class HighScore implements Serializable
 	}
 	
 	//Reads the .txt file and returns the constants
-	public HighScore[] getHighScores()
+	public HighscoreManager[] getHighscores()
 	{
-		if (!new File("HighScores.txt").exists())
+		if (!new File("HighscoreManagers.txt").exists())
 			initializeFile();
 		try 
 		{
-			ObjectInputStream objectStream = new ObjectInputStream(new FileInputStream("HighScores.txt"));
+			ObjectInputStream objectStream = new ObjectInputStream(new FileInputStream("HighscoreManagers.txt"));
                         
-			HighScore[] h=(HighScore[]) objectStream.readObject();
+			HighscoreManager[] h=(HighscoreManager[]) objectStream.readObject();
 			return h;
 		} catch (IOException e) {e.printStackTrace();} 
 		catch (ClassNotFoundException e) {e.printStackTrace();}
@@ -87,22 +88,22 @@ public class HighScore implements Serializable
 	}
 	
         
-	//Adds a new HighScore to the .txt file and maintains the proper order
-	public void addHighScore(HighScore h){
-		HighScore[] highScores=getHighScores();
+	//Adds a new HighscoreManager to the .txt file and maintains the proper order
+	public void addHighscore(HighscoreManager h){
+		HighscoreManager[] highScores=getHighscores();
 		highScores[highScores.length-1]=h;
 		for (int i=highScores.length-2; i>=0; i--)
 		{
 			if (highScores[i+1].compareTo(highScores[i])>0)
 			{
-				HighScore temp=highScores[i];
+				HighscoreManager temp=highScores[i];
 				highScores[i]=highScores[i+1];
 				highScores[i+1]=temp;
 			}
 		}
 		try 
 		{
-			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighscoreManagers.txt"));
 			o.writeObject(highScores);
 			o.close();
 		} catch (FileNotFoundException e) {e.printStackTrace();} 

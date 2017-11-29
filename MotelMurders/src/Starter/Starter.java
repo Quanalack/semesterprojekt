@@ -35,8 +35,12 @@ public class Starter{
         System.out.println("Ready to launch");
         
         //Start application throught the presentation layer
+        
+        
+            System.out.println(args.length);
+        
+        
         ui.startApplication(args);
-        ui.startApplicationText();
         
     }
 }
