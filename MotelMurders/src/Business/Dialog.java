@@ -35,30 +35,30 @@ public class Dialog {
                     dialog = janitorDialog();
                     break;
                     
-                case 1: //corpse dialog
+      /*          case 1: //corpse dialog
                     dialog = corpseDialog();   
                     break;
-                
+        */        
                 case 2: //receptionist dialog
                     dialog = receptionistDialog();
                     break;
                 
-/*              case 3: //cleaning lady dialog
+              case 3: //cleaning lady dialog
                     dialog = cleaningladyDialog();
                     break;
                     
                 case 4: //guest 1 dialog
-                    dialog = guest1Dialog();
+                    dialog = ronDialog();
                     break;
                     
                 case 5: //guest 2 dialog
-                    dialog = guest2Dialog();
+                    dialog = leilaDialog();
                     break;
                     
                 case 6: //guest 3 dialog
-                    dialog = guest3Dialog();
+                    dialog = brianDialog();
                     break;  
-*/                    
+                 
                 default:
                     System.out.println("Error.");
                     break;
@@ -68,118 +68,18 @@ public class Dialog {
             
             //This is an example of how the start dialog could work.
             //First of two examples:
-    public boolean testDialog() {
+    public boolean cleaningladyDialog() {
                 
         question = "0";
         runDialog = false;
 
-        //Dialog loop
-        while (true) {
-            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will terminate
-                return false;
-            } else {
-                switch (question) {
-                    case "0":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                        System.out.println("Short story..blablabla. What is your name?");
-                        question = "1";
-                        break;
-
-                    case "1":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now   
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                        user = input.next();
-                        question = "1A";
-                        break;
-
-                    case "1A":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                        System.out.println("Are your sure that is your name?\n[1] Yes\n[2] No");
-                        question = "2";
-                        break;
-
-                    case "2":
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                        switch (user = input.next()) //Switch to go back to change name if it is desired
-                        {
-                            case "1":
-                                System.out.println("\"question\" is " + question); //Shows what the question value is now
-                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                                System.out.println("Great! Your are an investigator who are about to stumble unto a murder. GO!\n"
-                                        + "Perhaps you should ask around for clues as to what happened.");
-                                question = "3";
-                                return false;
-
-                            case "2": //if "no" in Q1A
-                                System.out.println("\"question\" is " + question); //Shows what the question value is now
-                                //Line above is a control. MUST BE DELETED BEFORE FINAL GAME
-                                question = "0A";
-                                break;
-                        }
-                        break;
-
-                    case "0A": //if answer in Q1A is "No"
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        System.out.println("Then what IS your name?");
-                        question = "1";
-                        break;
-
-                    default:
-                        System.out.println("\"question\" is " + question); //Shows what the question value is now
-                        System.out.println("ERROR!");
-                        System.exit(0);
-                        break;
-                }
-            }
-        }
-    }
-    
-    public boolean corpseDialog() {
-
-        question = "0";
-        runDialog = false;
-
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
                 return false;
             } else {
                 switch (question) {
                     case "0":
-                        System.out.println("This man is not very talkative...\n"
-                                + "[1] Yell \"HEEEY!\" at him.\n"
-                                + "[2] Leave the corpse be.");
-                        switch (user = input.next())
-                        {
-                            case "1":
-                                System.out.println("No response.");
-                                return false;
-                                
-                            case "2": 
-                                return false;
-                        }
-                    default:
-                        return false;
-                }
-            }
-        }
-    }
-    
-    //Another method can be made here, e.i. for the receptionist.
-    public boolean receptionistDialog() {
-
-        question = "0";
-        runDialog = false;
-
-        while (true) {
-            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
-                return false;
-            } else {
-                switch (question) {
-                    case "0":
-                        System.out.println("I am the receptionist at this motel. My name is \"????\".\n"
+                        System.out.println("I am the cleaning lady at this motel. They call me Molly.\n"
                                 + "I heard you're looking for clues. Can I help you?\n[1] Yes\n[2] No");
                         question = "1A";
                         break; //Could add a break statement to increase control of flow
@@ -188,33 +88,363 @@ public class Dialog {
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1":
-                                System.out.println("I'm happy to help!");
+                                System.out.println("Ask about information about the cleaining lady (Molly)");
                                 question = "1B";
                                 break; //Could add a break statement to increase control of flow
 
                             case "2": //if "no" in Q0, terminate dialog
-                                System.out.println("Okay, bye! Come see me if I can help.");
-                                return false;
+                                System.out.println("Ask about Ron");
+                                question = "1C";
+                                break;
+                                
+                            case "3": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Leila");
+                                question = "1D";
+                                break;
+                                
+                            case "4": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Brian");
+                                question = "1E";
+                                break;
+                                
+                            case "5": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Carl");
+                                question = "1F";
+                                break;
+                                
+                            case "6": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about receptioncist(Daisy)");
+                                question = "1G";
+                                break;
                         }
 
                     case "1B":
-                        System.out.println("How can I help you?\n[1] ?\n[2] ?\n[3] ?");
+                        System.out.println("I am the only cleaning lady at this motel and have worked here for the last 10 years");
+                   
+                    case "1C":
+                        System.out.println("He is a rich guy and spend a lot of time talking on the phone.");
+                        
+                    case "1D":
+                        System.out.println("A young woman but seems to be pretty intelligent.");
+                    
+                    case "1E":
+                        System.out.println("An old man who was very tired when he arrived. Probably from driving too much.");
 
-                        switch (user = input.next()) {
-                            //Unfinished cases (Options for dialog)
+                    case "1F":
+                        System.out.println("Seemed to be having quite a lot of scratches today. I wonder what happened");
+                       
+                    case "1G":
+                        System.out.println("Not the most friendly co-worker although always friendly towards customers. She likes being in control.");                        
+                        
+                    default: //if input is wrong and not an actual option
+                        System.out.println("Be serious! We don't have time to fool around!");
+                        return false;
+                        
+                }
+            }
+        }
+    }
+    
+    public boolean ronDialog() {
+
+         question = "0";
+        runDialog = false;
+
+        while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("Hi I am Ron a guest at this motel for the night.\n"
+                                + "I heard someone was killed here last night. are you here to gather information?\n[1] Yes\n[2] No");
+                        question = "1A";
+                        break; //Could add a break statement to increase control of flow
+
+                    case "1A":
+                        switch (user = input.next()) //Switch to either continue conversation or terminate
+                        {
                             case "1":
-                                System.out.println("Good.");
-                                return false;
+                                System.out.println("Ask for some information from ron");
+                                question = "1B";
+                                break; //Could add a break statement to increase control of flow
 
-                            case "2":
-                                System.out.println("Not good.");
-                                return false;
-
-                            case "3":
-                                System.out.println("Very bad.");
-                                return false;
+                            case "2": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about cleaning lady");
+                                question = "1C";
+                                break;
+                                
+                            case "3": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Leila");
+                                question = "1D";
+                                break;
+                                
+                            case "4": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Brian");
+                                question = "1E";
+                                break;
+                                
+                            case "5": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Carl");
+                                question = "1F";
+                                break;
+                                
+                            case "6": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about receptioncist(Daisy)");
+                                question = "1G";
+                                break;
                         }
 
+                    case "1B":
+                        System.out.println("After my car crashed I was forced to stay here, since nothing else is nearby…");
+                   
+                    case "1C":
+                        System.out.println("I have seen her pass me a couple of times. She seems to be all over the place");
+                        
+                    case "1D":
+                        System.out.println("If you are talking about the charming lady, then I can't tell you much. Since I myself have not spoken with her");
+                    
+                    case "1E":
+                        System.out.println("I don’t know who he is");
+
+                    case "1F":
+                        System.out.println("I have no information regarding the janitor, since I have never met him");
+                       
+                    case "1G":
+                        System.out.println("She seemed a little stressed, but very friendly non the less.");                        
+                        
+                    default: //if input is wrong and not an actual option
+                        System.out.println("Be serious! We don't have time to fool around!");
+                        return false;
+                        
+                }
+            }
+        }
+    }
+    
+    //Another method can be made here, e.i. for the receptionist.
+    public boolean receptionistDialog() {
+
+         question = "0";
+        runDialog = false;
+
+        while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("I am the receptionist and my name is Daisy.\n"
+                                + "I assume that you are the detective wamt to ask about the co-workers and residents?\n[1] Yes\n[2] No");
+                        question = "1A";
+                        break; //Could add a break statement to increase control of flow
+
+                    case "1A":
+                        switch (user = input.next()) //Switch to either continue conversation or terminate
+                        {
+                            case "1":
+                                System.out.println("Ask if she noticed anything special last night");
+                                question = "1B";
+                                break; //Could add a break statement to increase control of flow
+
+                            case "2": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about cleaning lady");
+                                question = "1C";
+                                break;
+                                
+                            case "3": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Leila");
+                                question = "1D";
+                                break;
+                                
+                            case "4": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Brian");
+                                question = "1E";
+                                break;
+                                
+                            case "5": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Carl");
+                                question = "1F";
+                                break;
+                                
+                            case "6": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Ron");
+                                question = "1G";
+                                break;
+                        }
+
+                    case "1B":
+                        System.out.println("No it was a very ordinary night, the corpse was found the next day by Molly the cleaning lady");
+                   
+                    case "1C":
+                        System.out.println("I’m not liked by my co-workers, so don’t know too much about her. I know she is very poor and is raising three children by herself. So she does nothing but work");
+                        
+                    case "1D":
+                        System.out.println("A nice and intellectual girl with a lot of ambitions. I have talked to her a couple times, but nothing out of the ordinary");
+                    
+                    case "1E":
+                        System.out.println("Seemed like he had a long trip last night. I think he went to bed immediately after he arrived");
+
+                    case "1F":
+                        System.out.println("We don’t talk much. We mostly ignore each other. He is just a lazy janitor.");
+                       
+                    case "1G":
+                        System.out.println("A cocky guy, who seemed to be in a bad mood");                        
+                        
+                    default: //if input is wrong and not an actual option
+                        System.out.println("Be serious! We don't have time to fool around!");
+                        return false;
+                        
+                }
+            }
+        }
+    }
+    
+    public boolean leilaDialog() {
+
+         question = "0";
+        runDialog = false;
+
+        while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("I detective my name is Leila .\n"
+                                + "I assume you want to ask me some questions regarding last nights homicide \n[1] Yes\n[2] No");
+                        question = "1A";
+                        break; //Could add a break statement to increase control of flow
+
+                    case "1A":
+                        switch (user = input.next()) //Switch to either continue conversation or terminate
+                        {
+                            case "1":
+                                System.out.println("Ask why Leila is here");
+                                question = "1B";
+                                break; //Could add a break statement to increase control of flow
+
+                            case "2": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about cleaning lady");
+                                question = "1C";
+                                break;
+                                
+                            case "3": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Molly the receptionist");
+                                question = "1D";
+                                break;
+                                
+                            case "4": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Brian");
+                                question = "1E";
+                                break;
+                                
+                            case "5": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Carl");
+                                question = "1F";
+                                break;
+                                
+                            case "6": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Ron");
+                                question = "1G";
+                                break;
+                        }
+
+                    case "1B":
+                        System.out.println("I’m a university student was on a trip to my parents home. It’s a long way, so stopped at the motel to sleep.");
+                   
+                    case "1C":
+                        System.out.println("she is always around until nighttime and arrives early in the morning next day.");
+                        
+                    case "1D":
+                        System.out.println("A very friendly woman, whom I have spoken to a few times. She would always be behind the desk though.");
+                    
+                    case "1E":
+                        System.out.println("I walked passed him, but other than that i don’t know him");
+
+                    case "1F":
+                        System.out.println("I have not seen him");
+                       
+                    case "1G":
+                        System.out.println("I saw him in the lobby when he arrived. He seems to be pretty well off.");                        
+                        
+                    default: //if input is wrong and not an actual option
+                        System.out.println("Be serious! We don't have time to fool around!");
+                        return false;
+                        
+                }
+            }
+        }
+    }
+    
+    public boolean brianDialog() {
+
+         question = "0";
+        runDialog = false;
+
+        while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("Well hello detective this old mans name is Brian.\n"
+                                + "I assume you want some information?\n[1] Yes\n[2] No");
+                        question = "1A";
+                        break; //Could add a break statement to increase control of flow
+
+                    case "1A":
+                        switch (user = input.next()) //Switch to either continue conversation or terminate
+                        {
+                            case "1":
+                                System.out.println("Ask why Brian is at the motel");
+                                question = "1B";
+                                break; //Could add a break statement to increase control of flow
+
+                            case "2": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about cleaning lady");
+                                question = "1C";
+                                break;
+                                
+                            case "3": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Leila");
+                                question = "1D";
+                                break;
+                                
+                            case "4": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Molly (the receptionist)");
+                                question = "1E";
+                                break;
+                                
+                            case "5": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Carl");
+                                question = "1F";
+                                break;
+                                
+                            case "6": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Ron");
+                                question = "1G";
+                                break;
+                        }
+
+                    case "1B":
+                        System.out.println("I have a appointment with my friend in a city nearby, so i spend the night in this motel.");
+                   
+                    case "1C":
+                        System.out.println("The few times I have seen her she busy cleaning.");
+                        
+                    case "1D":
+                        System.out.println("I walked passed her, but other than that I got no information");
+                    
+                    case "1E":
+                        System.out.println(" A woman with just a few words, but seems to be talking a lot in the telephone.");
+
+                    case "1F":
+                        System.out.println("He fixed my table yesterday evening. I don’t know much else regarding him.");
+                       
+                    case "1G":
+                        System.out.println("I have not seen him before.");                        
+                        
                     default: //if input is wrong and not an actual option
                         System.out.println("Be serious! We don't have time to fool around!");
                         return false;
@@ -227,7 +457,7 @@ public class Dialog {
     //Janitor dialog
      public boolean janitorDialog() {
 
-        question = "0";
+      question = "0";
         runDialog = false;
 
         while (true) {
@@ -236,49 +466,69 @@ public class Dialog {
             } else {
                 switch (question) {
                     case "0":
-                        System.out.println("I am CARL, the JANITOR at this motel.\n"
-                                + "I heard you're looking for clues. Need help? *belch!*\n[1] Yes\n[2] No");
+                        System.out.println("I am the janitor of this place my name is carl. Nice to meet you detective.\n"
+                                + "Want some information regarding the residents and my co-workers?\n[1] Yes\n[2] No");
                         question = "1A";
-                        break;
+                        break; //Could add a break statement to increase control of flow
 
                     case "1A":
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1":
-                                System.out.println("I'm too drunk to help!");
+                                System.out.println("Ask about Carl");
                                 question = "1B";
-                                break;
+                                break; //Could add a break statement to increase control of flow
 
                             case "2": //if "no" in Q0, terminate dialog
-                                System.out.println("Okay, bye! *belch!*");
-                                return false;
+                                System.out.println("Ask about cleaning lady");
+                                question = "1C";
+                                break;
+                                
+                            case "3": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Leila");
+                                question = "1D";
+                                break;
+                                
+                            case "4": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Molly (the receptionist)");
+                                question = "1E";
+                                break;
+                                
+                            case "5": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Brian");
+                                question = "1F";
+                                break;
+                                
+                            case "6": //if "no" in Q0, terminate dialog
+                                System.out.println("Ask about Ron");
+                                question = "1G";
+                                break;
                         }
 
                     case "1B":
-                        System.out.println("How can I NOT help you...?\n[1] ?\n[2] ?\n[3] ?");
+                        System.out.println("I can be found in the basement, where i spend most my time. I was here last night aswell.");
+                   
+                    case "1C":
+                        System.out.println("Hard working lady. Always giving her best and working long hours.");
+                        
+                    case "1D":
+                        System.out.println("I have not met her.");
+                    
+                    case "1E":
+                        System.out.println("I don’t really like her bossing me around, but normally hard working.");
 
-                        switch (user = input.next()) {
-                            //Unfinished cases (Options for dialog)
-                            case "1":
-                                System.out.println("Good.");
-                                return false;
-
-                            case "2":
-                                System.out.println("Not good.");
-                                return false;
-
-                            case "3":
-                                System.out.println("Very bad.");
-                                return false;
-                        }
-
+                    case "1F":
+                        System.out.println("I fixed his table other than that i have not seen him.");
+                       
+                    case "1G":
+                        System.out.println("I have not seen him.");                        
+                        
                     default: //if input is wrong and not an actual option
-                        System.out.println("Be serious! We don't have time to not be drinking! Cheers!");
+                        System.out.println("Be serious! We don't have time to fool around!");
                         return false;
                         
                 }
             }
         }
-
     }
 }
