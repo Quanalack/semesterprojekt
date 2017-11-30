@@ -38,7 +38,7 @@ public class MainCharacter implements IPerson{
         //Method to print players current inventory
     public void printInventory() {
         String output = ""; //Empty string to output
-        System.out.println("You're currently carrying:");
+        System.out.println(">You're currently carrying:");
         
         //Iterate through the inventory and add to string
         for (int i = 0; i < this.inventory.size(); i++) {
@@ -62,7 +62,7 @@ public class MainCharacter implements IPerson{
         String item = command.getSecondWord();
 
         if (item.equalsIgnoreCase("magnifying glass")) {
-            System.out.println("You cannot drop your magnifying glass! You need it!");
+            System.out.println(">You cannot drop your magnifying glass! You need it!");
             return;
         }
 
@@ -78,11 +78,11 @@ public class MainCharacter implements IPerson{
 
         //Check if item is in inventory
         if (nextItem == null) {
-            System.out.println("It's not in your inventory");
+            System.out.println(">It's not in your inventory");
         } else {
             //Check if item exists
             if (!(inventory.contains(nextItem))) {
-                System.out.println("There is no item named: " + nextItem.getDescription());
+                System.out.println(">There is no item named: " + nextItem.getDescription());
             } else { 
                 //Removes reuired irem from inventory
                 inventory.remove(index);
@@ -97,10 +97,10 @@ public class MainCharacter implements IPerson{
         public void pickupItem(Command command) {
 
         if (inventory.size() == maxLimit) {
-            System.out.println("There is no more room in your inventory.");
+            System.out.println(">There is no more room in your inventory.");
         } else {
             if (!command.hasSecondWord()) {
-                System.out.println("Pick up what?");
+                System.out.println(">Pick up what?");
                 return;
             }
 
@@ -109,7 +109,7 @@ public class MainCharacter implements IPerson{
             Item nextItem = getCurrentRoom().getItem(item);
 
             if (nextItem == null) {
-                System.out.println("There is no item named that!");
+                System.out.println(">There is no item named that!");
 
             } else {
                 inventory.add(nextItem);
@@ -124,7 +124,7 @@ public class MainCharacter implements IPerson{
         public void newName() {
         Scanner output = new Scanner(System.in);
         
-        System.out.println("What is your name?");
+        System.out.println(">What is your name?");
         
         String newName = output.next();
         

@@ -62,13 +62,13 @@ public class Game {
     private void createCharacters() {
         
         //Create objects of characters
-        NPC janitor = new NPC("Carl", "Carl is the janitor here. He repairs stuff", basement);
-        NPC corpse = new NPC("Corpse", "Yeahhh he dead. Very dead", room4);
-        NPC receptionist = new NPC("Receptionist", "He waits for you at the desk", lobby);
-        NPC cleaningLady = new NPC("Cleaning lady", "Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
-        NPC guest1 = new NPC("Ron", "A man living in room 1", room1);
-        NPC guest2 = new NPC("Leila", "A woman currently living in room number 2", room2);
-        NPC guest3 = new NPC("Brian", "Some old person who lives down in room 3", room3);
+        NPC janitor = new NPC("Carl", "\t>Carl is the janitor here. He repairs stuff", basement);
+        NPC corpse = new NPC("Corpse", "\t>Yeahhh he dead. Very dead", room4);
+        NPC receptionist = new NPC("Receptionist", "\t>He waits for you at the desk", lobby);
+        NPC cleaningLady = new NPC("Cleaning lady", "\t>Walks around in the motel cleaning up. She is hard working but underpaid", lobby);
+        NPC guest1 = new NPC("Ron", "\t>A man living in room 1", room1);
+        NPC guest2 = new NPC("Leila", "\t>A woman currently living in room number 2", room2);
+        NPC guest3 = new NPC("Brian", "\t>Some old person who lives down in room 3", room3);
 
         //Add to character arraylist
         characters.add(janitor);
@@ -108,13 +108,13 @@ public class Game {
         characters.get(murderer).setIsMurderer(true);
         
         //Print for testing and debugging
-        System.out.println("The murderer is: " + characters.get(murderer).getName());
+        System.out.println(">The murderer is: " + characters.get(murderer).getName());
     }
 
     public void getCharacterString() {
         String inRoom = "";
 
-        System.out.println("Characters in room:");
+        System.out.println(">Characters in room:");
         for (int i = 0; i < characters.size(); i++) {
 
             if (player.getCurrentRoom().getRoomName().equals(characters.get(i).getCurrentRoom().getRoomName())) {
@@ -133,30 +133,30 @@ public class Game {
     private void createRooms() {
 
         //Room descriptions when you arrive in a room
-        outside = new Room("\nThe wind is blowing, you see the motels old facade infront of you.", "outside");
-        lobby = new Room("\nYou see a receptionist and even a vending machine,"
+        outside = new Room("\n>The wind is blowing, you see the motels old facade infront of you.", "outside");
+        lobby = new Room("\n>You see a receptionist and even a vending machine,"
                 + " you also see hallways leading to various rooms both left, right and up.", "lobby");
-        room1 = new Room("\nIt is filled with most needed interior like:"
+        room1 = new Room("\n>It is filled with most needed interior like:"
                 + " a bath, bed, chair, table, vase, lamps and a window."
                 + " Guest 1 sleeps here.", "room1");
-        room2 = new Room("\nIt is filled with most needed interior like:"
+        room2 = new Room("\n>It is filled with most needed interior like:"
                 + " a bath, bed, chair, table, vase, lamps and a window."
                 + " Guest 2 sleeps here.", "room2");
-        room3 = new Room("\nIt is filled with most needed interior like:"
+        room3 = new Room("\n>It is filled with most needed interior like:"
                 + " a bath, bed, chair, table, vase, lamps and a window."
                 + " Guest 3 sleeps here.", "room3");
-        room4 = new Room("\nIt is filled with most needed interior like:"
+        room4 = new Room("\n>It is filled with most needed interior like:"
                 + " a bath, bed, chair, table, vase, lamps and a window."
                 + " The victim used to sleep here, now he sleeps forever.", "room4");
-        WC = new Room("\nThere is an unpleasent stence in here!", "WC");
-        kitchen = new Room("\nNothing much, here is a pleasant smell!", "kitchen");
-        basement = new Room("\nIt is a bit dark but from a little light, "
+        WC = new Room("\n\t>There is an unpleasent stence in here!", "WC");
+        kitchen = new Room("\n>Nothing much, here is a pleasant smell!", "kitchen");
+        basement = new Room("\n>It is a bit dark but from a little light, "
                 + "you can spot a workbench to you right and a big boiler in the back.", "basement");
-        hallwayN = new Room("\nThe door to your left leads to the kitchen"
+        hallwayN = new Room("\n>The door to your left leads to the kitchen"
                 + " and the door to the right leads to a WC, there seems to be steps further ahead.", "hallwayN");
-        hallwayE = new Room("\nThe door to your left leads to the room 3"
+        hallwayE = new Room("\n>The door to your left leads to the room 3"
                 + " and the door to the right leads to room 4", "hallwayE");
-        hallwayW = new Room("\nThe door to your left leads to the room 1"
+        hallwayW = new Room("\n>The door to your left leads to the room 1"
                 + " and the door to the right leads to room 2", "hallwayW");
 
         //Set the investigate string for each room. The string showing when user uses the investigate command
@@ -253,8 +253,8 @@ public class Game {
             //saveHighscore();
             
         
-            System.out.println("The murderer was: " + getMurderer());
-            System.out.println("Thank you for playing. Goodbye.");
+            System.out.println(">The murderer was: " + getMurderer());
+            System.out.println(">Thank you for playing. Goodbye.");
         } else {
             //Gem spil
         }
@@ -263,14 +263,14 @@ public class Game {
 
 
     private void printWelcome() {
-        System.out.println();
-        System.out.println("Hello there " + player.getName() + ". Welcome to Motel Murders");
-        System.out.println("You're a private detective");
-        System.out.println("You've been summoned to a murder in a motel");
-        System.out.println("The Motel has been evacuated");
-        System.out.println("Your task is to solve the murder");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println();
+        System.out.println("===================== WELCOME =========================");
+        System.out.println(">Hello there " + player.getName() + ". Welcome to Motel Murders");
+        System.out.println(">You're a private detective");
+        System.out.println(">You've been summoned to a murder in a motel");
+        System.out.println(">The Motel has been evacuated");
+        System.out.println(">Your task is to solve the murder");
+        System.out.println(">Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("");
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
@@ -280,7 +280,7 @@ public class Game {
         
         if (stopwatch.elapsedMillis()/1000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
             wantToQuit = true;
-            System.out.println("Time's up!");
+            System.out.println(">Time's up!");
         }
 
         CommandWord commandWord = command.getCommandWord();
@@ -338,10 +338,10 @@ public class Game {
 
     //Method to show the help text to user
     private void printHelp() {
-        System.out.println("Hello " + player.getName() + ".You are a detective trying to solve a murder.");
-        System.out.println("Go from room to room to investigate and talk with the suspects.");
+        System.out.println(">Hello " + player.getName() + ".You are a detective trying to solve a murder.");
+        System.out.println(">Go from room to room to investigate and talk with the suspects.");
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println(">Your command words are:");
         
         //Shows all the possible commands
         parser.showCommands();
@@ -351,7 +351,7 @@ public class Game {
     private void goRoom(Command command) {
         
         if (!command.hasSecondWord()) { // Is this necessary?? Discuss later. Does goRoom interact with user input??
-            System.out.println("Go where?");
+            System.out.println(">Go where?");
             return;
         }
 
@@ -363,7 +363,7 @@ public class Game {
 
         //Checks if the room has a door at the specified direction 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println(">There is no door!");
         } else {
             //Change room
             player.goRoom(nextRoom);
@@ -375,7 +375,7 @@ public class Game {
         private void dialog(Command command) {
 
         if (!command.hasSecondWord()) {
-            System.out.println("Talk to who?");
+            System.out.println(">Talk to who?");
             return;
         }
 
@@ -387,21 +387,25 @@ public class Game {
 
         for (int i = 0; i < characters.size(); i++) {
             if (name.equalsIgnoreCase(characters.get(i).getName())) {
-                
                 characterExists = true;
                 
-//            }   
-//            if (characterExists && player.getCurrentRoom() == characters.get(i).getCurrentRoom()) {
-               
+            if (name.equalsIgnoreCase("cleaning")) {
+                characterExists = true;
+                //set the accused character equal to the cleaning lady's name
+                name = characters.get(3).getName();
+            }
+                
+
+            if (characterExists){
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
                 
                 } else {
-                    System.out.println("That person isn't even here!");
+                    System.out.println(">That person isn't even here!");
                 }
             }
         }
-    
+    }
     
     private boolean accuse(Command command) {
         
@@ -455,7 +459,7 @@ public class Game {
             
             //Player guessed wrong and looses the game
             if (!isMurdererFound) {
-                System.out.println("Not the murderer! You lost!");
+                System.out.println(">Not the murderer! You lost!");
             }
         
             return  true; // Once you have successfully accused a person the game ends. You either win or lose
@@ -463,12 +467,12 @@ public class Game {
         } else {
             
             //The accused could not be found in the characters
-            System.out.println("The accused person does not exist");
+            System.out.println(">The accused person does not exist");
             return false; //Returns false because there was an error from the players side
         }
             
         } else {
-            System.out.println("Accuse who?");
+            System.out.println(">Accuse who?");
             return false; //Returns false because there was an error from the players side
         }
     }
