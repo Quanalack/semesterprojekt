@@ -259,72 +259,79 @@ public class Dialog {
                     case "3":
                         switch (user = input.next()) {
                             case "1":
-                                question = "3B";
+                                System.out.println("No it was a very ordinary night, the corpse was found the next day by Molly the cleaning lady");
+                                question = "4";
                                 break;
 
                             case "2":
-                                question = "3C";
+                                System.out.println("I’m not liked by my co-workers, so don’t know too much about her. I know she is very poor and is raising three children by herself. So she does nothing but work");
+                                question = "4";
                                 break;
 
                             case "3":
-                                question = "3D";
+                                System.out.println("A nice and intellectual girl with a lot of ambitions. I have talked to her a couple times, but nothing out of the ordinary");
+                                question = "4";
                                 break;
 
                             case "4":
-                                question = "3E";
+                                System.out.println("Seemed like he had a long trip last night. I think he went to bed immediately after he arrived");
+                                question = "4";
                                 break;
 
                             case "5":
-                                question = "3F";
+                                System.out.println("We don’t talk much. We mostly ignore each other. He is just a lazy janitor.");
+                                question = "4";
                                 break;
 
                             case "6":
-                                question = "3G";
+                                System.out.println("A cocky guy, who seemed to be in a bad mood");
+                                question = "4";
                                 break;
 
                             case "7":
-                                question = "3H";
-                                break;
+                                System.out.println(">You walk away from the receptionist.");
+                                return false;
 
                             default: //if input is wrong and not an actual option
-                                System.out.println("Be serious! We don't have time to fool around!");
-                                return false;
+                                System.out.println("This is not an option. Try again.");
+                                question = "4";
+                                break;
                         }
 
-                    case "3B":
-                        System.out.println("No it was a very ordinary night, the corpse was found the next day by Molly the cleaning lady");
-                        question = "4";
-                        break;
+//                    case "3B":
+//                        System.out.println("No it was a very ordinary night, the corpse was found the next day by Molly the cleaning lady");
+//                        question = "4";
+//                        break;
+//
+//                    case "3C":
+//                        System.out.println("I’m not liked by my co-workers, so don’t know too much about her. I know she is very poor and is raising three children by herself. So she does nothing but work");
+//                        question = "4";
+//                        break;
+//
+//                    case "3D":
+//                        System.out.println("A nice and intellectual girl with a lot of ambitions. I have talked to her a couple times, but nothing out of the ordinary");
+//                        question = "4";
+//                        break;
+//
+//                    case "3E":
+//                        System.out.println("Seemed like he had a long trip last night. I think he went to bed immediately after he arrived");
+//                        question = "4";
+//                        break;
+//
+//                    case "3F":
+//                        System.out.println("We don’t talk much. We mostly ignore each other. He is just a lazy janitor.");
+//                        question = "4";
+//                        break;
+//
+//                    case "3G":
+//                        System.out.println("A cocky guy, who seemed to be in a bad mood");
+//                        question = "4";
+//                        break;
+//
+//                    case "3H":
+//                        System.out.println(">You walk away from the receptionist.");
+//                        return false;
 
-                    case "3C":
-                        System.out.println("I’m not liked by my co-workers, so don’t know too much about her. I know she is very poor and is raising three children by herself. So she does nothing but work");
-                        question = "4";
-                        break;
-
-                    case "3D":
-                        System.out.println("A nice and intellectual girl with a lot of ambitions. I have talked to her a couple times, but nothing out of the ordinary");
-                        question = "4";
-                        break;
-
-                    case "3E":
-                        System.out.println("Seemed like he had a long trip last night. I think he went to bed immediately after he arrived");
-                        question = "4";
-                        break;
-
-                    case "3F":
-                        System.out.println("We don’t talk much. We mostly ignore each other. He is just a lazy janitor.");
-                        question = "4";
-                        break;
-
-                    case "3G":
-                        System.out.println("A cocky guy, who seemed to be in a bad mood");
-                        question = "4";
-                        break;
-                        
-                    case "3H":
-                        System.out.println(">You walk away from the receptionist.");
-                        return false;
-                        
                     case "4":
                         System.out.println("Anything else I can help with?"
                                 + "\n[1] Ask if she noticed anything special last night"
