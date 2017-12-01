@@ -88,7 +88,7 @@ public class HighscoreManager implements Serializable
         
 	//Adds a new HighscoreManager to the .txt file and maintains the proper order
 	public void addHighscore(HighscoreManager h){
-		HighscoreManager[] highScores=getHighscores();
+		HighscoreManager[] highScores = getHighscores();
 		highScores[highScores.length-1]=h;
 		for (int i=highScores.length-2; i>=0; i--)
 		{
