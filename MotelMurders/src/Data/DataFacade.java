@@ -17,23 +17,38 @@ public class DataFacade implements IData
 {
 
     @Override
-    public Collection[] getHighscore() {
+    public Collection<?> getHighscore() {
+        
+        
         ArrayList<Score> scores = new ArrayList<>();
         
         for (int i = 0; i < 10; i++) {
                 scores.add(readNextScore());
         }
-         
+
+
+         return scores;
     }
 
     @Override
-    public void SaveHighscore(double elapsedSeconds, String playerName, int MAXTIME) {
-        
+    public void SaveHighscore(double totalTime, String playerName) {
+        //Random multiplier
         final int SCORE_MULTIPLIER = 1234;
         
-        double seconds = (MAXTIME - elapsedSeconds);
+        int score = (int)(totalTime * SCORE_MULTIPLIER);
         
-        int score = (int)(seconds * SCORE_MULTIPLIER);
+        ArrayList<Score> currentScore = (ArrayList<Score>)getHighscore();
+        
+        for (int i = 0; i < 10; i++) {
+            if (score > currentScore.get(i).getScore()) {
+                
+            
+            }
+        }
+        
+        
+        
+        
         
         HighscoreManager playerHighscore = new HighscoreManager(score, playerName);
         
