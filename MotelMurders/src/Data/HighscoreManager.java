@@ -6,8 +6,6 @@
 package Data;
 
 import java.io.*;
-import Acquaintance.IData;
-import java.util.Collection;
 
 public class HighscoreManager implements Serializable
 {

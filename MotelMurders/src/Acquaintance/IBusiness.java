@@ -1,7 +1,5 @@
 package Acquaintance;
 
-import java.util.Collection;
-
 public interface IBusiness {
         //Method to inject the data layer into business layer
 	void injectData(IData dataLayer);
