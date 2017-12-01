@@ -13,18 +13,25 @@ import java.io.Serializable;
  */
 public class Score implements Serializable{
     
+    //UID in order to read and write the object
     private static final long serialVersionUID = 1L;
+    //Name of the player
     private String name;
+    //Date the score was created
     private Date date;
+    //The score 
     private int score;
     
         Score(String name, int score) {
+            //set date to current date
             this.date = new Date();
+            
             this.score = score;
             this.name = name;
                    
         }
 
+    //Getters and setter:
     public String getName() {
         return name;
     }

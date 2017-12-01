@@ -22,8 +22,10 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void saveHighscore() {
+        //Calculate time played out of max time
+        double timePlayed = game.getCurrentTime() - game.MAXTIME;
         
-        data.SaveHighscore(game.getCurrentTime(), game.player.getName(), game.MAXTIME);
+        data.SaveHighscore(timePlayed, game.player.getName());
     }
 
     @Override
