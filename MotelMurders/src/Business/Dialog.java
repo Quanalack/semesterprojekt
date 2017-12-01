@@ -28,10 +28,10 @@ public class Dialog {
                     dialog = janitorDialog();
                     break;
 
-                /*          case 1: //corpse dialog
+                      case 1: //corpse dialog
                     dialog = corpseDialog();   
                     break;
-                 */
+                 
                 case 2: //receptionist dialog
                     dialog = receptionistDialog();
                     break;
@@ -60,6 +60,36 @@ public class Dialog {
 
     }
 
+    public boolean corpseDialog() {
+        question = "0";
+        runDialog = false;
+            while (true) {
+            if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
+                return false;
+            } else {
+                switch (question) {
+                    case "0":
+                        System.out.println("This corpse doens't look very active what should i do?"
+                                + "\n[1] Yell"
+                                + "\n[2] Walk away");
+                        question = "1A";
+                        break; //Could add a break statement to increase control of flow
+                        
+                    case "1A":
+                        switch (user = input.next()) //Switch to either continue conversation or terminate
+                        {
+                            case "1": //Player answers yell
+                                    System.out.println("No response... Mhhh weird!");
+                                    break;
+                                    
+                            case "2": // when you walk away
+                                    System.out.println("You walk away");
+                                    break;
+                }
+        }
+            }
+            }
+    }
     //This is an example of how the start dialog could work.
     //First of two examples:
     public boolean cleaningladyDialog() {
@@ -127,7 +157,7 @@ public class Dialog {
                                 break;
 
                             case "7":
-                                System.out.println(">You walk away.");
+                                System.out.println("You walk away.");
                                 break;
 
                             default: //if input is wrong and not an actual option
