@@ -2,8 +2,6 @@ package Business;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
-import java.util.Collection;
-import java.util.HashSet;
 
 
 public class BusinessFacade implements IBusiness {
