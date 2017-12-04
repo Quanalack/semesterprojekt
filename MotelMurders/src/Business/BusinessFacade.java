@@ -2,6 +2,7 @@ package Business;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
+import java.util.Collection;
 
 
 public class BusinessFacade implements IBusiness {
@@ -16,7 +17,7 @@ public class BusinessFacade implements IBusiness {
         //The actual methods 
 
     @Override
-    public Object getHighscore() {
+    public Collection<?> getHighscore() {
         return data.getHighscore();
     }
 

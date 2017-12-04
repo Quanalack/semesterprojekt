@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 
@@ -26,7 +27,6 @@ public class DataFacade implements IData
                 scores.add(readNextScore());
         }
 
-
          return scores;
     }
 
@@ -35,20 +35,21 @@ public class DataFacade implements IData
         //Random multiplier
         final int SCORE_MULTIPLIER = 1234;
         
+        //Creating score from time and multiplier
         int score = (int)(totalTime * SCORE_MULTIPLIER);
         
+        //get the current score
         ArrayList<Score> currentScore = (ArrayList<Score>)getHighscore();
         
-        for (int i = 0; i < 10; i++) {
-            if (score > currentScore.get(i).getScore()) {
+        
+            //Load the 10th scores
+            Score score10 = currentScore.get(10);
+            
+            if (score > score10.getScore()) {
                 
             
-            }
+            
         }
-        
-        
-        
-        
         
         HighscoreManager playerHighscore = new HighscoreManager(score, playerName);
         
@@ -64,7 +65,7 @@ public class DataFacade implements IData
         try 
 		{       
 			System.out.println("Game saved");
-			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("HighScores.txt"));
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("highscore.txt"));
 			o.writeObject(game);
 			o.close();
 		} catch (FileNotFoundException e) {
@@ -82,7 +83,10 @@ public class DataFacade implements IData
     
     public static void createEmptyHighscore(){
         for (int i = 0; i < 10; i++) {
+            //Creates an empty score
             Score score = new Score(null, 0);
+            
+            //Write it to file
             writeScore(score); 
         }
     }
@@ -97,7 +101,7 @@ public class DataFacade implements IData
     
     public static void writeScore(Score score){
         try {
-			FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
+			FileOutputStream f = new FileOutputStream(new File("highscore.txt"));
 			ObjectOutputStream o = new ObjectOutputStream(f);
 
 			// Write objects to file
@@ -118,8 +122,9 @@ public class DataFacade implements IData
     }
     
     public Score readNextScore(){
+        
         try {
-			FileInputStream fi = new FileInputStream(new File("highscore.txt"));
+			FileInputStream fi = new FileInputStream("highscore.txt");
 			ObjectInputStream oi = new ObjectInputStream(fi);
 
 			// Read object and cast to score 
