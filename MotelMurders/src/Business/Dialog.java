@@ -8,7 +8,7 @@ public class Dialog {
     private Scanner input = new Scanner(System.in);
     private String question;
     private String user = "";
-    private boolean runDialog = false;
+
 
     //The startDialog-method is to determine which of the dialog-methods is to be called
     public void startDialog(int i) {
@@ -18,35 +18,35 @@ public class Dialog {
             switch (i) {
                 case 0: //janitor dialog
                     dialog = janitorDialog();
-                    break;
+                    return;
 
                 case 1: //corpse dialog
-                    dialog = corpseDialog();   
-                    break;
-                 
+                    dialog = corpseDialog();
+                    return;
+
                 case 2: //receptionist dialog
                     dialog = receptionistDialog();
-                    break;
+                    return;
 
                 case 3: //cleaning lady dialog
                     dialog = cleaningladyDialog();
-                    break;
+                    return;
 
                 case 4: //guest 1 dialog
                     dialog = ronDialog();
-                    break;
+                    return;
 
                 case 5: //guest 2 dialog
                     dialog = leilaDialog();
-                    break;
+                    return;
 
                 case 6: //guest 3 dialog
                     dialog = brianDialog();
-                    break;
+                    return;
 
                 default:
                     System.out.println("Error.");
-                    break;
+                    return;
             }
         }
 
@@ -54,8 +54,9 @@ public class Dialog {
 
     public boolean corpseDialog() {
         question = "0";
-        runDialog = false;
-            while (true) {
+
+            
+        while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
                 return false;
             } else {
@@ -65,29 +66,28 @@ public class Dialog {
                                 + "\n[1] Yell"
                                 + "\n[2] Walk away");
                         question = "1A";
-                        break; //Could add a break statement to increase control of flow
+                        break; 
                         
                     case "1A":
                         switch (user = input.next()) //Switch to either continue conversation or terminate
                         {
                             case "1": //Player answers yell
                                     System.out.println("No response... Mhhh weird!");
-                                    break;
+                                    return false;
                                     
-                            case "2": // when you walk away
-                                    System.out.println("You walk away");
-                                    break;
-                }
-        }
-            }
-            }
-    }
+                            case "2": //When you walk away
+                                    System.out.println("You walk away from the victim.");                                   
+                                    return false;
+                        }
+                } 
+            } 
+        } 
+    } 
     //This is an example of how the start dialog could work.
     //First of two examples:
     public boolean cleaningladyDialog() {
 
         question = "0";
-        runDialog = false;
 
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
@@ -150,7 +150,7 @@ public class Dialog {
 
                             case "7":
                                 System.out.println("You walk away.");
-                                break;
+                                return false;
 
                             default: //if input is wrong and not an actual option
                                 System.out.println("Be serious! We don't have time to fool around!");
@@ -165,7 +165,7 @@ public class Dialog {
     public boolean ronDialog() {
 
         question = "0";
-        runDialog = false;
+
 
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
@@ -267,7 +267,7 @@ public class Dialog {
     public boolean receptionistDialog() {
 
         question = "0"; //Determines where in the dialog is the next step
-        runDialog = false;
+
 
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
@@ -368,7 +368,7 @@ public class Dialog {
     public boolean leilaDialog() {
 
         question = "0";
-        runDialog = false;
+
 
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
@@ -469,7 +469,7 @@ public class Dialog {
     public boolean brianDialog() {
 
         question = "0";
-        runDialog = false;
+        
 
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
@@ -571,7 +571,7 @@ public class Dialog {
     public boolean janitorDialog() {
 
         question = "0";
-        runDialog = false;
+
 
         while (true) {
             if (user.equalsIgnoreCase("exit")) {  //if user types exit at any time, dialog will teminate
