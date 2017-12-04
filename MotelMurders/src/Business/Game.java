@@ -3,7 +3,6 @@ package Business;
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
 
-
 /**
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
@@ -11,14 +10,14 @@ import com.google.common.base.Stopwatch;
 public class Game {
 
     private Parser parser;
-    
+
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
     final int MAXTIME = 60;
 
     public int getMAXTIME() {
         return MAXTIME;
     }
-    
+
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
 
     public boolean playerHasQuitted() { //getter
@@ -28,7 +27,7 @@ public class Game {
     public void setPlayerQuits(boolean playerQuits) { //Setter
         this.playerHasQuitted = playerQuits;
     }
-    
+
     //Existing rooms 
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
 
@@ -40,21 +39,19 @@ public class Game {
 
     //Creating the main character
     MainCharacter player = new MainCharacter();
-    
-    
+
     public Game() {
-        
+
         player.newName();
         player.addMagnifyingGlass();
         parser = new Parser();
         createRooms();
         createCharacters();
-        
-        
+
     }
 
     private void createCharacters() {
-        
+
         //Create objects of characters
         NPC janitor = new NPC("Carl", "\t>Carl is the janitor here. He repairs stuff", basement);
         NPC corpse = new NPC("Corpse", "\t>Yeahhh he dead. Very dead", room4);
@@ -72,13 +69,12 @@ public class Game {
         characters.add(guest1);
         characters.add(guest2);
         characters.add(guest3);
-        
+
         //Set a murderer
         setMurderer();
 
     }
 
-    
     public String getMurderer() {
         for (NPC character : characters) {
             if (character.isIsMurderer() == true) {
@@ -87,20 +83,19 @@ public class Game {
         }
         return "Murderer not found";
     }
-    
-    public void setMurderer () {
-        
+
+    public void setMurderer() {
+
         int murderer;
-        
+
         //Set one of them as murderer
         do {
-             murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
-        }
-        while (murderer != 1 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
-           
+            murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
+        } while (murderer != 1 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
+
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
-        
+
         //Print for testing and debugging
         System.out.println(">The murderer is: " + characters.get(murderer).getName());
     }
@@ -217,8 +212,6 @@ public class Game {
 
         room4.setExit("back", hallwayE);
 
-        
-
         room1.setItem(new Item("chair"));
         room1.setItem(new Item("lamp"));
         room2.setItem(new Item("chair"));
@@ -241,20 +234,16 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        
+
         if (!playerHasQuitted) {
-            
+
             //saveHighscore();
-            
-        
             System.out.println(">The murderer was: " + getMurderer());
             System.out.println(">Thank you for playing. Goodbye.");
         } else {
             //Gem spil
         }
     }
-    
-
 
     private void printWelcome() {
         System.out.println("===================== WELCOME =========================");
@@ -269,10 +258,10 @@ public class Game {
     }
 
     public boolean processCommand(Command command) {
-        
+
         boolean wantToQuit = false;
-        
-        if (stopwatch.elapsedMillis()/1000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
+
+        if (stopwatch.elapsedMillis() / 1000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
             wantToQuit = true;
             System.out.println(">Time's up!");
         }
@@ -292,14 +281,14 @@ public class Game {
 
             //15 % chance of moving cleaning Lady
             if (Math.random() <= 1) {
-            moveCleaningLady();
+                moveCleaningLady();
             }
-            
+
         } else if (commandWord == CommandWord.QUIT) {
             //Quits game
             playerHasQuitted = true;
             wantToQuit = true;
-            
+
         } else if (commandWord == commandWord.INVENTORY) {
             //Print out the content of the inventory
             player.printInventory();
@@ -326,8 +315,8 @@ public class Game {
         return wantToQuit;
     }
 
-    public double getCurrentTime(){
-        return stopwatch.elapsedMillis()/1000;
+    public double getCurrentTime() {
+        return stopwatch.elapsedMillis() / 1000;
     }
 
     //Method to show the help text to user
@@ -336,14 +325,14 @@ public class Game {
         System.out.println(">Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println(">Your command words are:");
-        
+
         //Shows all the possible commands
         parser.showCommands();
     }
 
     //Method to go to a new room
     private void goRoom(Command command) {
-        
+
         if (!command.hasSecondWord()) { // Is this necessary?? Discuss later. Does goRoom interact with user input??
             System.out.println(">Go where?");
             return;
@@ -365,8 +354,7 @@ public class Game {
         }
     }
 
-    
-        private void dialog(Command command) {
+    private void dialog(Command command) {
 
         if (!command.hasSecondWord()) {
             System.out.println(">Talk to who?");
@@ -382,89 +370,87 @@ public class Game {
         for (int i = 0; i < characters.size(); i++) {
             if (name.equalsIgnoreCase(characters.get(i).getName())) {
                 characterExists = true;
-                
-            if (name.equalsIgnoreCase("cleaning")) {
-                characterExists = true;
-                //set the accused character equal to the cleaning lady's name
-                name = characters.get(3).getName();
-            }
-                
 
-            if (characterExists){
+                if (name.equalsIgnoreCase("cleaning")) { //Cleaning Lady contains two names but the tokenizer only seraches for one word
+                    characterExists = true;
+                    //set the accused character equal to the cleaning lady's name
+                    name = characters.get(3).getName();
+                }
+
+                if (characterExists) {
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
-                
+
                 } else {
                     System.out.println(">That person isn't even here!");
                 }
-            }
+            } 
         }
     }
-    
+
     private boolean accuse(Command command) {
-        
+
         //Check if user input has a word after "accuse"
         if (command.hasSecondWord()) {
-            
+
             String accusedCharacter = command.getSecondWord();
-        
-        //Checks if the accused character exists through a loop
-        
-        boolean accusedExists = false; //Accused has not been found yet
-        
-        for (int i = 0; i < characters.size(); i++) {
-            
-            if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName())) {
-            //Name has been found in characters
-            accusedExists = true;
-            }
-            
-            /*
+
+            //Checks if the accused character exists through a loop
+            boolean accusedExists = false; //Accused has not been found yet
+
+            for (int i = 0; i < characters.size(); i++) {
+
+                if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName())) {
+                    //Name has been found in characters
+                    accusedExists = true;
+                }
+
+                /*
             The character Cleaning lady contains two words meaning that if a user types in
             "accuse cleaning lady". The parser will only look for the word after accuse.
             In this case it's cleaning.
-            */
-            if (accusedCharacter.equalsIgnoreCase("cleaning")) {
-                accusedExists = true;
-                //set the accused character equal to the cleaning lady's name
-                accusedCharacter = characters.get(3).getName();
-            }
-            
-        }
-        
-        if (accusedExists) {
-            
-        //Boolean to determine whether or not the corrct person is accused
-        boolean isMurdererFound = false; //False as default
-        
-            //For loop to check if the murderer has been found
-            for (int i = 0; i < characters.size(); i++) {
-                
-                //If the accused characters name mathes and that characters IsMurderer is true
-                if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).isIsMurderer()) {
-                    
-                //Player found the murderer
-                System.out.println("You found the murderer!");
-        
-                isMurdererFound = true;
-        
+                 */
+                if (accusedCharacter.equalsIgnoreCase("cleaning")) {
+                    accusedExists = true;
+                    //set the accused character equal to the cleaning lady's name
+                    accusedCharacter = characters.get(3).getName();
                 }
+
             }
-            
-            //Player guessed wrong and looses the game
-            if (!isMurdererFound) {
-                System.out.println(">Not the murderer! You lost!");
+
+            if (accusedExists) {
+
+                //Boolean to determine whether or not the corrct person is accused
+                boolean isMurdererFound = false; //False as default
+
+                //For loop to check if the murderer has been found
+                for (int i = 0; i < characters.size(); i++) {
+
+                    //If the accused characters name mathes and that characters IsMurderer is true
+                    if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).isIsMurderer()) {
+
+                        //Player found the murderer
+                        System.out.println("You found the murderer!");
+
+                        isMurdererFound = true;
+
+                    }
+                }
+
+                //Player guessed wrong and looses the game
+                if (!isMurdererFound) {
+                    System.out.println(">Not the murderer! You lost!");
+                }
+
+                return true; // Once you have successfully accused a person the game ends. You either win or lose
+
+            } else {
+
+                //The accused could not be found in the characters
+                System.out.println(">The accused person does not exist");
+                return false; //Returns false because there was an error from the players side
             }
-        
-            return  true; // Once you have successfully accused a person the game ends. You either win or lose
-            
-        } else {
-            
-            //The accused could not be found in the characters
-            System.out.println(">The accused person does not exist");
-            return false; //Returns false because there was an error from the players side
-        }
-            
+
         } else {
             System.out.println(">Accuse who?");
             return false; //Returns false because there was an error from the players side
@@ -487,23 +473,22 @@ public class Game {
 
         //Get a random room out of ALL POSSIBLE rooms
         //Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));        
-        
         //Test starts here
         Room oldRoom = cleaningLady.getCurrentRoom();
-        
+
         Room neighborRoom0 = player.getCurrentRoom().getExit("up");
         Room neighborRoom1 = player.getCurrentRoom().getExit("back");
         Room neighborRoom2 = player.getCurrentRoom().getExit("left");
         Room neighborRoom3 = player.getCurrentRoom().getExit("right");
-        
-        while(cleaningLady.getCurrentRoom() != oldRoom && rooms.contains(cleaningLady.getCurrentRoom())) {
-            int randomNeighbor = (int)(0 + Math.random() * 3); //Random integer from 0 to 3
-        
+
+        while (cleaningLady.getCurrentRoom() != oldRoom && rooms.contains(cleaningLady.getCurrentRoom())) {
+            int randomNeighbor = (int) (0 + Math.random() * 3); //Random integer from 0 to 3
+
             System.out.println(randomNeighbor);
-            
+
             switch (randomNeighbor) {
                 case 0:
-                cleaningLady.goRoom(neighborRoom0);
+                    cleaningLady.goRoom(neighborRoom0);
                     break;
                 case 1:
                     cleaningLady.goRoom(neighborRoom1);
@@ -518,12 +503,10 @@ public class Game {
                     throw new AssertionError();
             }
         }
-        
-        //Test ends here
 
+        //Test ends here
         //Move to the random room
         //CleaningLady.setCurrentRoom(randomRoom);
-
         //Print to player the location of her now
         System.out.println("The cleaning lady is in room: " + cleaningLady.getCurrentRoom().getRoomName());
     }
