@@ -2,6 +2,7 @@ package Business;
 
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
+import java.util.Collection;
 
 
 /**
@@ -81,14 +82,14 @@ public class Game {
     
     public String getMurderer() {
         for (NPC character : characters) {
-            if (character.isIsMurderer() == true) {
+            if (character.isIsMurderer()) {
                 return character.getName();
             }
         }
         return "Murderer not found";
     }
     
-    public void setMurderer () {
+    public void setMurderer() {
         
         int murderer;
         
@@ -96,7 +97,7 @@ public class Game {
         do {
              murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
         }
-        while (murderer != 1 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
+        while (murderer != 1 && murderer != 3 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
            
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
@@ -254,9 +255,21 @@ public class Game {
         }
     }
     
+public ArrayList<String> getWelcomeMessage() {
+    ArrayList<String> welcomeMessage = new ArrayList<>();
+    welcomeMessage.add("===================== WELCOME =========================");
+    welcomeMessage.add(">Hello there " + player.getName() + ". Welcome to Motel Murders");
+    welcomeMessage.add(">You're a private detective");
+    welcomeMessage.add(">You've been summoned to a murder in a motel");
+    welcomeMessage.add(">The Motel has been evacuated");
+    welcomeMessage.add(">Your task is to solve the murder");
+    welcomeMessage.add(">Type '" + CommandWord.HELP + "' if you need help.");
+    
+    return welcomeMessage;
+    
+}
 
-
-    private void printWelcome() {
+    public void printWelcome() {
         System.out.println("===================== WELCOME =========================");
         System.out.println(">Hello there " + player.getName() + ". Welcome to Motel Murders");
         System.out.println(">You're a private detective");

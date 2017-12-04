@@ -7,6 +7,7 @@ package Presentation;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IUI;
+import java.util.ArrayList;
 import java.util.Collection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +58,16 @@ public class UI extends Application implements IUI{
     @Override
     public Collection<?> getHighscore() {
         return business.getHighscore();
+    }
+
+    @Override
+    public Object getCurrentRoom() {
+       return business.getCurrentRoom();
+    }
+
+    @Override
+    public ArrayList<String> getWelcomeMessage() {
+        return business.getWelcomeMessage();
     }
     
 }

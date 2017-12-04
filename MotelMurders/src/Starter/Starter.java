@@ -24,21 +24,22 @@ public class Starter{
         
         //Create instance of business interface
         IBusiness business = new BusinessFacade();
+        
         //Inject the data layer into the business layer
         business.injectData(data);
-        //Create the GUI layer/presentation layer
+        System.out.println("Data injected");
+        
+        //Create the presentation layer
         IUI ui = new UI();
+        
         //Inject the business layer into the presentation layer
         ui.injectBusiness(business);
+        System.out.println("Business injected");
 
         //Print to user 
         System.out.println("Ready to launch");
         
-        //Start application throught the presentation layer
-        
-        
-            System.out.println(args.length);
-        
+        //Start application throught the presentation layer   
         
         ui.startApplication(args);
         

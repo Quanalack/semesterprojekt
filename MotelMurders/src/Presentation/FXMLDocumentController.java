@@ -26,13 +26,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void usernameButtonAction(ActionEvent event) {
         //textField.setText("username");
-        textField.setText(business.getHighscore().toString());
+        textField.setText("");
     }
 
     @FXML
     private void amountButtonAction(ActionEvent event) {
         //textField.setText("amount");
-        business.saveHighscore();
         System.out.println("Highscore saved!");
         
     }

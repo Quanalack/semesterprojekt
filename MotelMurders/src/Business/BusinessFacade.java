@@ -2,6 +2,7 @@ package Business;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -34,6 +35,21 @@ public class BusinessFacade implements IBusiness {
         
         game.processCommand((Command)command);
     }
+
+    @Override
+    public Object getCurrentRoom() {
+        return game.player.getCurrentRoom();
+    }
+
+    @Override
+    public ArrayList<String> getWelcomeMessage() {
+        return game.getWelcomeMessage();
+    }
+    
+    
+
+    
+    
         
         
 }
