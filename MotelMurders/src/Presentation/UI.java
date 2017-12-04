@@ -7,6 +7,7 @@ package Presentation;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IUI;
+import java.util.Collection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -51,6 +52,11 @@ public class UI extends Application implements IUI{
     
     public IBusiness getBusiness(){
         return business;
+    }
+
+    @Override
+    public Collection<?> getHighscore() {
+        return business.getHighscore();
     }
     
 }
