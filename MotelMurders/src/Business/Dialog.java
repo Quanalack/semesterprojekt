@@ -2,15 +2,7 @@ package Business;
 
 import java.util.Scanner;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Jeppe
- */
+
 public class Dialog {
 
     private Scanner input = new Scanner(System.in);
@@ -28,7 +20,7 @@ public class Dialog {
                     dialog = janitorDialog();
                     break;
 
-                      case 1: //corpse dialog
+                case 1: //corpse dialog
                     dialog = corpseDialog();   
                     break;
                  
@@ -241,7 +233,7 @@ public class Dialog {
                                 break;
 
                             case "7":
-                                System.out.println(">You walk away from Ron.");
+                                System.out.println("You walk away from Ron.");
                                 return false;
 
                             default: //if input is wrong and not an actual option
@@ -343,7 +335,7 @@ public class Dialog {
                                 break;
 
                             case "7":
-                                System.out.println(">You walk away from the receptionist.");
+                                System.out.println("You walk away from the receptionist.");
                                 return false;
 
                             default: //if input is wrong and not an actual option
@@ -419,7 +411,7 @@ public class Dialog {
                                 break;
 
                             case "2":
-                                System.out.println("\"she is always around until nighttime and arrives early in the morning next day.");
+                                System.out.println("she is always around until nighttime and arrives early in the morning next day.");
                                 question = "4";
                                 break;
 
@@ -444,7 +436,7 @@ public class Dialog {
                                 break;
 
                             case "7":
-                                System.out.println(">You walk away from Leila.");
+                                System.out.println("You walk away from Leila.");
                                 return false;
 
                             default: //if input is wrong and not an actual option
@@ -530,7 +522,7 @@ public class Dialog {
                                 break;
 
                             case "4":
-                                System.out.println(" A woman with just a few words, but seems to be talking a lot in the telephone.");
+                                System.out.println("A woman with just a few words, but seems to be talking a lot in the telephone.");
                                 question = "4";
                                 break;
 
@@ -545,7 +537,7 @@ public class Dialog {
                                 break;
 
                             case "7":
-                                System.out.println(">You walk away from Brian.");
+                                System.out.println("You walk away from Brian.");
                                 return false;
 
                             default: //if input is wrong and not an actual option
@@ -647,7 +639,7 @@ public class Dialog {
                                 break;
 
                             case "7":
-                                System.out.println(">You walk away from Carl.");
+                                System.out.println("You walk away from Carl.");
                                 return false;
 
                             default: //if input is wrong and not an actual option
