@@ -61,12 +61,16 @@ public class DataFacade implements IData
     }
 
     @Override
-    public void SaveGame(Object[] game) {
+    public void SaveGame(ArrayList<Object> NPC, ArrayList<Object> rooms, Object player) {
+        
+        //Create the savefile
+        SaveFile saveFile = new SaveFile(NPC, rooms, player);
+        
         try 
 		{       
 			System.out.println("Game saved");
-			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("highscore.txt"));
-			o.writeObject(game);
+			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("saveFile.txt"));
+			o.writeObject(saveFile);
 			o.close();
 		} catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -77,8 +81,28 @@ public class DataFacade implements IData
     }
 
     @Override
-    public Collection<Object> LoadGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object LoadGame() {
+        try {
+			FileInputStream fi = new FileInputStream("saveFile.txt");
+			ObjectInputStream oi = new ObjectInputStream(fi);
+
+			// Read object and cast to a saveFile
+                        SaveFile saveFile = (SaveFile) oi.readObject();
+                        
+			oi.close();
+			fi.close();
+                        
+                        return saveFile;
+        
+        
+     } catch (FileNotFoundException e) {
+			System.out.println("File not found");
+		}catch (IOException e) {
+			System.out.println("Error initializing stream");
+		} catch (ClassNotFoundException e) {
+                    System.out.println("Class not found");
+                }
+        return null;
     }
     
     public static void createEmptyHighscore(){
