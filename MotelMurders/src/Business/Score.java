@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data;
+package Business;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Malte Hesk
  */
-public class Score implements Serializable{
+public class Score implements Serializable, Comparable<Score>{
     
     //UID in order to read and write the object
     private static final long serialVersionUID = 1L;
@@ -21,6 +21,12 @@ public class Score implements Serializable{
     private Date date;
     //The score 
     private int score;
+    
+    public Score() {
+        this.date = new Date();
+        this.name = null;
+        this.score = 0;
+    }
     
         public Score(String name, int score) {
             //set date to current date
@@ -44,9 +50,6 @@ public class Score implements Serializable{
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public int getScore() {
         return score;
@@ -54,6 +57,15 @@ public class Score implements Serializable{
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    @Override
+    public int compareTo(Score score) {
+        
+        int scoreValue = score.getScore();
+
+        return scoreValue;
+        
     }
     
     

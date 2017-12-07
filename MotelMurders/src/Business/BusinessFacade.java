@@ -3,6 +3,7 @@ package Business;
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 
@@ -19,6 +20,21 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ArrayList<Object> getHighscore() {
+        
+        ArrayList<Object> scores = data.getHighscore();  
+        ArrayList<Score> scoresCasted = new ArrayList<>();
+        
+        //Copy the content of arrayList<Object> to arrayList<Score> and casts as a Score
+        for (int i = 0; i < scores.size(); i++) {
+            Score score = (Score)scores.get(i);
+            scoresCasted.add(score);
+        }
+        Score score = new Score();
+        
+        
+        
+        
+        
         return data.getHighscore();
     }
 

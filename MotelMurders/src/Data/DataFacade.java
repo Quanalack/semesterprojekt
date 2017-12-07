@@ -1,5 +1,7 @@
 package Data;
 
+import Business.Score;
+import Business.SaveFile;
 import Acquaintance.IData;
 import java.io.File;
 import java.io.FileInputStream;
