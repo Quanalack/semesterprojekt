@@ -6,7 +6,7 @@ import java.util.Collection;
 public interface IUI {
 	void injectBusiness(IBusiness businessLayer);
         void startApplication(String[] args);
-        Collection<?> getHighscore();
+        ArrayList<Object> getHighscore();
         Object getCurrentRoom();
         ArrayList<String> getWelcomeMessage();
         

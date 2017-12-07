@@ -54,20 +54,5 @@ public class UI extends Application implements IUI{
     public IBusiness getBusiness(){
         return business;
     }
-
-    @Override
-    public Collection<?> getHighscore() {
-        return business.getHighscore();
-    }
-
-    @Override
-    public Object getCurrentRoom() {
-       return business.getCurrentRoom();
-    }
-
-    @Override
-    public ArrayList<String> getWelcomeMessage() {
-        return business.getWelcomeMessage();
-    }
     
 }

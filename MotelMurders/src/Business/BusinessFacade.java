@@ -18,7 +18,7 @@ public class BusinessFacade implements IBusiness {
         //The actual methods 
 
     @Override
-    public Collection<?> getHighscore() {
+    public ArrayList<Object> getHighscore() {
         return data.getHighscore();
     }
 
@@ -27,7 +27,7 @@ public class BusinessFacade implements IBusiness {
         //Calculate time played out of max time
         double timePlayed = game.getCurrentTime() - game.MAXTIME;
         
-        data.SaveHighscore(timePlayed, game.player.getName());
+        data.saveHighscore(timePlayed, game.player.getName());
     }
 
     @Override

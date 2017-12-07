@@ -33,7 +33,7 @@ public class Starter{
         IUI ui = new UI();
         
         //Inject the business layer into the presentation layer
-        ui.injectBusiness(business);
+        //ui.injectBusiness(business);
         System.out.println("Business injected");
 
         //Print to user 

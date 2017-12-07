@@ -22,7 +22,7 @@ public class Score implements Serializable{
     //The score 
     private int score;
     
-        Score(String name, int score) {
+        public Score(String name, int score) {
             //set date to current date
             this.date = new Date();
             

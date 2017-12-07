@@ -8,7 +8,7 @@ public interface IBusiness {
 	void injectData(IData dataLayer);
 	
         //Methods for our business layer. Make methods as abstract/generalized as possible f.eks. Collection instead of arraylist
-        Collection<?> getHighscore(); //Get highscore from business to 
+        ArrayList<Object> getHighscore(); //Get highscore from business to presentation
         void saveHighscore();
         void processCommand(Object command);
         Object getCurrentRoom();
