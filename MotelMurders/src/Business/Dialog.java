@@ -18,35 +18,35 @@ public class Dialog {
             switch (i) {
                 case 0: //janitor dialog
                     dialog = janitorDialog();
-                    break;
+                    return;
 
                 case 1: //corpse dialog
                     dialog = corpseDialog();   
-                    break;
+                    return;
                  
                 case 2: //receptionist dialog
                     dialog = receptionistDialog();
-                    break;
+                    return;
 
                 case 3: //cleaning lady dialog
                     dialog = cleaningladyDialog();
-                    break;
+                    return;
 
                 case 4: //guest 1 dialog
                     dialog = ronDialog();
-                    break;
+                    return;
 
                 case 5: //guest 2 dialog
                     dialog = leilaDialog();
-                    break;
+                    return;
 
                 case 6: //guest 3 dialog
                     dialog = brianDialog();
-                    break;
+                    return;
 
                 default:
                     System.out.println("Error.");
-                    break;
+                    return;
             }
         }
 
@@ -72,11 +72,11 @@ public class Dialog {
                         {
                             case "1": //Player answers yell
                                     System.out.println("No response... Mhhh weird!");
-                                    break;
+                                    return false;
                                     
                             case "2": // when you walk away
                                     System.out.println("You walk away");
-                                    break;
+                                    return false;
                 }
         }
             }
@@ -150,7 +150,7 @@ public class Dialog {
 
                             case "7":
                                 System.out.println("You walk away.");
-                                break;
+                                return false;
 
                             default: //if input is wrong and not an actual option
                                 System.out.println("Be serious! We don't have time to fool around!");
@@ -477,8 +477,8 @@ public class Dialog {
             } else {
                 switch (question) {
                      case "0": //First dialog output
-                        System.out.println("Well hello detective this old mans name is Brian. "
-                                + "I assume you want some information?"
+                        System.out.println("Well hello detective, this old mans name is Brian. "
+                                + "I assume you want some information about what has happened?"
                                 + "\n[1] Yes"
                                 + "\n[2] No");
                         question = "1A";
