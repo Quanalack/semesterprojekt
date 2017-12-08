@@ -2,7 +2,7 @@ package Business;
 
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
-import java.util.Collection;
+
 
 
 /**
@@ -49,6 +49,7 @@ public class Game {
         player.addMagnifyingGlass();
         parser = new Parser();
         createRooms();
+        createItems();
         createCharacters();
         
         
@@ -217,22 +218,37 @@ public class Game {
         room3.setExit("back", hallwayE);
 
         room4.setExit("back", hallwayE);
-
         
-
-        room1.setItem(new Item("chair"));
-        room1.setItem(new Item("lamp"));
-        room2.setItem(new Item("chair"));
-        room2.setItem(new Item("lamp"));
-        room3.setItem(new Item("chair"));
-        room3.setItem(new Item("lamp"));
-        room4.setItem(new Item("chair"));
-        room4.setItem(new Item("lamp"));
-
-        outside.setItem(new Item("stone"));
-
         player.goRoom(outside);
     }
+    
+    private void createItems() {
+        //Items in guest room 1
+        room1.setItem(new Item("chair"));
+        room1.setItem(new Item("lamp"));
+        room1.setItem(new Item("weapon"));
+        //Items in guest room 2
+        room2.setItem(new Item("chair"));
+        room2.setItem(new Item("lamp"));
+        room2.setItem(new Item("weapon"));
+        //Items in guest room 3
+        room3.setItem(new Item("chair"));
+        room3.setItem(new Item("lamp"));
+        room3.setItem(new Item("weapon"));
+        //Items in guest room 4
+        room4.setItem(new Item("chair"));
+        room4.setItem(new Item("lamp"));
+        room4.setItem(new Item("weapon"));
+        //items in lobby
+        lobby.setItem(new Item("painting"));
+        lobby.setItem(new Item("chair"));
+        lobby.setItem(new Item("desk"));
+           
+        //Items outside
+        outside.setItem(new Item("stone"));
+        outside.setItem(new Item("pot"));
+
+}
 
     public void play() {
         printWelcome();
@@ -264,6 +280,7 @@ public ArrayList<String> getWelcomeMessage() {
     welcomeMessage.add(">The Motel has been evacuated");
     welcomeMessage.add(">Your task is to solve the murder");
     welcomeMessage.add(">Type '" + CommandWord.HELP + "' if you need help.");
+    welcomeMessage.add("=======================================================");
     
     return welcomeMessage;
     
@@ -277,7 +294,7 @@ public ArrayList<String> getWelcomeMessage() {
         System.out.println(">The Motel has been evacuated");
         System.out.println(">Your task is to solve the murder");
         System.out.println(">Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println("");
+        System.out.println("=======================================================");
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
@@ -285,9 +302,9 @@ public ArrayList<String> getWelcomeMessage() {
         
         boolean wantToQuit = false;
         
-        if (stopwatch.elapsedMillis()/1000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
+        if (stopwatch.elapsedMillis()/10000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
             wantToQuit = true;
-            System.out.println(">Time's up!");
+            System.out.println("!! TIME'S UP !! \n>Before you could finish your work, the cops took over and you're kicked out of the crime scene.");
         }
 
         CommandWord commandWord = command.getCommandWord();
@@ -318,9 +335,7 @@ public ArrayList<String> getWelcomeMessage() {
             player.printInventory();
         } else if (commandWord == commandWord.PICKUP) {
             //Pick up an item from a room
-
             player.pickupItem(command);
-
         } else if (commandWord == commandWord.ACCUSE) {
             //Call accuse method to accuse a character of being the murderer
             wantToQuit = accuse(command);

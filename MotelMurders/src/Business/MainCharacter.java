@@ -12,16 +12,21 @@ import java.util.Scanner;
  *
  * @author malte
  */
-public class MainCharacter implements IPerson{
-    
-    private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
-    
-    //Our arraylist will hold the inventory items for our game
-    ArrayList<Item> inventory = new ArrayList<>();
-    
+public class MainCharacter implements IPerson {
+
     private String name; //Name of the player
     private Room currentRoom;
     private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    //Method to print players current inventory
+    private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
+
+    //Our arraylist will hold the inventory items for our game
+    ArrayList<Item> inventory = new ArrayList<>();
 
     public ArrayList<Item> getInventory() {
         return inventory;
@@ -31,15 +36,10 @@ public class MainCharacter implements IPerson{
         this.inventory = inventory;
     }
 
-    public String getName() {
-        return name;
-    }
-    
-        //Method to print players current inventory
     public void printInventory() {
         String output = ""; //Empty string to output
         System.out.println(">You're currently carrying:");
-        
+
         //Iterate through the inventory and add to string
         for (int i = 0; i < this.inventory.size(); i++) {
             output += this.inventory.get(i).getDescription() + ",  ";
@@ -47,13 +47,13 @@ public class MainCharacter implements IPerson{
         //Print the generated string
         System.out.println(output);
     }
-    
+
     public void addMagnifyingGlass() {
-        
-    inventory.add(new Item("Magnifying Glass"));
-}
-    
-        public void dropItem(Command command) {
+
+        inventory.add(new Item("Magnifying Glass"));
+    }
+
+    public void dropItem(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Drop what?");
             return;
@@ -83,18 +83,18 @@ public class MainCharacter implements IPerson{
             //Check if item exists
             if (!(inventory.contains(nextItem))) {
                 System.out.println(">There is no item named: " + nextItem.getDescription());
-            } else { 
+            } else {
                 //Removes reuired irem from inventory
                 inventory.remove(index);
                 getCurrentRoom().setItem(new Item(item));
-                
+
                 //Prints to console
                 System.out.println("Dropped: " + item);
             }
         }
     }
-        
-        public void pickupItem(Command command) {
+
+    public void pickupItem(Command command) {
 
         if (inventory.size() == maxLimit) {
             System.out.println(">There is no more room in your inventory.");
@@ -120,14 +120,14 @@ public class MainCharacter implements IPerson{
             }
         }
     }
-        
-        public void newName() {
+
+    public void newName() {
         Scanner output = new Scanner(System.in);
-        
+
         System.out.println(">What is your name?");
-        
+
         String newName = output.next();
-        
+
         this.name = newName;
 
     }
@@ -151,5 +151,5 @@ public class MainCharacter implements IPerson{
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
 }

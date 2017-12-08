@@ -54,20 +54,21 @@ public class Room
     public String getLongDescription()
     {
         
-        return "Current location: " + roomName + "."+ description + ".\n" + getExitString() + getItemString();
+        return "\n>Current location: " + roomName + ". "+ description + ".\n" + getExitString() + getItemString();
     }
 
 	private String getExitString()
     {
-        String returnString = "Exits:";
+        String returnString = ">Exits:";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += " " + exit;
+            returnString += ", " + exit;
         }
         return returnString;
     }
+        
         private String getItemString() {
-            String returnString = "\nItems in room:\n";
+            String returnString = "\n\n>Items in room:\n";
             returnString += getRoomItems();
             
             return returnString;
@@ -93,6 +94,7 @@ public class Room
     public Item getItem(int index) {
         return items.get(index);
     }
+    
     public Item getItem(String itemName) {
       //pointing to nothing in memory. Nullpointerexception; cant grab things u havent created
         for (int i = 0; i < items.size(); i++) {
@@ -103,7 +105,8 @@ public class Room
      }
         return null;
     }
-     public void removeItem(String itemName) {
+    
+    public void removeItem(String itemName) {
       
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getDescription().equalsIgnoreCase(itemName)) {
@@ -121,9 +124,9 @@ public class Room
     * Description of items in room
     */
     public String getRoomItems() {
-       String output = "";
+       String output = "\t";
         for (int i = 0; i < items.size(); i++) {
-            output += items.get(i).getDescription() + "  ";
+            output += items.get(i).getDescription() + ",  ";
         }
             return output;
     }
