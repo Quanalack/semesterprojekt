@@ -1,8 +1,7 @@
 package Data;
 
-import Business.Score;
-import Business.SaveFile;
 import Acquaintance.IData;
+import Acquaintance.IScore;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,16 +10,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.LinkedList;
 
 
 
-public class DataFacade implements IData
+public class DataFacade implements IData, IScore
 {
 
     @Override
-    public ArrayList<Object> getHighscore() {
+    public LinkedList<Score> getHighscore() {
         
         try {
         //Create the input stream for the file
@@ -30,7 +28,7 @@ public class DataFacade implements IData
 	ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
 	// Read object and cast
-        ArrayList<Object> scores = (ArrayList<Object>)objectInput.readObject();
+        LinkedList<Score> scores = (LinkedList<Score>)objectInput.readObject();
         
         //Close streams
 	objectInput.close();

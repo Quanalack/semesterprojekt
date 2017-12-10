@@ -1,5 +1,6 @@
 package Business;
 
+import Data.Score;
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
 import java.util.ArrayList;
