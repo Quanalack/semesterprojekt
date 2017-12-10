@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 public class FXMLDocumentController implements Initializable {
 
     private IBusiness business;
-
+    
     @FXML
     private TextField textField;
 
@@ -22,7 +22,7 @@ public class FXMLDocumentController implements Initializable {
     public void injectBusiness(IBusiness business) {
         this.business = business;
     }
-
+    
     @FXML
     private void usernameButtonAction(ActionEvent event) {
         //textField.setText("username");
@@ -32,7 +32,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void amountButtonAction(ActionEvent event) {
         //textField.setText("amount");
-        System.out.println("Highscore saved!");
+        business.getHighscore();
+        System.out.println("get Highscore");
         
     }
 

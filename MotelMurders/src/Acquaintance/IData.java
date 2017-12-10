@@ -1,7 +1,7 @@
 package Acquaintance;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 
 public interface IData {
     
@@ -9,5 +9,7 @@ public interface IData {
 	
         void saveGame(ArrayList<Object> NPC, ArrayList<Object> rooms, Object player);
         Object loadGame();
+        LinkedList<Object> getHighscore();
+        void saveHighscore(double seconds, String playerName);
         
 }

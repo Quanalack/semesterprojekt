@@ -1,7 +1,6 @@
 package Data;
 
 import Acquaintance.IData;
-import Acquaintance.IScore;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,11 +13,11 @@ import java.util.LinkedList;
 
 
 
-public class DataFacade implements IData, IScore
+public class DataFacade implements IData
 {
 
     @Override
-    public LinkedList<Score> getHighscore() {
+    public LinkedList<Object> getHighscore() {
         
         try {
         //Create the input stream for the file
@@ -28,7 +27,7 @@ public class DataFacade implements IData, IScore
 	ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
 	// Read object and cast
-        LinkedList<Score> scores = (LinkedList<Score>)objectInput.readObject();
+        LinkedList<Object> scores = (LinkedList<Object>)objectInput.readObject();
         
         //Close streams
 	objectInput.close();
@@ -48,6 +47,12 @@ public class DataFacade implements IData, IScore
         return null;
     }
 
+    /**
+     * This method saves 
+     * @param totalTime 
+     * @param playerName 
+     */
+    
     @Override
     public void saveHighscore(double totalTime, String playerName) {
         //Random multiplier
@@ -56,20 +61,32 @@ public class DataFacade implements IData, IScore
         //Creating score from time and multiplier
         int score = (int)(totalTime * SCORE_MULTIPLIER);
         
-        //get the current score
-        ArrayList<Object> currentScore = getHighscore();
+        //Creating a new score as an object
+        Score playerScore = new Score(playerName, score);
         
+        //get the current score as objects
+        LinkedList<Object> currentScoreObject = getHighscore();
         
-            //Load the 10th scores
-            Score score10 = (Score)currentScore.get(10);
-            
-            //Check if player score is higher than the 10th score
-            if (score > score10.getScore()) {
-                //Int to see where the players score is placed on highscore
-                int index;
-                
-            
+        //Lost to hold the scores as Scores
+        LinkedList<Score> currentScoreScore = new LinkedList<>();
+        
+        //Taking every element from object list, cast as score and add to Score list
+        for (int i = 0; i < currentScoreObject.size(); i++) {
+            currentScoreScore.add((Score)currentScoreObject.get(i));
+        }
+        
+        //Check if players score is higher than #1 if it is add it there. 
+        //If it's not check next value etc. Delete
+        for (int i = 0; i < currentScoreScore.size(); i++) {
+            if (playerScore.getScore() > currentScoreScore.get(i).getScore()) {
+                //add score at index
+                currentScoreScore.add(i, playerScore);
+                //Remove last score
+                currentScoreScore.remove(currentScoreScore.size());
+                break; 
             }
+        }
+            
         
         System.out.println("Game has been saved. You scored: " + score + " points! ");
         

@@ -1,15 +1,16 @@
 package Business;
 
-import Data.Score;
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 
 
 public class BusinessFacade implements IBusiness {
 	private IData data;
+        
         private Game game = new Game();
 
 	@Override
@@ -17,34 +18,10 @@ public class BusinessFacade implements IBusiness {
 		this.data = dataLayer;
 	}
         
-        //The actual methods 
-
     @Override
-    public ArrayList<Object> getHighscore() {
-        
-        ArrayList<Object> scores = data.getHighscore();  
-        ArrayList<Score> scoresCasted = new ArrayList<>();
-        
-        //Copy the content of arrayList<Object> to arrayList<Score> and casts as a Score
-        for (int i = 0; i < scores.size(); i++) {
-            Score score = (Score)scores.get(i);
-            scoresCasted.add(score);
-        }
-        Score score = new Score();
-        
-        
-        
-        
+    public LinkedList<Object> getHighscore() {
         
         return data.getHighscore();
-    }
-
-    @Override
-    public void saveHighscore() {
-        //Calculate time played out of max time
-        double timePlayed = game.getCurrentTime() - game.MAXTIME;
-        
-        data.saveHighscore(timePlayed, game.player.getName());
     }
 
     @Override
@@ -61,6 +38,14 @@ public class BusinessFacade implements IBusiness {
     @Override
     public ArrayList<String> getWelcomeMessage() {
         return game.getWelcomeMessage();
+    }
+
+    @Override
+    public void saveHighscore() {
+        
+        double timePlayed = game.getCurrentTime() - game.MAXTIME;
+        
+        data.saveHighscore(timePlayed, game.player.getName());
     }
     
     
