@@ -5,67 +5,69 @@ import Acquaintance.IData;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 
 
 public class BusinessFacade implements IBusiness {
 	private IData data;
         private Game game = new Game();
 
-	@Override
-	public void injectData(IData dataLayer) {
-		this.data = dataLayer;
-	}
-        
-        //The actual methods 
-
+    /**
+     * Injects the datalayer into the business layer
+     * @param dataLayer The data layer
+     */    
     @Override
-    public ArrayList<Object> getHighscore() {
+    public void injectData(IData dataLayer) {
+    	this.data = dataLayer;
+    }
         
-        ArrayList<Object> scores = data.getHighscore();  
-        ArrayList<Score> scoresCasted = new ArrayList<>();
-        
-        //Copy the content of arrayList<Object> to arrayList<Score> and casts as a Score
-        for (int i = 0; i < scores.size(); i++) {
-            Score score = (Score)scores.get(i);
-            scoresCasted.add(score);
-        }
-        Score score = new Score();
-        
-        
-        
-        
+    /**
+     * Get the highscore from the data layer
+     * @return the highscore in a linked list of Scores
+     */
+    @Override
+    public LinkedList<Object> getHighscore() {
         
         return data.getHighscore();
     }
 
-    @Override
-    public void saveHighscore() {
-        //Calculate time played out of max time
-        double timePlayed = game.getCurrentTime() - game.MAXTIME;
-        
-        data.saveHighscore(timePlayed, game.player.getName());
-    }
-
+    /**
+     * Process the player command from GUI
+     * @param command the players command from GUI
+     */
     @Override
     public void processCommand(Object command) {
         
         game.processCommand((Command)command);
     }
 
+    /**
+     * Get the current room of the player
+     * @return the current room as an object
+     */
     @Override
     public Object getCurrentRoom() {
         return game.player.getCurrentRoom();
     }
 
+    /**
+     * Get the welcome message to display when the game starts
+     * @return an arraylist of the message.
+     */
     @Override
     public ArrayList<String> getWelcomeMessage() {
         return game.getWelcomeMessage();
     }
-    
-    
 
-    
-    
+    /**
+     * Saves the highscore by calling the saveHighscore method from data layer
+     */
+    @Override
+    public void saveHighscore() {
         
+        //Calculate time left from elapsedTime and max time
+        double timePlayed = game.getCurrentTime() - game.MAXTIME;
         
+        data.saveHighscore(timePlayed, game.player.getName());
+    }    
 }

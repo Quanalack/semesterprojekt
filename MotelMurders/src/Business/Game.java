@@ -2,6 +2,8 @@ package Business;
 
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 
@@ -20,6 +22,7 @@ public class Game {
         return MAXTIME;
     }
     
+    
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
 
     public boolean playerHasQuitted() { //getter
@@ -30,7 +33,7 @@ public class Game {
         this.playerHasQuitted = playerQuits;
     }
     
-    //Existing rooms 
+    //Declaring rooms
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
 
     //The arraylist will hold the characters for our game
@@ -42,7 +45,11 @@ public class Game {
     //Creating the main character
     MainCharacter player = new MainCharacter();
     
-    
+    /**
+     * Game constructor instantiate the required objects at the beginning of 
+     * the game.
+     * 
+     */
     public Game() {
         
         player.newName();
@@ -55,6 +62,10 @@ public class Game {
         
     }
 
+    /**
+     * Creates all NPC's in game and adds them to the character list.
+     * Calls the method setMurderer()
+     */
     private void createCharacters() {
         
         //Create objects of characters
@@ -80,25 +91,42 @@ public class Game {
 
     }
 
-    
+    /**
+     * Iterates through the characters and checks who the murderer is if any.
+     * @return the name of the murderer if any is set or the string 
+     * "No murderer found".
+     */
     public String getMurderer() {
         for (NPC character : characters) {
             if (character.isIsMurderer()) {
                 return character.getName();
             }
         }
-        return "Murderer not found";
+        return "No murderer found";
     }
     
+    /**
+     * Sets a random NPC as the murderer. Neither the corpse or the 
+     * receptionist can be the murderer.
+     */
     public void setMurderer() {
         
         int murderer;
         
         //Set one of them as murderer
         do {
-             murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
+            
+            // Set the murderer as a random int from 0 to the amount of characters
+             murderer = new Random().nextInt(characters.size());
+            
+            
         }
-        while (murderer != 1 && murderer != 3 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
+        
+        /*
+        Murderer cannot be 1 because number 1 is the corpse.
+        Murderer cannot be 3 because number 2 is the receptionist
+        */
+        while (murderer != 1 && murderer != 2);  
            
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
@@ -107,25 +135,42 @@ public class Game {
         System.out.println(">The murderer is: " + characters.get(murderer).getName());
     }
 
+    /**
+     * Prints out all the NPC's who are in the same room as the player .
+     */
+    
     public void getCharacterString() {
+        //String is empty as no has been confirmed in room yet
         String inRoom = "";
 
         System.out.println(">Characters in room:");
+        
+        //Iterate through characters
         for (int i = 0; i < characters.size(); i++) {
 
+            //If player room is identical to npc's room
             if (player.getCurrentRoom().getRoomName().equals(characters.get(i).getCurrentRoom().getRoomName())) {
 
+                //Add that characters name to the list.
                 inRoom += characters.get(i).getName() + ", ";
             }
         }
 
+        //If no one was found change string to "None"
         if (inRoom.equalsIgnoreCase("")) {
             inRoom = "None";
         }
 
+        //Print out the list
         System.out.println(inRoom);
     }
 
+    /**
+     * Creates all the rooms in the game. 
+     * Adds them to the list of rooms.
+     * Add an investigate string to each rooms.
+     * Set an exit for each room in order to connect them.
+     */
     private void createRooms() {
 
         //Room descriptions when you arrive in a room
@@ -156,18 +201,18 @@ public class Game {
                 + " and the door to the right leads to room 2", "hallwayW");
 
         //Set the investigate string for each room. The string showing when user uses the investigate command
-        outside.setInvestigateString("Nothing here. Btw I'm blind");
-        lobby.setInvestigateString("Nothing here. Btw I'm blind");
-        room1.setInvestigateString("Nothing here. Btw I'm blind");
-        room2.setInvestigateString("Nothing here. Btw I'm blind");
-        room3.setInvestigateString("Nothing here. Btw I'm blind");
-        room4.setInvestigateString("Nothing here. Btw I'm blind");
-        WC.setInvestigateString("Nothing here. Btw I'm blind");
-        kitchen.setInvestigateString("Nothing here. Btw I'm blind");
-        basement.setInvestigateString("Nothing here. Btw I'm blind");
-        hallwayN.setInvestigateString("Nothing here. Btw I'm blind");
-        hallwayE.setInvestigateString("Nothing here. Btw I'm blind");
-        hallwayW.setInvestigateString("Nothing here. Btw I'm blind");
+        outside.setInvestigateString("Fresh air outside. Nothing too suspicious");
+        lobby.setInvestigateString("There's a receptionist. Maybe she can help");
+        room1.setInvestigateString("Someone is living in here");
+        room2.setInvestigateString("Someone is living in here");
+        room3.setInvestigateString("Someone is living in here");
+        room4.setInvestigateString("Someone is living in here");
+        WC.setInvestigateString("Very clean in here. Must be a cleaning lady somewhere");
+        kitchen.setInvestigateString("The tap water is broken hope they have a janitor");
+        basement.setInvestigateString("The janitor works here");
+        hallwayN.setInvestigateString("There's a kitchen, WC and a basement");
+        hallwayE.setInvestigateString("There are two rooms for the guests");
+        hallwayW.setInvestigateString("There are two rooms for the guests");
 
         //Add rooms to list
         rooms.add(outside);
@@ -195,7 +240,6 @@ public class Game {
         hallwayE.setExit("left", room3);
         hallwayE.setExit("back", lobby);
 
-        //Walk directly from the room to the toilet located in the north section of the motel
         hallwayW.setExit("right", room2);
         hallwayW.setExit("left", room1);
         hallwayW.setExit("back", lobby);
@@ -222,8 +266,12 @@ public class Game {
         player.goRoom(outside);
     }
     
+    /**
+     * Creates all the items and adds them to their specific room.
+     */
     private void createItems() {
         //Items in guest room 1
+<<<<<<< HEAD
         room1.setItem(new Interior("It's just a chair.","chair",false));
         room1.setItem(new Interior("It's just a lamp.","lamp",false));
         room1.setItem(new Clues("A frickin' GUN!!! This might be a murder weapon!","gun",true)); //should only be visible to the player after an investigation of the room
@@ -240,6 +288,27 @@ public class Game {
         room4.setItem(new Interior("It's just a chair.","chair",false));
         room4.setItem(new Interior("It's just a lamp.","lamp",false));
         room4.setItem(new Clues("","key",true)); //should only be visible to the player after an investigation of the room
+=======
+        room1.setItem(new Item("chair"));
+        room1.setItem(new Item("lamp"));
+        room1.setItem(new Item("weapon"));
+        
+        //Items in guest room 2
+        room2.setItem(new Item("chair"));
+        room2.setItem(new Item("lamp"));
+        room2.setItem(new Item("weapon"));
+        
+        //Items in guest room 3
+        room3.setItem(new Item("chair"));
+        room3.setItem(new Item("lamp"));
+        room3.setItem(new Item("weapon"));
+        
+        //Items in guest room 4
+        room4.setItem(new Item("chair"));
+        room4.setItem(new Item("lamp"));
+        room4.setItem(new Item("weapon"));
+        
+>>>>>>> cc23687879411b756f78cacc3a3472ad31cab9fd
         //items in lobby
         lobby.setItem(new Interior("It's a beautiful painting of a beach. Probably not important.","painting",false));
         lobby.setItem(new Interior("Seems outdated. Could probably have been useful if it worked.","wendingmachine",false));
@@ -258,10 +327,22 @@ public class Game {
 
 }
 
+    /**
+     * The main method of the game. Where the game starts.
+     * Recieves input from user until game ends.
+     * If user lose/win shows the murderer
+     * If user chooses to end the game (Stops the game but hasn't lost or won)
+     * save the game
+     */
     public void play() {
+        
+        //Print the welcome message
         printWelcome();
 
+        //Boolean to check if player has finished
         boolean finished = false;
+        
+        //While loop that runs until processCommand returns true;
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
@@ -269,16 +350,23 @@ public class Game {
         
         if (!playerHasQuitted) {
             
-            //saveHighscore();
+            //save Highscore
+            POINT TO DATA.saveHighscore() SOMEHOW!!
             
         
             System.out.println(">The murderer was: " + getMurderer());
             System.out.println(">Thank you for playing. Goodbye.");
         } else {
-            //Gem spil
+            //Save game
+            POINT TO DATA.SaveGame() SOMEHOW!!
+            
         }
     }
     
+/**
+ * Creates the welcomelist an adds it to an arrayList.
+ * @return the arraylist containing the welcome message.
+ */
 public ArrayList<String> getWelcomeMessage() {
     ArrayList<String> welcomeMessage = new ArrayList<>();
     welcomeMessage.add("===================== WELCOME =========================");
@@ -289,12 +377,16 @@ public ArrayList<String> getWelcomeMessage() {
     welcomeMessage.add(">Your task is to solve the murder");
     welcomeMessage.add(">Type '" + CommandWord.HELP + "' if you need help.");
     welcomeMessage.add("=======================================================");
+    welcomeMessage.add(player.getCurrentRoom().getLongDescription());
     
     return welcomeMessage;
     
 }
-
+/**
+ * Prints the welcome message out
+ */
     public void printWelcome() {
+<<<<<<< HEAD
         System.out.println("===================== WELCOME =========================");
         System.out.println(">Hello there " + player.getName() + ". Welcome to Motel Murders");
         System.out.println(">You're a private detective");
@@ -304,72 +396,110 @@ public ArrayList<String> getWelcomeMessage() {
         System.out.println(">Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println("=======================================================\n");
         System.out.println(player.getCurrentRoom().getLongDescription());
+=======
+        //Create copy of message
+        ArrayList<String> welcomeMessage = getWelcomeMessage();
+        
+        //Iterate through the message
+        for (String line : welcomeMessage) {
+            System.out.println(line);
+        }
+>>>>>>> cc23687879411b756f78cacc3a3472ad31cab9fd
     }
 
+    /**
+     * Handles user commands through a switch.
+     * @param command the user command created through the parser
+     * @return boolean which tells whether the game should end or not.
+     */
     public boolean processCommand(Command command) {
         
-        boolean wantToQuit = false;
+        boolean endGame = false;
         
-        if (stopwatch.elapsedMillis()/10000 >= MAXTIME) { // Time before game ends in seconds. Curerntly set to 10000 = approximately 2 hr and 45 min
-            wantToQuit = true;
-            System.out.println("!! TIME'S UP !! \n>Before you could finish your work, the cops took over and you're kicked out of the crime scene.");
+        // Time before game ends in seconds. Currently set to 1000 approx. 17 min
+        if (stopwatch.elapsedTime(TimeUnit.SECONDS) >= MAXTIME) { 
+            endGame = true;
+            System.out.println("!! TIME'S UP !! \n>Before you could finish "
+            + "your work, the cops took over and you're kicked out of the crime scene.");
         }
 
+        //Getting the commandWord from the user 
         CommandWord commandWord = command.getCommandWord();
-
-        if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
+        
+        //If commandword isn't null handle it.
+        if (commandWord != null) switch (commandWord) {
+            case UNKNOWN:
+                System.out.println("I don't know what you mean...");
+                return false;
+            case HELP:
+                printHelp();
+                break;
+            case GO:
+                //Goto another room
+                goRoom(command);
+                //Print the characters in new room
+                getCharacterString();
+                //15 % chance of moving cleaning Lady
+                if (Math.random() <= 0.15) {
+                    moveCleaningLady();
+                }   break;
+            case QUIT:
+                //Quits game
+                playerHasQuitted = true;
+                endGame = true;
+                break;
+            case INVENTORY:
+                //Print out the content of the inventory
+                player.printInventory();
+                break;
+            case PICKUP:
+                //Pick up an item from a room
+                player.pickupItem(command);
+                break;
+            case ACCUSE:
+                //Call accuse method to accuse a character of being the murderer
+                endGame = accuse(command);
+                break;
+            case INVESTIGATE:
+                //Call investigate to investigate an item in a room
+                investigate();
+                break;
+            case DROP:
+                //Drop an item fom inventory
+                player.dropItem(command);
+                break;
+            case TALK:
+                //Talk to a character in current room
+                dialog(command);
+                break;
+        //saveGame();
+            case SAVE:
+                break;
+            default:
+                break;
         }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } else if (commandWord == CommandWord.GO) {
-            goRoom(command);
-            getCharacterString();
-
-            //15 % chance of moving cleaning Lady
-            if (Math.random() <= 1) {
-            moveCleaningLady();
-            }
-            
-        } else if (commandWord == CommandWord.QUIT) {
-            //Quits game
-            playerHasQuitted = true;
-            wantToQuit = true;
-            
-        } else if (commandWord == commandWord.INVENTORY) {
-            //Print out the content of the inventory
-            player.printInventory();
-        } else if (commandWord == commandWord.PICKUP) {
-            //Pick up an item from a room
-            player.pickupItem(command);
-        } else if (commandWord == commandWord.ACCUSE) {
-            //Call accuse method to accuse a character of being the murderer
-            wantToQuit = accuse(command);
-        } else if (commandWord == commandWord.INVESTIGATE) {
-            //Call investigate to investigate an item in a room
-            investigate();
-        } else if (commandWord == commandWord.DROP) {
-            //Drop an item fom inventory
-            player.dropItem(command);
-        } else if (commandWord == commandWord.TALK) {
-            //Talk to a character in current room
-            dialog(command);
-        } else if (commandWord == commandWord.SAVE) {
-            //saveGame();
-        }
-        return wantToQuit;
+        return endGame;
     }
 
+    /**
+     * Gets the time elapsed from the beginning of the game untill called
+     * @return amount of time elapsed in seconds.
+     */
     public double getCurrentTime(){
-        return stopwatch.elapsedMillis()/1000;
+        return stopwatch.elapsedTime(TimeUnit.SECONDS);
     }
 
-    //Method to show the help text to user
+    /**
+     * Prints out the help text and show the commands
+     */
     private void printHelp() {
+<<<<<<< HEAD
         System.out.println("===================================================");
         System.out.println(">Hello " + player.getName() + ".You are a detective trying to solve a murder.");
+=======
+        System.out.println(">Hello " + player.getName() + 
+        ". You are a detective trying to solve a murder.");
+>>>>>>> cc23687879411b756f78cacc3a3472ad31cab9fd
         System.out.println(">Go from room to room to investigate and talk with the suspects.");
         System.out.println();
         System.out.println(">Your command words are: ");
@@ -379,10 +509,14 @@ public ArrayList<String> getWelcomeMessage() {
         parser.showCommands();
     }
 
-    //Method to go to a new room
+    /**
+     * Changes the currentRoom of the player according to a command
+     * @param command user command created through parser
+     */ 
     private void goRoom(Command command) {
         
-        if (!command.hasSecondWord()) { // Is this necessary?? Discuss later. Does goRoom interact with user input??
+        //Checks if command has two words
+        if (!command.hasSecondWord()) {
             System.out.println(">Go where?");
             return;
         }
@@ -403,7 +537,10 @@ public ArrayList<String> getWelcomeMessage() {
         }
     }
 
-    
+    /**
+     * Handles the commands involving the dialog with the NPC's
+     * @param command user command created through parser
+     */
         private void dialog(Command command) {
 
         if (!command.hasSecondWord()) {
@@ -427,7 +564,6 @@ public ArrayList<String> getWelcomeMessage() {
                 name = characters.get(3).getName();
             }
                 
-
             if (characterExists){
                     Dialog dialog = new Dialog();
                     dialog.startDialog(i);
@@ -439,6 +575,11 @@ public ArrayList<String> getWelcomeMessage() {
         }
     }
     
+    /**
+     * Method to accuse a character
+     * @param command user command created through parser.
+     * @return whether or not the game should end.
+     */
     private boolean accuse(Command command) {
         
         //Check if user input has a word after "accuse"
@@ -460,7 +601,7 @@ public ArrayList<String> getWelcomeMessage() {
             /*
             The character Cleaning lady contains two words meaning that if a user types in
             "accuse cleaning lady". The parser will only look for the word after accuse.
-            In this case it's cleaning.
+            In this case it's "cleaning".
             */
             if (accusedCharacter.equalsIgnoreCase("cleaning")) {
                 accusedExists = true;
@@ -470,16 +611,17 @@ public ArrayList<String> getWelcomeMessage() {
             
         }
         
+        //Continue if accused exists
         if (accusedExists) {
             
-        //Boolean to determine whether or not the corrct person is accused
-        boolean isMurdererFound = false; //False as default
+        //Boolean to determine whether or not the correct person is accused
+        boolean isMurdererFound = false; 
         
             //For loop to check if the murderer has been found
-            for (int i = 0; i < characters.size(); i++) {
+            for (NPC character : characters) {
                 
                 //If the accused characters name mathes and that characters IsMurderer is true
-                if (accusedCharacter.equalsIgnoreCase(characters.get(i).getName()) && characters.get(i).isIsMurderer()) {
+                if (accusedCharacter.equalsIgnoreCase(character.getName()) && character.isIsMurderer()) {
                     
                 //Player found the murderer
                 System.out.println("You found the murderer!");
@@ -500,16 +642,19 @@ public ArrayList<String> getWelcomeMessage() {
             
             //The accused could not be found in the characters
             System.out.println(">The accused person does not exist");
-            return false; //Returns false because there was an error from the players side
+            return false; //Returns false because no one was accused
         }
             
         } else {
             System.out.println(">Accuse who?");
-            return false; //Returns false because there was an error from the players side
+            return false; //Returns false because no one was accused
         }
     }
 
-    //Method to further investigate a room
+    /**
+     * Allows the player to further investigate a room.
+     * Print out the investigateString of the current room
+     */
     private void investigate() {
 
         //Print out investigation string for the current room
@@ -517,53 +662,22 @@ public ArrayList<String> getWelcomeMessage() {
 
     }
 
-    //Method for moving the cleaning lady to a random room
+    /**
+     * Moves the cleaning lady to a random room
+     */
     private void moveCleaningLady() {
 
-        //Declaring cleaningLady character object 
+        //Declaring cleaningLady
         NPC cleaningLady = characters.get(3);
 
-        //Get a random room out of ALL POSSIBLE rooms
-        //Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));        
-        
-        //Test starts here
-        Room oldRoom = cleaningLady.getCurrentRoom();
-        
-        Room neighborRoom0 = player.getCurrentRoom().getExit("up");
-        Room neighborRoom1 = player.getCurrentRoom().getExit("back");
-        Room neighborRoom2 = player.getCurrentRoom().getExit("left");
-        Room neighborRoom3 = player.getCurrentRoom().getExit("right");
-        
-        while(cleaningLady.getCurrentRoom() != oldRoom && rooms.contains(cleaningLady.getCurrentRoom())) {
-            int randomNeighbor = (int)(0 + Math.random() * 3); //Random integer from 0 to 3
-        
-            System.out.println(randomNeighbor);
-            
-            switch (randomNeighbor) {
-                case 0:
-                cleaningLady.goRoom(neighborRoom0);
-                    break;
-                case 1:
-                    cleaningLady.goRoom(neighborRoom1);
-                    break;
-                case 2:
-                    cleaningLady.goRoom(neighborRoom2);
-                    break;
-                case 3:
-                    cleaningLady.goRoom(neighborRoom3);
-                    break;
-                default:
-                    throw new AssertionError();
-            }
-        }
-        
-        //Test ends here
+        //Get a random room out of all possible rooms
+        Room randomRoom = rooms.get(0 + (int) (Math.random() * rooms.size()));        
+       
 
         //Move to the random room
-        //CleaningLady.setCurrentRoom(randomRoom);
+        cleaningLady.goRoom(randomRoom);
 
         //Print to player the location of her now
         System.out.println("The cleaning lady is in room: " + cleaningLady.getCurrentRoom().getRoomName());
     }
-
 }

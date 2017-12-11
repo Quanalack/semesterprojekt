@@ -9,7 +9,7 @@ package Business;
  *
  * @author Jeppe
  */
-public class Clues extends Item {
+public class Clue extends Item {
     
     boolean pickupAble = true;
 
@@ -18,6 +18,12 @@ public class Clues extends Item {
     }
     
     
+<<<<<<< HEAD:MotelMurders/src/Business/Clues.java
+=======
+    public Clue(String newdescription) {
+        super(newdescription);
+    }
+>>>>>>> cc23687879411b756f78cacc3a3472ad31cab9fd:MotelMurders/src/Business/Clue.java
     
     
     

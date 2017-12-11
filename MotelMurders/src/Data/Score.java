@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package Data;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -61,10 +61,8 @@ public class Score implements Serializable, Comparable<Score>{
 
     @Override
     public int compareTo(Score score) {
-        
-        int scoreValue = score.getScore();
 
-        return scoreValue;
+        return this.getScore() - score.getScore();
         
     }
     
