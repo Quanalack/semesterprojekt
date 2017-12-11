@@ -62,7 +62,7 @@ public class Room
         String returnString = ">Exits:";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += ", " + exit;
+            returnString += " " + exit;
         }
         return returnString;
     }
@@ -98,7 +98,7 @@ public class Room
     public Item getItem(String itemName) {
       //pointing to nothing in memory. Nullpointerexception; cant grab things u havent created
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDescription().equalsIgnoreCase(itemName)) {
+            if (items.get(i).getItemName().equalsIgnoreCase(itemName)) {
                 return items.get(i);
             }
          
@@ -109,7 +109,7 @@ public class Room
     public void removeItem(String itemName) {
       
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDescription().equalsIgnoreCase(itemName)) {
+            if (items.get(i).itemName.equalsIgnoreCase(itemName)) {
                 items.remove(i);
             }
         }    
@@ -126,7 +126,7 @@ public class Room
     public String getRoomItems() {
        String output = "\t";
         for (int i = 0; i < items.size(); i++) {
-            output += items.get(i).getDescription() + ",  ";
+            output += items.get(i).itemName + ",  ";
         }
             return output;
     }

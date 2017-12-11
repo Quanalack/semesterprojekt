@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class MainCharacter implements IPerson {
 
     private String name; //Name of the player
-    private Room currentRoom;
+    private Room currentRoom; //Room of the player
     private String description;
 
     public String getName() {
@@ -26,13 +26,13 @@ public class MainCharacter implements IPerson {
     private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
 
     //Our arraylist will hold the inventory items for our game
-    ArrayList<Item> inventory = new ArrayList<>();
+    ArrayList<Clues> inventory = new ArrayList<>();
 
-    public ArrayList<Item> getInventory() {
+    public ArrayList<Clues> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Item> inventory) {
+    public void setInventory(ArrayList<Clues> inventory) {
         this.inventory = inventory;
     }
 
@@ -42,7 +42,7 @@ public class MainCharacter implements IPerson {
 
         //Iterate through the inventory and add to string
         for (int i = 0; i < this.inventory.size(); i++) {
-            output += this.inventory.get(i).getDescription() + ",  ";
+            output += this.inventory.get(i).getItemName() + ",  ";
         }
         //Print the generated string
         System.out.println(output);
@@ -50,7 +50,7 @@ public class MainCharacter implements IPerson {
 
     public void addMagnifyingGlass() {
 
-        inventory.add(new Item("Magnifying Glass"));
+        inventory.add(new Clues("","Magnifying Glass",true));
     }
 
     public void dropItem(Command command) {
@@ -65,15 +65,14 @@ public class MainCharacter implements IPerson {
             System.out.println(">You cannot drop your magnifying glass! You need it!");
             return;
         }
-
+        
         Item nextItem = null;
         int index = 0;
         for (int i = 0; i < inventory.size(); i++) {
-            if (inventory.get(i).getDescription().equalsIgnoreCase(item)) {
+            if (inventory.get(i).getItemName().equalsIgnoreCase(item)) {
                 nextItem = inventory.get(i);
                 index = i;
             }
-
         }
 
         //Check if item is in inventory
@@ -82,7 +81,7 @@ public class MainCharacter implements IPerson {
         } else {
             //Check if item exists
             if (!(inventory.contains(nextItem))) {
-                System.out.println(">There is no item named: " + nextItem.getDescription());
+                System.out.println(">There is no item named: " + nextItem.getItemName());
             } else {
                 //Removes reuired irem from inventory
                 inventory.remove(index);
@@ -103,20 +102,22 @@ public class MainCharacter implements IPerson {
                 System.out.println(">Pick up what?");
                 return;
             }
-
             String item = command.getSecondWord();
 
             Item nextItem = getCurrentRoom().getItem(item);
 
             if (nextItem == null) {
                 System.out.println(">There is no item named that!");
-
-            } else {
-                inventory.add(nextItem);
+                
+            } else if (nextItem.pickupAble(true)) {
+                inventory.add((Clues)nextItem);
                 getCurrentRoom().removeItem(item);
 
-                System.out.println("Picked up:" + item);
-
+                System.out.println("Picked up:" + item); 
+                
+            } else {
+                System.out.println(">You can't pick up stuff like that."); 
+                
             }
         }
     }

@@ -11,12 +11,13 @@ package Business;
  */
 public class Clues extends Item {
     
-    private boolean pickupAble = true;
-    
-    
-    public Clues(String newdescription) {
-        super(newdescription);
+    boolean pickupAble = true;
+
+    public Clues(String description, String roomName, boolean pickupAble) {
+        super(description, roomName, pickupAble);
     }
+    
+    
     
     
     
