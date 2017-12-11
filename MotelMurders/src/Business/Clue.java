@@ -9,12 +9,12 @@ package Business;
  *
  * @author Jeppe
  */
-public class Clues extends Item {
+public class Clue extends Item {
     
     private boolean pickupAble = true;
     
     
-    public Clues(String newdescription) {
+    public Clue(String newdescription) {
         super(newdescription);
     }
     
