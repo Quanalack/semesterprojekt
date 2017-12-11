@@ -26,13 +26,13 @@ public class MainCharacter implements IPerson {
     private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
 
     //Our arraylist will hold the inventory items for our game
-    ArrayList<Clues> inventory = new ArrayList<>();
+    ArrayList<Clue> inventory = new ArrayList<>();
 
-    public ArrayList<Clues> getInventory() {
+    public ArrayList<Clue> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Clues> inventory) {
+    public void setInventory(ArrayList<Clue> inventory) {
         this.inventory = inventory;
     }
 
@@ -50,7 +50,7 @@ public class MainCharacter implements IPerson {
 
     public void addMagnifyingGlass() {
 
-        inventory.add(new Clues("","Magnifying Glass",true));
+        inventory.add(new Clue("","Magnifying Glass",true));
     }
 
     public void dropItem(Command command) {
@@ -110,7 +110,7 @@ public class MainCharacter implements IPerson {
                 System.out.println(">There is no item named that!");
                 
             } else if (nextItem.pickupAble(true)) {
-                inventory.add((Clues)nextItem);
+                inventory.add((Clue)nextItem);
                 getCurrentRoom().removeItem(item);
 
                 System.out.println("Picked up:" + item); 
