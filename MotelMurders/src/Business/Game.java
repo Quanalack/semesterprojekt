@@ -165,7 +165,10 @@ public class Game {
     }
 
     /**
-     * Creates all the rooms in the game 
+     * Creates all the rooms in the game. 
+     * Adds them to the list of rooms.
+     * Add an investigate string to each rooms.
+     * Set an exit for each room in order to connect them.
      */
     private void createRooms() {
 
@@ -236,7 +239,6 @@ public class Game {
         hallwayE.setExit("left", room3);
         hallwayE.setExit("back", lobby);
 
-        //Walk directly from the room to the toilet located in the north section of the motel
         hallwayW.setExit("right", room2);
         hallwayW.setExit("left", room1);
         hallwayW.setExit("back", lobby);
@@ -263,23 +265,30 @@ public class Game {
         player.goRoom(outside);
     }
     
+    /**
+     * Creates all the items and adds them to their specific room.
+     */
     private void createItems() {
         //Items in guest room 1
         room1.setItem(new Item("chair"));
         room1.setItem(new Item("lamp"));
         room1.setItem(new Item("weapon"));
+        
         //Items in guest room 2
         room2.setItem(new Item("chair"));
         room2.setItem(new Item("lamp"));
         room2.setItem(new Item("weapon"));
+        
         //Items in guest room 3
         room3.setItem(new Item("chair"));
         room3.setItem(new Item("lamp"));
         room3.setItem(new Item("weapon"));
+        
         //Items in guest room 4
         room4.setItem(new Item("chair"));
         room4.setItem(new Item("lamp"));
         room4.setItem(new Item("weapon"));
+        
         //items in lobby
         lobby.setItem(new Item("painting"));
         lobby.setItem(new Item("chair"));
@@ -291,10 +300,22 @@ public class Game {
 
 }
 
+    /**
+     * The main method of the game. Where the game starts.
+     * Recieves input from user until game ends.
+     * If user lose/win shows the murderer
+     * If user chooses to end the game (Stops the game but hasn't lost or won)
+     * save the game
+     */
     public void play() {
+        
+        //Print the welcome message
         printWelcome();
 
+        //Boolean to check if player has finished
         boolean finished = false;
+        
+        //While loop that runs until processCommand returns true;
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
@@ -302,16 +323,23 @@ public class Game {
         
         if (!playerHasQuitted) {
             
-            //saveHighscore();
+            //save Highscore
+            POINT TO DATA.saveHighscore() SOMEHOW!!
             
         
             System.out.println(">The murderer was: " + getMurderer());
             System.out.println(">Thank you for playing. Goodbye.");
         } else {
-            //Gem spil
+            //Save game
+            POINT TO DATA.SaveGame() SOMEHOW!!
+            
         }
     }
     
+/**
+ * Creates the welcomelist an adds it to an arrayList.
+ * @return the arraylist containing the welcome message.
+ */
 public ArrayList<String> getWelcomeMessage() {
     ArrayList<String> welcomeMessage = new ArrayList<>();
     welcomeMessage.add("===================== WELCOME =========================");
@@ -322,21 +350,22 @@ public ArrayList<String> getWelcomeMessage() {
     welcomeMessage.add(">Your task is to solve the murder");
     welcomeMessage.add(">Type '" + CommandWord.HELP + "' if you need help.");
     welcomeMessage.add("=======================================================");
+    welcomeMessage.add(player.getCurrentRoom().getLongDescription());
     
     return welcomeMessage;
     
 }
-
+/**
+ * Prints the welcome message out
+ */
     public void printWelcome() {
-        System.out.println("===================== WELCOME =========================");
-        System.out.println(">Hello there " + player.getName() + ". Welcome to Motel Murders");
-        System.out.println(">You're a private detective");
-        System.out.println(">You've been summoned to a murder in a motel");
-        System.out.println(">The Motel has been evacuated");
-        System.out.println(">Your task is to solve the murder");
-        System.out.println(">Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println("=======================================================");
-        System.out.println(player.getCurrentRoom().getLongDescription());
+        //Create copy of message
+        ArrayList<String> welcomeMessage = getWelcomeMessage();
+        
+        //Iterate through the message
+        for (String line : welcomeMessage) {
+            System.out.println(line);
+        }
     }
 
     public boolean processCommand(Command command) {
