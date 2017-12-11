@@ -16,13 +16,14 @@ public class NPC implements IPerson{
     private String description; //A short description of the NPC
     private boolean isMurderer; //Whether or not the NPC is the murderer
     
-    public NPC( String name, String description, Room startRoom) {
+    public NPC(String name, String description, Room startRoom) {
         this.name = name;
         this.description = description;
         this.isMurderer = false;
         this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
     }
     
+    //Setters and getters
     public boolean isIsMurderer() {
         return isMurderer;
     }
@@ -30,13 +31,11 @@ public class NPC implements IPerson{
     public void setIsMurderer(boolean isMurderer) {
         this.isMurderer = isMurderer;
     }
-    
-    
+   
     @Override
     public String getName() {
         return name;
     }
-    
 
     @Override
     public void goRoom(Room newRoom) {
