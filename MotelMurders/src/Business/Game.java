@@ -2,6 +2,7 @@ package Business;
 
 import java.util.ArrayList;
 import com.google.common.base.Stopwatch;
+import java.util.Random;
 
 
 
@@ -20,6 +21,7 @@ public class Game {
         return MAXTIME;
     }
     
+    
     private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
 
     public boolean playerHasQuitted() { //getter
@@ -30,7 +32,7 @@ public class Game {
         this.playerHasQuitted = playerQuits;
     }
     
-    //Existing rooms 
+    //Declaring rooms
     Room outside, lobby, room1, room2, room3, room4, WC, kitchen, basement, hallwayN, hallwayE, hallwayW;
 
     //The arraylist will hold the characters for our game
@@ -42,7 +44,11 @@ public class Game {
     //Creating the main character
     MainCharacter player = new MainCharacter();
     
-    
+    /**
+     * Game constructor instantiate the required objects at the beginning of 
+     * the game.
+     * 
+     */
     public Game() {
         
         player.newName();
@@ -55,6 +61,10 @@ public class Game {
         
     }
 
+    /**
+     * Creates all NPC's in game and adds them to the character list.
+     * Calls the method setMurderer()
+     */
     private void createCharacters() {
         
         //Create objects of characters
@@ -80,25 +90,42 @@ public class Game {
 
     }
 
-    
+    /**
+     * Iterates through the characters and checks who the murderer is if any.
+     * @return the name of the murderer if any is set or the string 
+     * "No murderer found".
+     */
     public String getMurderer() {
         for (NPC character : characters) {
             if (character.isIsMurderer()) {
                 return character.getName();
             }
         }
-        return "Murderer not found";
+        return "No murderer found";
     }
     
+    /**
+     * Sets a random NPC as the murderer. Neither the corpse or the 
+     * receptionist can be the murderer.
+     */
     public void setMurderer() {
         
         int murderer;
         
         //Set one of them as murderer
         do {
-             murderer = 0 + (int) (Math.random() * characters.size()); // Random int from 0 to the amount of characters
+            
+            // Set the murderer as a random int from 0 to the amount of characters
+             murderer = new Random().nextInt(characters.size());
+            
+            
         }
-        while (murderer != 1 && murderer != 3 && murderer < 0);  //Murderer cannot be 1 because number 1 is the corpse
+        
+        /*
+        Murderer cannot be 1 because number 1 is the corpse.
+        Murderer cannot be 3 because number 2 is the receptionist
+        */
+        while (murderer != 1 && murderer != 2);  
            
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
@@ -107,25 +134,39 @@ public class Game {
         System.out.println(">The murderer is: " + characters.get(murderer).getName());
     }
 
+    /**
+     * Prints out all the NPC's who are in the same room as the player .
+     */
+    
     public void getCharacterString() {
+        //String is empty as no has been confirmed in room yet
         String inRoom = "";
 
         System.out.println(">Characters in room:");
+        
+        //Iterate through characters
         for (int i = 0; i < characters.size(); i++) {
 
+            //If player room is identical to npc's room
             if (player.getCurrentRoom().getRoomName().equals(characters.get(i).getCurrentRoom().getRoomName())) {
 
+                //Add that characters name to the list.
                 inRoom += characters.get(i).getName() + ", ";
             }
         }
 
+        //If no one was found change string to "None"
         if (inRoom.equalsIgnoreCase("")) {
             inRoom = "None";
         }
 
+        //Print out the list
         System.out.println(inRoom);
     }
 
+    /**
+     * Creates all the rooms in the game 
+     */
     private void createRooms() {
 
         //Room descriptions when you arrive in a room
@@ -156,18 +197,18 @@ public class Game {
                 + " and the door to the right leads to room 2", "hallwayW");
 
         //Set the investigate string for each room. The string showing when user uses the investigate command
-        outside.setInvestigateString("Nothing here. Btw I'm blind");
-        lobby.setInvestigateString("Nothing here. Btw I'm blind");
-        room1.setInvestigateString("Nothing here. Btw I'm blind");
-        room2.setInvestigateString("Nothing here. Btw I'm blind");
-        room3.setInvestigateString("Nothing here. Btw I'm blind");
-        room4.setInvestigateString("Nothing here. Btw I'm blind");
-        WC.setInvestigateString("Nothing here. Btw I'm blind");
-        kitchen.setInvestigateString("Nothing here. Btw I'm blind");
-        basement.setInvestigateString("Nothing here. Btw I'm blind");
-        hallwayN.setInvestigateString("Nothing here. Btw I'm blind");
-        hallwayE.setInvestigateString("Nothing here. Btw I'm blind");
-        hallwayW.setInvestigateString("Nothing here. Btw I'm blind");
+        outside.setInvestigateString("Fresh air outside. Nothing too suspicious");
+        lobby.setInvestigateString("There's a receptionist. Maybe she can help");
+        room1.setInvestigateString("Someone is living in here");
+        room2.setInvestigateString("Someone is living in here");
+        room3.setInvestigateString("Someone is living in here");
+        room4.setInvestigateString("Someone is living in here");
+        WC.setInvestigateString("Very clean in here. Must be a cleaning lady somewhere");
+        kitchen.setInvestigateString("The tap water is broken hope they have a janitor");
+        basement.setInvestigateString("The janitor works here");
+        hallwayN.setInvestigateString("There's a kitchen, WC and a basement");
+        hallwayE.setInvestigateString("There are two rooms for the guests");
+        hallwayW.setInvestigateString("There are two rooms for the guests");
 
         //Add rooms to list
         rooms.add(outside);
