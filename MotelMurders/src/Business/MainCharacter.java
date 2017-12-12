@@ -66,7 +66,7 @@ public class MainCharacter implements IPerson {
             return;
         }
         
-        Item nextItem = null;
+        Clue nextItem = null;
         int index = 0;
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getItemName().equalsIgnoreCase(item)) {
@@ -81,11 +81,11 @@ public class MainCharacter implements IPerson {
         } else {
             //Check if item exists
             if (!(inventory.contains(nextItem))) {
-                System.out.println(">There is no item named: " + nextItem.getItemName());
+                System.out.println(">There is no item named \"" + nextItem.getItemName() + "\" in your inventory.");
             } else {
-                //Removes reuired irem from inventory
+                //Removes reuired item from inventory
                 inventory.remove(index);
-                getCurrentRoom().setItem(new Item(item));
+                getCurrentRoom().setItem(new Clue(getDescription(), item, true));  //Leaves the item with the description, name and property in room
 
                 //Prints to console
                 System.out.println("Dropped: " + item);
@@ -109,14 +109,14 @@ public class MainCharacter implements IPerson {
             if (nextItem == null) {
                 System.out.println(">There is no item named that!");
                 
-            } else if (nextItem.pickupAble(true)) {
-                inventory.add((Clue)nextItem);
-                getCurrentRoom().removeItem(item);
-
-                System.out.println("Picked up:" + item); 
+            } else if (!nextItem.isPickupAble()) {
+                System.out.println(">You can't pick up stuff like that.");
                 
             } else {
-                System.out.println(">You can't pick up stuff like that."); 
+                inventory.add((Clue)nextItem);
+                getCurrentRoom().removeItem(item);
+                
+                System.out.println("Picked up:" + item); 
                 
             }
         }

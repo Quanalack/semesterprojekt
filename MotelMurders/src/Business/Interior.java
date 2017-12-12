@@ -17,7 +17,8 @@ public class Interior extends Item {
     }
 
     
-    }
+
+}
     
     
 

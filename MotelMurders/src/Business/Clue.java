@@ -11,16 +11,42 @@ package Business;
  */
 public class Clue extends Item {
     
-    boolean pickupAble = true;
+    
+    public Clue(String description, String itemName, boolean pickupAble) {
+        super(description, itemName, pickupAble = true);
+    }
 
-    public Clue(String description, String roomName, boolean pickupAble) {
-        super(description, roomName, pickupAble);
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String getItemName() {
+        return itemName;
+    }
+
+    
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    @Override
+    public boolean isPickupAble() {
+        return pickupAble;
+    }
+
+    @Override
+    public void setPickupAble(boolean pickupAble) {
+        this.pickupAble = pickupAble;
     }
     
     
-    public Clue(String newdescription) {
-        super(newdescription);
-    }
 
     
     

@@ -112,27 +112,23 @@ public class Game {
      * receptionist can be the murderer.
      */
     public void setMurderer() {
-        
+
         int murderer;
-        
+
         //Set one of them as murderer
         do {
-            
+
             // Set the murderer as a random int from 0 to the amount of characters
-             murderer = new Random().nextInt(characters.size());
-            
-            
-        }
-        
-        /*
+            murderer = new Random().nextInt(characters.size());
+
+        } /*
         Murderer cannot be 1 because number 1 is the corpse.
         Murderer cannot be 3 because number 2 is the receptionist
-        */
-        while (murderer != 1 && murderer != 2);  
-           
+         */ while (murderer != 1 && murderer != 2);
+
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
-        
+
         //Print for testing and debugging
         System.out.println(">The murderer is: " + characters.get(murderer).getName());
     }
