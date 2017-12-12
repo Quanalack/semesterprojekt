@@ -72,6 +72,10 @@ public class BusinessFacade implements IBusiness {
         data.saveHighscore(timePlayed, game.player.getName());
     }    
 
+    /**
+     * Converts characters and rooms to arraylist of object
+     * Converts player to an object and then calls saveGame from data layer
+     */
     @Override
     public void saveGame() {
         
@@ -82,6 +86,11 @@ public class BusinessFacade implements IBusiness {
         data.saveGame(characters, rooms, player);
     }
 
+    /**
+     * Gets a saveFile via loadGame from data layer
+     * Cast character and room array from object to NPC and Room.
+     * Casts player as maincharacter
+     */
     @Override
     public void loadGame() {
         ISaveFile saveFile = data.loadGame();
