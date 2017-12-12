@@ -5,13 +5,14 @@
  */
 package Data;
 
+import Acquaintance.ISaveFile;
 import java.util.ArrayList;
 
 /**
  *
  * @author malte
  */
-public class SaveFile {
+public class SaveFile implements ISaveFile{
     
     //The arraylist will hold the characters/NPC's for our game
     ArrayList<Object> NPC = new ArrayList<>();
@@ -29,14 +30,17 @@ public class SaveFile {
         
     }
 
+    @Override
     public ArrayList<Object> getNPC() {
         return NPC;
     }
 
+    @Override
     public ArrayList<Object> getRooms() {
         return rooms;
     }
 
+    @Override
     public Object getPlayer() {
         return player;
     }

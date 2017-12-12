@@ -2,6 +2,7 @@ package Business;
 
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
+import Acquaintance.ISaveFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,6 +84,27 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public void loadGame() {
+        ISaveFile saveFile = data.loadGame();
         
+        ArrayList charactersObject = saveFile.getNPC();
+        ArrayList roomsObject = saveFile.getRooms();
+        
+        ArrayList<NPC> characters = new ArrayList<>();
+        ArrayList<Room> rooms = new ArrayList<>();
+        
+        //Cast from object to NPC
+        for(Object character: charactersObject) {
+            characters.add((NPC)character);
+        }
+        
+        //Cast from object to room
+        for (Object room : roomsObject) {
+            rooms.add((Room)room);
+        }
+        
+        //Change variables
+        game.rooms = rooms;
+        game.characters =  characters;
+        game.player = (MainCharacter)saveFile.getPlayer();
     }
 }

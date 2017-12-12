@@ -1,6 +1,7 @@
 package Data;
 
 import Acquaintance.IData;
+import Acquaintance.ISaveFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -131,14 +132,14 @@ public class DataFacade implements IData
      * @return a saveFile as an object.
      */
     @Override
-    public Object loadGame() {
+    public ISaveFile loadGame() {
         try {
             
 		FileInputStream fileInput = new FileInputStream("saveFile.txt");
 		ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
 		// Read object and cast to a saveFile
-                SaveFile saveFile = (SaveFile) objectInput.readObject();
+                ISaveFile saveFile = (SaveFile) objectInput.readObject();
                 
 		objectInput.close();
 		fileInput.close();
