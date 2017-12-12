@@ -23,35 +23,62 @@ public class NPC implements IPerson{
         this.currentRoom = new Room(startRoom.getLongDescription(), startRoom.getRoomName());
     }
     
-    //Setters and getters
+    /**
+     * Check if this NPC is the murderer
+     * @return true if NPC is murderer else false
+     */
     public boolean isIsMurderer() {
         return isMurderer;
     }
 
+    /**
+     * Set the isIsMurderer to true or false for this NPC
+     * @param isMurderer true or false. True if NPC is murderer else false
+     */
     public void setIsMurderer(boolean isMurderer) {
         this.isMurderer = isMurderer;
     }
    
+    /**
+     * Get the name of the NPC
+     * @return NPC's name
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * Move the NPC to another room.
+     * @param newRoom the room to be moved to.
+     */
     @Override
     public void goRoom(Room newRoom) {
         this.currentRoom = newRoom;
     }
 
+    /**
+     * Get the current room of the NPC
+     * @return the current room
+     */
     @Override
     public Room getCurrentRoom() {
         return this.currentRoom;
     }
 
+    /**
+     * Get the description of the NPC
+     * @return the description
+     */
     @Override
     public String getDescription() {
         return this.description;
     }
-
+    
+    /**
+     * Set a new descrition for the NPC
+     * @param description The new description
+     */
     @Override
     public void setDescription(String description) {
         this.description = description;
