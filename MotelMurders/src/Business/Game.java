@@ -180,17 +180,17 @@ public class Game {
         lobby = new Room("\n>You see a receptionist and even a vending machine,"
                 + " you also see hallways leading to various rooms both left, right and up.", "lobby");
         room1 = new Room("\n>It is filled with most needed interior like:"
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " Guest 1 sleeps here.", "room1");
+                + " a bed, chair, table, vase, lamps and a window."
+                + " Guest 1 sleeps here.", "room 1");
         room2 = new Room("\n>It is filled with most needed interior like:"
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " Guest 2 sleeps here.", "room2");
+                + " a bed, chair, table, vase, lamps and a window."
+                + " Guest 2 sleeps here.", "room 2");
         room3 = new Room("\n>It is filled with most needed interior like:"
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " Guest 3 sleeps here.", "room3");
+                + " a bed, chair, table, vase, lamps and a window."
+                + " Guest 3 sleeps here.", "room 3");
         room4 = new Room("\n>It is filled with most needed interior like:"
-                + " a bath, bed, chair, table, vase, lamps and a window."
-                + " The victim used to sleep here, now he sleeps forever.", "room4");
+                + " a bed, chair, table, vase, lamps and a window."
+                + " The victim used to sleep here, now he sleeps forever.", "room 4");
         WC = new Room("\n\t>There is an unpleasent stence in here!", "WC");
         kitchen = new Room("\n>Nothing much, here is a pleasant smell!", "kitchen");
         basement = new Room("\n>It is a bit dark but from a little light, "
@@ -273,33 +273,40 @@ public class Game {
      */
     private void createItems() {
         //Items in guest room 1
-        room1.setItem(new Item("chair"));
-        room1.setItem(new Item("lamp"));
-        room1.setItem(new Item("weapon"));
-        
+
+        room1.setItem(new Interior("It's just a chair.","chair",false));
+        room1.setItem(new Interior("It's just a lamp.","lamp",false));
+        room1.setItem(new Clue("A frickin' GUN!!! This might be a murder weapon!","gun",true)); //should only be visible to the player after an investigation of the room
         //Items in guest room 2
-        room2.setItem(new Item("chair"));
-        room2.setItem(new Item("lamp"));
-        room2.setItem(new Item("weapon"));
-        
+        room2.setItem(new Interior("It's just a chair.","chair",false));
+        room2.setItem(new Interior("It's just a lamp.","lamp",false));
+        room2.setItem(new Clue("This hammer has been cleaned recently...Suspecious. "
+                + "Perhaps the janitor knows more about this hammer.","hammer",true)); //should only be visible to the player after an investigation of the room
         //Items in guest room 3
-        room3.setItem(new Item("chair"));
-        room3.setItem(new Item("lamp"));
-        room3.setItem(new Item("weapon"));
-        
+        room3.setItem(new Interior("It's just a chair.","chair",false));
+        room3.setItem(new Interior("It's just a lamp.","lamp",false));
+        room3.setItem(new Clue("","knife",true)); //should only be visible to the player after an investigation of the room
         //Items in guest room 4
-        room4.setItem(new Item("chair"));
-        room4.setItem(new Item("lamp"));
-        room4.setItem(new Item("weapon"));
+        room4.setItem(new Interior("It's just a chair.","chair",false));
+        room4.setItem(new Interior("It's just a lamp.","lamp",false));
+        room4.setItem(new Clue("","key",true)); //should only be visible to the player after an investigation of the room
+
         
         //items in lobby
-        lobby.setItem(new Item("painting"));
-        lobby.setItem(new Item("chair"));
-        lobby.setItem(new Item("desk"));
+        lobby.setItem(new Interior("It's a beautiful painting of a beach. Probably not important.","painting",false));
+        lobby.setItem(new Interior("Seems outdated. Could probably have been useful if it worked.","wendingmachine",false));
+        lobby.setItem(new Interior("The receptionist stands behind this desk.","desk",false));
+        //items in basement
+        lobby.setItem(new Interior("Carl's workbench. Pretty messy.","workbench",false));
+        //items in WC
+        lobby.setItem(new Interior("The smell out here... it's unpleasant...","toilet",false));
+        lobby.setItem(new Interior("Some blood might have been washed off in this sink","sink",false));
+        lobby.setItem(new Clue("","toiletpaper",true));
+        
            
         //Items outside
-        outside.setItem(new Item("stone"));
-        outside.setItem(new Item("pot"));
+        outside.setItem(new Clue("Actually this is just a pebble to test the game with","stone",true));
+        outside.setItem(new Interior("This potted plant seems unimportant","pot",false));
 
 }
 
@@ -368,6 +375,16 @@ public ArrayList<String> getWelcomeMessage() {
  * Prints the welcome message out
  */
     public void printWelcome() {
+        System.out.println("===================== WELCOME =========================");
+        System.out.println(">Hello there " + player.getName() + ". Welcome to Motel Murders");
+        System.out.println(">You're a private detective");
+        System.out.println(">You've been summoned to a murder in a motel");
+        System.out.println(">The Motel has been evacuated");
+        System.out.println(">Your task is to solve the murder");
+        System.out.println(">Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("=======================================================\n");
+        System.out.println(player.getCurrentRoom().getLongDescription());
+
         //Create copy of message
         ArrayList<String> welcomeMessage = getWelcomeMessage();
         
@@ -375,6 +392,7 @@ public ArrayList<String> getWelcomeMessage() {
         for (String line : welcomeMessage) {
             System.out.println(line);
         }
+
     }
 
     /**
@@ -463,11 +481,14 @@ public ArrayList<String> getWelcomeMessage() {
      * Prints out the help text and show the commands
      */
     private void printHelp() {
+        System.out.println("===================================================");
+        System.out.println(">Hello " + player.getName() + ".You are a detective trying to solve a murder.");
         System.out.println(">Hello " + player.getName() + 
         ". You are a detective trying to solve a murder.");
         System.out.println(">Go from room to room to investigate and talk with the suspects.");
         System.out.println();
-        System.out.println(">Your command words are:");
+        System.out.println(">Your command words are: ");
+        System.out.println("===================================================");
         
         //Shows all the possible commands
         parser.showCommands();

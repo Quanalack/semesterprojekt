@@ -11,12 +11,19 @@ package Business;
  */
 public class Clue extends Item {
     
-    private boolean pickupAble = true;
+    boolean pickupAble = true;
+
+    public Clues(String description, String roomName, boolean pickupAble) {
+        super(description, roomName, pickupAble);
+    }
     
     
+<<<<<<< HEAD:MotelMurders/src/Business/Clues.java
+=======
     public Clue(String newdescription) {
         super(newdescription);
     }
+>>>>>>> cc23687879411b756f78cacc3a3472ad31cab9fd:MotelMurders/src/Business/Clue.java
     
     
     

@@ -11,11 +11,13 @@ package Business;
  */
 public class Interior extends Item {
     
-    private boolean pickupAble = false;
+
+    public Interior(String description, String itemName, boolean pickupAble) {
+        super(description, itemName, pickupAble);
+    }
+
     
-    public Interior(String newdescription) {
-        super(newdescription);
     }
     
     
-}
+
