@@ -101,15 +101,15 @@ public class DataFacade implements IData
     
     /**
      * Saves the current state of the game in a file.
-     * @param NPC a list of the NPC's 
+     * @param characters a list of the NPC's 
      * @param rooms a list of the rooms
      * @param player the player
      */
     @Override
-    public void saveGame(ArrayList<Object> NPC, ArrayList<Object> rooms, Object player) {
+    public void saveGame(ArrayList<Object> characters, ArrayList<Object> rooms, Object player) {
         
         //Create the savefile
-        SaveFile saveFile = new SaveFile(NPC, rooms, player);
+        SaveFile saveFile = new SaveFile(characters, rooms, player);
         
         try 
 		{       

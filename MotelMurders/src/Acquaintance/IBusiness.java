@@ -12,5 +12,7 @@ public interface IBusiness {
         ArrayList<String> getWelcomeMessage();
         LinkedList<Object> getHighscore();
         void saveHighscore();
+        void saveGame();
+        void loadGame();
         
 }

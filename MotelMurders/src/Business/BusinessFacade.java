@@ -70,4 +70,19 @@ public class BusinessFacade implements IBusiness {
         
         data.saveHighscore(timePlayed, game.player.getName());
     }    
+
+    @Override
+    public void saveGame() {
+        
+        ArrayList characters = game.characters;
+        ArrayList rooms = game.rooms;
+        Object player = game.player;
+        
+        data.saveGame(characters, rooms, player);
+    }
+
+    @Override
+    public void loadGame() {
+        
+    }
 }

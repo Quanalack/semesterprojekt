@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 
 
+
 /**
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class Game {
 
     private Parser parser;
+    
     
     Stopwatch stopwatch = new Stopwatch().start(); // Starts the timer
     final int MAXTIME = 60;
@@ -316,6 +318,9 @@ public class Game {
         //Boolean to check if player has finished
         boolean finished = false;
         
+        //Instance of business class in order to use non-static methods
+        BusinessFacade businessFacade = new BusinessFacade();
+        
         //While loop that runs until processCommand returns true;
         while (!finished) {
             Command command = parser.getCommand();
@@ -325,14 +330,17 @@ public class Game {
         if (!playerHasQuitted) {
             
             //save Highscore
-            POINT TO DATA.saveHighscore() SOMEHOW!!
+            
+            businessFacade.saveHighscore();
             
         
             System.out.println(">The murderer was: " + getMurderer());
             System.out.println(">Thank you for playing. Goodbye.");
         } else {
             //Save game
-            POINT TO DATA.SaveGame() SOMEHOW!!
+            
+            businessFacade.saveGame();
+            
             
         }
     }
