@@ -16,12 +16,12 @@ public class MotelMurders {
      */
     
     //Testkommentar
-    /*    public static void main(String[] args) {
+        public static void main(String[] args) {
     // TODO code application logic here
     Game game = new Game();
     
-    game.play();*/
+    game.play();
     
-    //}
+    }
     
 }

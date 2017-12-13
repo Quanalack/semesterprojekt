@@ -39,8 +39,9 @@ public class FXMLDocumentController implements Initializable {
         
         LinkedList<IScore> IScores = new LinkedList<>();
         
-        //Cast from object to score
-        for (Object o : scores) {
+        //Cast from object to IScore
+        for (Object score : scores) {
+            IScores.add((IScore)score);
             
         }
         System.out.println("get Highscore");

@@ -3,6 +3,7 @@ package Business;
 import Acquaintance.IBusiness;
 import Acquaintance.IData;
 import Acquaintance.ISaveFile;
+import Acquaintance.IScore;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,7 +28,7 @@ public class BusinessFacade implements IBusiness {
      * @return the highscore in a linked list of Scores
      */
     @Override
-    public LinkedList<Object> getHighscore() {
+    public LinkedList<IScore> getHighscore() {
         
         return data.getHighscore();
     }

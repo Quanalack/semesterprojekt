@@ -30,23 +30,23 @@ public interface IBusiness {
         ArrayList<String> getWelcomeMessage();
         
         /**
-         * 
-         * @return 
+         * Get the highscore
+         * @return the highscore as an IScore interface
          */
-        LinkedList<Object> getHighscore();
+        LinkedList<IScore> getHighscore();
         
         /**
-         * 
+         * Save highscore
          */
         void saveHighscore();
         
         /**
-         * 
+         * Saves current state of the game
          */
         void saveGame();
         
         /**
-         * 
+         * Loads a saved game
          */
         void loadGame();
 

@@ -51,8 +51,4 @@ public class UI extends Application implements IUI{
         launch(args);
     }
     
-    public IBusiness getBusiness(){
-        return business;
-    }
-    
 }

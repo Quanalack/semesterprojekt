@@ -23,7 +23,7 @@ public class DataFacade implements IData
      * @return a linkedlist of the scores.
      */
     @Override
-    public LinkedList<Object> getHighscore() {
+    public LinkedList<IScore> getHighscore() {
         
         try {
         //Create the input stream for the file
@@ -34,7 +34,7 @@ public class DataFacade implements IData
 	ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
 	//Read object and cast. MethodreadObject throws a ClassNotFoundException
-        LinkedList<Object> scores = (LinkedList<Object>)objectInput.readObject();
+        LinkedList<IScore> scores = (LinkedList<IScore>)objectInput.readObject();
         
         //Close streams
 	objectInput.close();
@@ -69,28 +69,20 @@ public class DataFacade implements IData
         //Creating score from time and multiplier
         int score = (int)(totalTime * SCORE_MULTIPLIER);
         
-        //Creating a new score as an object
-        Score playerScore = new Score(playerName, score);
-        
-        //get the current score as objects
-        LinkedList<Object> currentScoreObject = getHighscore();
+        //Creating a new score from name and score
+        Score playerScore = new Score(playerName, score); 
         
         //Lost to hold the scores as Scores
-        LinkedList<IScore> currentScoreScore = new LinkedList<>();
-        
-        //Taking every element from object list, cast as score and add to Score list
-        for (int i = 0; i < currentScoreObject.size(); i++) {
-            currentScoreScore.add((Score)currentScoreObject.get(i));
-        }
+        LinkedList<IScore> currentScore = getHighscore();
         
         //Check if players score is higher than #1 if it is add it there. 
         //If it's not check next value etc. Delete last score.
-        for (int i = 0; i < currentScoreScore.size(); i++) {
-            if (playerScore.getScore() > currentScoreScore.get(i).getScore()) {
+        for (int i = 0; i < currentScore.size(); i++) {
+            if (playerScore.getScore() > currentScore.get(i).getScore()) {
                 //add score at index
-                currentScoreScore.add(i, playerScore);
+                currentScore.add(i, playerScore);
                 //Remove last score
-                currentScoreScore.remove(currentScoreScore.size()-1);
+                currentScore.remove(currentScore.size()-1);
                 break; 
             }
         }
@@ -164,7 +156,6 @@ public class DataFacade implements IData
     /**
      * Creates an arraList of empty scores.
      * An empty score is where the name is null and score is 0
-     * @param score 
      */
     public static void createEmptyHighscore(){
         

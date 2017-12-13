@@ -8,12 +8,27 @@ package Acquaintance;
 import java.util.ArrayList;
 
 /**
- *
- * @author malte
+ * ISaveFile interface is for saving and loading the game.
+ * Contains method in order to retieve data from the saved file
+ * 
  */
 public interface ISaveFile {
+    /***
+     * Gets the NPC from file
+     * @return the NPC's
+     */
     ArrayList<Object> getNPC();
+    
+    /**
+     * Gets the rooms from file
+     * @return the rooms
+     */
     ArrayList<Object> getRooms();
+    
+    /**
+     * Get the player
+     * @return the player
+     */
     Object getPlayer();
     
 }
