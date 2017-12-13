@@ -29,10 +29,11 @@ public class DataFacade implements IData
         //Create the input stream for the file
 	FileInputStream fileInput = new FileInputStream("highscore.txt");
         
-        //Create the input stream for the object through the file
+        //Create the input stream for the object through the file. 
+        //Throws IOException
 	ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
-	// Read object and cast
+	//Read object and cast. MethodreadObject throws a ClassNotFoundException
         LinkedList<Object> scores = (LinkedList<Object>)objectInput.readObject();
         
         //Close streams
@@ -41,7 +42,7 @@ public class DataFacade implements IData
                         
         return scores;
         
-        
+       //Catch exceptions
      } catch (FileNotFoundException e) {
 			System.out.println("File not found");
 		}catch (IOException e) {

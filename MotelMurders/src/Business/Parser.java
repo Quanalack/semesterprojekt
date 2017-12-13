@@ -42,10 +42,10 @@ public class Parser
         //Create scanner object from user input
         Scanner tokenizer = new Scanner(inputLine);
         
-        //If the scanner object has a next word set the next as word 1
+        //If the scanner object has a next word set the next as word1
         if(tokenizer.hasNext()) {
             word1 = tokenizer.next();
-            //If the scanner object has a next word set the next as word 2
+            //If the scanner object has a next word set the next as word2
             if(tokenizer.hasNext()) {
                 word2 = tokenizer.next();
             }

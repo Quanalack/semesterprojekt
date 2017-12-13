@@ -33,16 +33,6 @@ public class BusinessFacade implements IBusiness {
     }
 
     /**
-     * Process the player command from GUI
-     * @param command the players command from GUI
-     */
-    @Override
-    public void processCommand(Object command) {
-        
-        game.processCommand((Command)command);
-    }
-
-    /**
      * Get the current room of the player
      * @return the current room as an object
      */
@@ -116,4 +106,5 @@ public class BusinessFacade implements IBusiness {
         game.characters =  characters;
         game.player = (MainCharacter)saveFile.getPlayer();
     }
+
 }
