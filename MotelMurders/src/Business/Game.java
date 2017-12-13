@@ -131,7 +131,7 @@ public class Game {
         Murderer cannot be 2 because number 2 is the receptionist.
         Murderer cannot be 3 because number 3 is the cleaning lady.
         */ 
-        while (murderer != 0 && murderer != 1 && murderer != 2 && murderer != 3);
+        while (murderer > 3);
 
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
