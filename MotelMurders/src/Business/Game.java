@@ -119,19 +119,20 @@ public class Game {
         int murderer;
 
         //Set one of them as murderer
-        do {
+        //do {
 
-            // Set the murderer as a random int from 0 to the amount of characters
-            murderer = new Random().nextInt(characters.size());
+            // Set the murderer as a random int from 3 to the amount of characters (7)
+            // + 2 because 
+            murderer = new Random().nextInt(characters.size() + 2);
 
-        }
+        //}
         /*
         Murderer cannot be 0 because number 0 is the janitor.
         Murderer cannot be 1 because number 1 is the corpse.
         Murderer cannot be 2 because number 2 is the receptionist.
         Murderer cannot be 3 because number 3 is the cleaning lady.
         */ 
-        while (murderer > 3);
+        //while (murderer > 3);
 
         //Set the murderers boolean isMurderer to true
         characters.get(murderer).setIsMurderer(true);
