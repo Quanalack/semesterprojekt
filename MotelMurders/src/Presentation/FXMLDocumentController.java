@@ -2,6 +2,7 @@ package Presentation;
 
 import Acquaintance.IBusiness;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +33,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void amountButtonAction(ActionEvent event) {
         //textField.setText("amount");
-        business.getHighscore();
+        
+        LinkedList scores = business.getHighscore();
+        //Cast from object to score
+        for (Object o : scores) {
+            textField.appendText(o.toString());
+        }
         System.out.println("get Highscore");
         
     }

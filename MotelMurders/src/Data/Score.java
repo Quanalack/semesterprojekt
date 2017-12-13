@@ -5,13 +5,12 @@
  */
 package Data;
 
+import Acquaintance.IScore;
 import java.util.Date;
 import java.io.Serializable;
-/**
- *
- * @author Malte Hesk
- */
-public class Score implements Serializable, Comparable<Score>{
+
+
+public class Score implements Serializable, Comparable<Score>, IScore{
     
     //UID in order to read and write the object
     private static final long serialVersionUID = 1L;
@@ -38,6 +37,8 @@ public class Score implements Serializable, Comparable<Score>{
         }
 
     //Getters and setter:
+    
+    @Override
     public String getName() {
         return name;
     }
@@ -46,11 +47,12 @@ public class Score implements Serializable, Comparable<Score>{
         this.name = name;
     }
 
+    @Override
     public Date getDate() {
         return date;
     }
 
-
+    @Override
     public int getScore() {
         return score;
     }

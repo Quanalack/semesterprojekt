@@ -2,6 +2,7 @@ package Data;
 
 import Acquaintance.IData;
 import Acquaintance.ISaveFile;
+import Acquaintance.IScore;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -74,7 +75,7 @@ public class DataFacade implements IData
         LinkedList<Object> currentScoreObject = getHighscore();
         
         //Lost to hold the scores as Scores
-        LinkedList<Score> currentScoreScore = new LinkedList<>();
+        LinkedList<IScore> currentScoreScore = new LinkedList<>();
         
         //Taking every element from object list, cast as score and add to Score list
         for (int i = 0; i < currentScoreObject.size(); i++) {
