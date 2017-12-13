@@ -71,40 +71,36 @@ public class MainCharacter implements IPerson {
         }
 
         //get the item name
-        String item = command.getSecondWord();
+        String itemName = command.getSecondWord();
 
         //Check if player is trying to drop magnifying glass
-        if (item.equalsIgnoreCase("magnifying")) {
+        if (itemName.equalsIgnoreCase("magnifying")) {
             System.out.println(">You cannot drop your magnifying glass! You need it!");
             return;
         }
         
-        //What is this???? Please check this on 13-12-2017. From line 82-107
-        Clue nextItem = null;
-        int index = 0;
+        //if item is found = true
+        boolean itemFound = false;
+        
+        //Iterate through inventory to find item name
         for (int i = 0; i < inventory.size(); i++) {
-            if (inventory.get(i).getItemName().equalsIgnoreCase(item)) {
-                nextItem = inventory.get(i);
-                index = i;
-            }
-        }
-
-        //Check if item is in inventory
-        if (nextItem == null) {
-            System.out.println(">It's not in your inventory");
-        } else {
-            //Check if item exists
-            if (!(inventory.contains(nextItem))) {
-                System.out.println(">There is no item named \"" + nextItem.getItemName() + "\" in your inventory.");
-            } else {
+            if (inventory.get(i).getItemName().equalsIgnoreCase(itemName)) {
+                
+                itemFound = true;
+                
                 //Removes reuired item from inventory
-                inventory.remove(index);
-                getCurrentRoom().setItem(new Clue(getDescription(), item, true));  //Leaves the item with the description, name and property in room
+                inventory.remove(i);
+                getCurrentRoom().setItem(new Clue(getDescription(), itemName, true));  //Leaves the item with the description, name and property in room
 
                 //Prints to console
-                System.out.println("Dropped: " + item);
+                System.out.println("Dropped: " + itemName);
             }
         }
+
+        //Check if item was found
+        if (!itemFound) {
+            System.out.println(">It's not in your inventory");
+        } 
     }
 
     /**
