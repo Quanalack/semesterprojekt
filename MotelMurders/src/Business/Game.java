@@ -25,14 +25,14 @@ public class Game {
     }
     
     
-    private boolean playerHasQuitted; //Boolean to determine if player quits before game ends
+    private boolean playerHasQuit; //Boolean to determine if player quits before game ends
 
-    public boolean playerHasQuitted() { //getter
-        return playerHasQuitted;
+    public boolean playerHasQuit() { //getter
+        return playerHasQuit;
     }
 
     public void setPlayerQuits(boolean playerQuits) { //Setter
-        this.playerHasQuitted = playerQuits;
+        this.playerHasQuit = playerQuits;
     }
     
     //Declaring rooms
@@ -46,6 +46,9 @@ public class Game {
 
     //Creating the main character
     MainCharacter player = new MainCharacter();
+    
+    //Instance of business class in order to call non-static methods
+    BusinessFacade businessFacade = new BusinessFacade();
     
     /**
      * Game constructor instantiate the required objects at the beginning of 
@@ -325,8 +328,7 @@ public class Game {
         //Boolean to check if player has finished
         boolean finished = false;
         
-        //Instance of business class in order to use non-static methods
-        BusinessFacade businessFacade = new BusinessFacade();
+
         
         //While loop that runs until processCommand returns true;
         while (!finished) {
@@ -334,10 +336,9 @@ public class Game {
             finished = processCommand(command);
         }
         
-        if (!playerHasQuitted) {
+        if (!playerHasQuit) {
             
-            //save Highscore
-            
+            //Save Highscore
             businessFacade.saveHighscore();
             
         
@@ -375,16 +376,6 @@ public ArrayList<String> getWelcomeMessage() {
  * Prints the welcome message out
  */
     public void printWelcome() {
-        System.out.println("===================== WELCOME =========================");
-        System.out.println(">Hello there " + player.getName() + ". Welcome to Motel Murders");
-        System.out.println(">You're a private detective");
-        System.out.println(">You've been summoned to a murder in a motel");
-        System.out.println(">The Motel has been evacuated");
-        System.out.println(">Your task is to solve the murder");
-        System.out.println(">Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println("=======================================================\n");
-        System.out.println(player.getCurrentRoom().getLongDescription());
-
         //Create copy of message
         ArrayList<String> welcomeMessage = getWelcomeMessage();
         
@@ -420,7 +411,7 @@ public ArrayList<String> getWelcomeMessage() {
                 System.out.println("I don't know what you mean...");
                 return false;
             case HELP:
-                printHelp();
+                getHelp();
                 break;
             case GO:
                 //Goto another room
@@ -433,7 +424,7 @@ public ArrayList<String> getWelcomeMessage() {
                 }   break;
             case QUIT:
                 //Quits game
-                playerHasQuitted = true;
+                playerHasQuit = true;
                 endGame = true;
                 break;
             case INVENTORY:
@@ -460,8 +451,8 @@ public ArrayList<String> getWelcomeMessage() {
                 //Talk to a character in current room
                 dialog(command);
                 break;
-        //saveGame();
             case SAVE:
+                businessFacade.saveGame();
                 break;
             default:
                 break;
@@ -480,18 +471,30 @@ public ArrayList<String> getWelcomeMessage() {
     /**
      * Prints out the help text and show the commands
      */
-    private void printHelp() {
-        System.out.println("===================================================");
-        System.out.println(">Hello " + player.getName() + ".You are a detective trying to solve a murder.");
-        System.out.println(">Hello " + player.getName() + 
-        ". You are a detective trying to solve a murder.");
-        System.out.println(">Go from room to room to investigate and talk with the suspects.");
-        System.out.println();
-        System.out.println(">Your command words are: ");
-        System.out.println("===================================================");
+    private void getHelp() {
+        ArrayList<String> help = new ArrayList<>();
+        ArrayList<String> commandWords = parser.getCommands();
         
-        //Shows all the possible commands
-        parser.showCommands();
+        help.add("===================================================");
+        help.add(">Hello " + player.getName() + ".You are a detective trying to solve a murder.");
+        help.add("");
+        help.add(">Hello " + player.getName() + 
+        ". You are a detective trying to solve a murder.");
+        help.add(">Hello " + player.getName() + 
+        ". You are a detective trying to solve a murder.");
+        help.add(">Go from room to room to investigate and talk with the suspects.");
+        help.add(">Your command words are: ");
+        
+        //Get all commands on 1 line string
+        String commands = "";
+        for (String command : commandWords) {
+            commands += command + " ";
+        }
+        
+        //Add all commands to help list
+        help.add(commands);
+        help.add("===================================================");
+        
     }
 
     /**

@@ -1,5 +1,6 @@
 package Business;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 //import java.util.StringTokenizer; <---- Unused library 
 
@@ -55,10 +56,11 @@ public class Parser
     }
 
     /**
-     * Shows all the valid commands
+     * Get all the valid commands
+     * @return a list of valid commands
      */
-    public void showCommands()
+    public  ArrayList<String> getCommands()
     {
-        commands.showAll();
+        return commands.showAll();
     }
 }

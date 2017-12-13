@@ -1,5 +1,6 @@
 package Business;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -37,11 +38,13 @@ public class CommandWords
         return validCommands.containsKey(aString);
     }
 
-    public void showAll() 
+    public ArrayList<String> showAll() 
     {
+        ArrayList<String> commands = new ArrayList<>();
+        
         for(String command : validCommands.keySet()) {
-            System.out.print(command + ",  ");
+            commands.add(command);
         }
-        System.out.println();
+        return  commands;
     }
 }

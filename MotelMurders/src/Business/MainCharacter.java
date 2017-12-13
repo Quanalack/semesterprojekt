@@ -70,14 +70,14 @@ public class MainCharacter implements IPerson {
             return;
         }
 
-        //get the item name
+        //get the item name from second word
         String itemName = command.getSecondWord();
 
         //Check if player is trying to drop magnifying glass
         if (itemName.equalsIgnoreCase("magnifying")) {
             System.out.println(">You cannot drop your magnifying glass! You need it!");
             return;
-        }
+        } 
         
         //if item is found = true
         boolean itemFound = false;

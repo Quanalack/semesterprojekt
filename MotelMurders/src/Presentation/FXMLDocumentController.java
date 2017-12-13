@@ -1,6 +1,7 @@
 package Presentation;
 
 import Acquaintance.IBusiness;
+import Acquaintance.IScore;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -35,9 +36,12 @@ public class FXMLDocumentController implements Initializable {
         //textField.setText("amount");
         
         LinkedList scores = business.getHighscore();
+        
+        LinkedList<IScore> IScores = new LinkedList<>();
+        
         //Cast from object to score
         for (Object o : scores) {
-            textField.appendText(o.toString());
+            
         }
         System.out.println("get Highscore");
         
