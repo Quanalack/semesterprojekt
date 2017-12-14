@@ -301,7 +301,7 @@ public class Game {
         lobby.setItem(new Item("chair",false));
         lobby.setItem(new Item("chair",false));
         lobby.setItem(new Item("lamp",false));
-        lobby.setItem(new Item("",false));
+        lobby.setItem(new Item("sodacan",true));
         
        
         //items in basement
@@ -366,6 +366,47 @@ public class Game {
     }
 
     /**
+     * Pick up a specific item from current room
+     * @param command the command from user input
+     */
+    public void pickupItem(Command command) {
+
+        //Check if player has space in inventory
+        if (inventory.size() == maxLimit) {
+            System.out.println(">There is no more room in your inventory.");
+        } else {
+            
+            //Check if user command has a second word
+            if (!command.hasSecondWord()) {
+                System.out.println(">Pick up what?");
+                return;
+            }
+            
+            //Get second word from user command
+            String item = command.getSecondWord();
+
+            //Get item by the name from command
+            Item nextItem = player.getCurrentRoom().getItem(item);
+
+            //Check if item exist
+            if (nextItem == null) {
+                System.out.println(">There is no item named that!");
+                
+            } else if (!nextItem.isPickupAble()) {
+                System.out.println(">You can't pick up stuff like that.");
+                
+            } else {
+                //add item to inventory and remove from room.
+                inventory.add((Item)nextItem);
+                player.getCurrentRoom().removeItem(item);
+                
+                System.out.println("Picked up:" + item); 
+                
+            }
+        }
+    }
+    
+    /**
      * Drops a specific item from inventory
      * @param command The command input from player
      */
@@ -408,47 +449,6 @@ public class Game {
         if (!itemFound) {
             System.out.println(">It's not in your inventory");
         } 
-    }
-
-    /**
-     * Pick up a specific item from current room
-     * @param command the command from user input
-     */
-    public void pickupItem(Command command) {
-
-        //Check if player has space in inventory
-        if (inventory.size() == maxLimit) {
-            System.out.println(">There is no more room in your inventory.");
-        } else {
-            
-            //Check if user command has a second word
-            if (!command.hasSecondWord()) {
-                System.out.println(">Pick up what?");
-                return;
-            }
-            
-            //Get second word from user command
-            String item = command.getSecondWord();
-
-            //Get item by the name from command
-            Item nextItem = player.getCurrentRoom().getItem(item);
-
-            //Check if item exist
-            if (nextItem == null) {
-                System.out.println(">There is no item named that!");
-                
-            } else if (!nextItem.isPickupAble()) {
-                System.out.println(">You can't pick up stuff like that.");
-                
-            } else {
-                //add item to inventory and remove from room.
-                inventory.add((Item)nextItem);
-                player.getCurrentRoom().removeItem(item);
-                
-                System.out.println("Picked up:" + item); 
-                
-            }
-        }
     }
 
     /**
@@ -654,7 +654,12 @@ public ArrayList<String> getWelcomeMessage() {
 
         //Checks if the room has a door at the specified direction 
         if (nextRoom == null) {
-            System.out.println(">There is no door!");
+            System.out.println(">There is no door!"); }
+        if (nextRoom == basement) {
+            if (!inventory.contains("key")) {
+                System.out.println(">The door is locked.");
+            }
+            
         } else {
             //Change room
             player.goRoom(nextRoom);
