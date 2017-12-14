@@ -58,7 +58,7 @@ public class Game {
     public Game() {
         
         player.newName();
-        player.addMagnifyingGlass();
+        addMagnifyingGlass();
         parser = new Parser();
         createRooms();
         createItems();
@@ -207,9 +207,12 @@ public class Game {
                 + " and the door to the right leads to room 2", "hallwayW");
 
         //Set the investigate string for each room. The string showing when user uses the investigate command
-        outside.setInvestigateString("Fresh air outside. Nothing too suspicious");
-        lobby.setInvestigateString("There's a receptionist. Maybe she can help");
-        room1.setInvestigateString("Someone is living in here");
+        //Assists the illusion of multiple items in the rooms
+        outside.setInvestigateString("Fresh air outside. Nothing too suspicious. There's some potted plants and a sign that says \"OPEN\"");
+        lobby.setInvestigateString("There are some paintings on the walls and some nice decoration throughout the room.\n"
+                + "There's a receptionist. Maybe she can help.");
+        room1.setInvestigateString("A guest is sitting on the bed in here. "
+                + "Upon further inspection you find nothing out of the ordinary, except a knife in his luggage.");
         room2.setInvestigateString("Someone is living in here");
         room3.setInvestigateString("Someone is living in here");
         room4.setInvestigateString("Someone is living in here");
@@ -277,42 +280,184 @@ public class Game {
      */
     private void createItems() {
         //Items in guest room 1
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
 
-        room1.setItem(new Interior("It's just a chair.","chair",false));
-        room1.setItem(new Interior("It's just a lamp.","lamp",false));
-        room1.setItem(new Clue("A frickin' GUN!!! This might be a murder weapon!","gun",true)); //should only be visible to the player after an investigation of the room
+
         //Items in guest room 2
-        room2.setItem(new Interior("It's just a chair.","chair",false));
-        room2.setItem(new Interior("It's just a lamp.","lamp",false));
-        room2.setItem(new Clue("This hammer has been cleaned recently...Suspecious. "
-                + "Perhaps the janitor knows more about this hammer.","hammer",true)); //should only be visible to the player after an investigation of the room
-        //Items in guest room 3
-        room3.setItem(new Interior("It's just a chair.","chair",false));
-        room3.setItem(new Interior("It's just a lamp.","lamp",false));
-        room3.setItem(new Clue("","knife",true)); //should only be visible to the player after an investigation of the room
-        //Items in guest room 4
-        room4.setItem(new Interior("It's just a chair.","chair",false));
-        room4.setItem(new Interior("It's just a lamp.","lamp",false));
-        room4.setItem(new Clue("","key",true)); //should only be visible to the player after an investigation of the room
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("knife",true)); //should only be visible to the player after an investigation of the room
+        
 
+        //Items in guest room 3
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("hammer",true)); //should only be visible to the player after an investigation of the room
+        
+
+        //Items in guest room 4
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room        
+       
         
         //items in lobby
-        lobby.setItem(new Interior("It's a beautiful painting of a beach. Probably not important.","painting",false));
-        lobby.setItem(new Interior("Seems outdated. Could probably have been useful if it worked.","wendingmachine",false));
-        lobby.setItem(new Interior("The receptionist stands behind this desk.","desk",false));
-        //items in basement
-        lobby.setItem(new Interior("Carl's workbench. Pretty messy.","workbench",false));
-        //items in WC
-        lobby.setItem(new Interior("The smell out here... it's unpleasant...","toilet",false));
-        lobby.setItem(new Interior("Some blood might have been washed off in this sink","sink",false));
-        lobby.setItem(new Clue("","toiletpaper",true));
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
         
-           
-        //Items outside
-        outside.setItem(new Clue("Actually this is just a pebble to test the game with","stone",true));
-        outside.setItem(new Interior("This potted plant seems unimportant","pot",false));
+       
+        //items in basement
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
+        
 
+        //items in WC
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
+        
+                  
+        //Items outside
+        room1.setItem(new Item("chair",false));
+        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
+        
+        
 }
+    
+    private final int maxLimit = 4; //Number of items in inventory including magnifying glass. Can only be assigned once
+
+    //Our arraylist will hold the inventory items for our game
+    ArrayList<Item> inventory = new ArrayList<>();
+
+    /**
+     * Get the inventory of player
+     * @return An arraylist of the inventory
+     */
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    /**
+     * Set the players inventory
+     * @param inventory the new inventory to be set
+     */
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    /**
+     * Print current inventory to console
+     */
+    public void printInventory() {
+        String output = ""; //Empty string to output
+        System.out.println(">You're currently carrying:");
+
+        //Iterate through the inventory and add to string
+        for (int i = 0; i < this.inventory.size(); i++) {
+            output += this.inventory.get(i).getItemName() + ",  ";
+        }
+        //Print the generated string
+        System.out.println(output);
+    }
+
+    /**
+     * Adds the magnifying glass to players inventory
+     */
+    public void addMagnifyingGlass() {
+
+        inventory.add(new Item("Magnifying Glass",true));
+    }
+
+    /**
+     * Drops a specific item from inventory
+     * @param command The command input from player
+     */
+    public void dropItem(Command command) {
+        
+        //Check if there is more than one word
+        if (!command.hasSecondWord()) {
+            System.out.println("Drop what?");
+            return;
+        }
+
+        //get the item name from second word
+        String itemName = command.getSecondWord();
+
+        //Check if player is trying to drop magnifying glass
+        if (itemName.equalsIgnoreCase("magnifying")) {
+            System.out.println(">You cannot drop your magnifying glass! You need it!");
+            return;
+        } 
+        
+        //if item is found = true
+        boolean itemFound = false;
+        
+        //Iterate through inventory to find item name
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).getItemName().equalsIgnoreCase(itemName)) {
+                
+                itemFound = true;
+                
+                //Removes reuired item from inventory
+                inventory.remove(i);
+                player.getCurrentRoom().setItem(new Item(itemName, true));  //Leaves the item with the description, name and property in room
+
+                //Prints to console
+                System.out.println("Dropped: " + itemName);
+            }
+        }
+
+        //Check if item was found
+        if (!itemFound) {
+            System.out.println(">It's not in your inventory");
+        } 
+    }
+
+    /**
+     * Pick up a specific item from current room
+     * @param command the command from user input
+     */
+    public void pickupItem(Command command) {
+
+        //Check if player has space in inventory
+        if (inventory.size() == maxLimit) {
+            System.out.println(">There is no more room in your inventory.");
+        } else {
+            
+            //Check if user command has a second word
+            if (!command.hasSecondWord()) {
+                System.out.println(">Pick up what?");
+                return;
+            }
+            
+            //Get second word from user command
+            String item = command.getSecondWord();
+
+            //Get item by the name from command
+            Item nextItem = player.getCurrentRoom().getItem(item);
+
+            //Check if item exist
+            if (nextItem == null) {
+                System.out.println(">There is no item named that!");
+                
+            } else if (!nextItem.isPickupAble()) {
+                System.out.println(">You can't pick up stuff like that.");
+                
+            } else {
+                //add item to inventory and remove from room.
+                inventory.add((Item)nextItem);
+                player.getCurrentRoom().removeItem(item);
+                
+                System.out.println("Picked up:" + item); 
+                
+            }
+        }
+    }
 
     /**
      * The main method of the game. Where the game starts.
@@ -430,11 +575,11 @@ public ArrayList<String> getWelcomeMessage() {
                 break;
             case INVENTORY:
                 //Print out the content of the inventory
-                player.printInventory();
+                printInventory();
                 break;
             case PICKUP:
                 //Pick up an item from a room
-                player.pickupItem(command);
+                pickupItem(command);
                 break;
             case ACCUSE:
                 //Call accuse method to accuse a character of being the murderer
@@ -446,7 +591,7 @@ public ArrayList<String> getWelcomeMessage() {
                 break;
             case DROP:
                 //Drop an item fom inventory
-                player.dropItem(command);
+                dropItem(command);
                 break;
             case TALK:
                 //Talk to a character in current room
