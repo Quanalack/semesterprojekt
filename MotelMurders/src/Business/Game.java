@@ -171,6 +171,7 @@ public class Game {
     private void createRooms() {
 
         //Room descriptions when you arrive in a room
+        //Assists the illusion of multiple items in the rooms
         outside = new Room("\n>The wind is blowing, you see the motels old facade infront of you.", "outside");
         lobby = new Room("\n>You see a receptionist and even a vending machine,"
                 + " you also see hallways leading to various rooms both left, right and up.", "lobby");
@@ -200,13 +201,15 @@ public class Game {
         //Set the investigate string for each room. The string showing when user uses the investigate command
         //Assists the illusion of multiple items in the rooms
         outside.setInvestigateString("Fresh air outside. Nothing too suspicious. There's some potted plants and a sign that says \"OPEN\"");
-        lobby.setInvestigateString("There are some paintings on the walls and some nice decoration throughout the room.\n"
+        lobby.setInvestigateString("There are some paintings on the walls and some nice decorations throughout the room.\n"
                 + "There's a receptionist. Maybe she can help.");
         room1.setInvestigateString("A guest is sitting on the bed in here. "
-                + "Upon further inspection you find nothing out of the ordinary, except a knife in his luggage.");
-        room2.setInvestigateString("Someone is living in here");
-        room3.setInvestigateString("Someone is living in here");
-        room4.setInvestigateString("Someone is living in here");
+                + "Upon further inspection you find a knife in his luggage; it seems clean.");
+        room2.setInvestigateString("A guest is in here. She seems in chock. "
+                + "Upon further inspection you find nothing out of the ordinary, except a hammer on the table; it seems clean.");
+        room3.setInvestigateString("A guest is sitting on the bed in here. "
+                + "Upon further inspection you find a gun hidden in his briefcase; it has been fired recently.");
+        room4.setInvestigateString("The victim is in here. It smells. You find a key, someone must have dropped it."); 
         WC.setInvestigateString("Very clean in here. Must be a cleaning lady somewhere");
         kitchen.setInvestigateString("The tap water is broken hope they have a janitor");
         basement.setInvestigateString("The janitor works here");
@@ -271,51 +274,49 @@ public class Game {
      */
     private void createItems() {
         //Items in guest room 1
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
+        room1.setItem(new Item("backpack",true));
+        room1.setItem(new Item("toiletbag",true));
         room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
 
 
         //Items in guest room 2
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("knife",true)); //should only be visible to the player after an investigation of the room
+        room2.setItem(new Item("chair",false));
+        room2.setItem(new Item("lamp",false));
+        room2.setItem(new Item("knife",true)); //should only be visible to the player after an investigation of the room
         
 
         //Items in guest room 3
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("hammer",true)); //should only be visible to the player after an investigation of the room
+        room3.setItem(new Item("chair",false));
+        room3.setItem(new Item("lamp",false));
+        room3.setItem(new Item("hammer",true)); //should only be visible to the player after an investigation of the room
         
 
         //Items in guest room 4
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room        
+        room4.setItem(new Item("chair",false));
+        room4.setItem(new Item("lamp",false));
+        room4.setItem(new Item("key",true)); //should only be visible to the player after an investigation of the room
        
         
         //items in lobby
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
+        lobby.setItem(new Item("chair",false));
+        lobby.setItem(new Item("chair",false));
+        lobby.setItem(new Item("lamp",false));
+        lobby.setItem(new Item("",false));
         
        
         //items in basement
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
+        basement.setItem(new Item("sledgehammer",true));
+        basement.setItem(new Item("nailgun",true));
+        basement.setItem(new Item("chainsaw",true)); 
         
 
         //items in WC
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
-        
+        WC.setItem(new Item("toiletpaper",true));
+        WC.setItem(new Item("soap",true));        
                   
         //Items outside
-        room1.setItem(new Item("chair",false));
-        room1.setItem(new Item("lamp",false));
-        room1.setItem(new Item("gun",true)); //should only be visible to the player after an investigation of the room
+        outside.setItem(new Item("stone",true));
+        outside.setItem(new Item("flower",true));
         
         
 }
