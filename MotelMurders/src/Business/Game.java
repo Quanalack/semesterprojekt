@@ -483,10 +483,7 @@ public class Game {
             System.out.println(">The murderer was: " + getMurderer());
             System.out.println(">Thank you for playing. Goodbye.");
         } else {
-            BusinessFacade businessFacade = new BusinessFacade();
-            //Save game
-            //Instance of business class in order to call non-static methods
-            businessFacade.saveGame();
+            
             
             
         }
@@ -591,9 +588,7 @@ public ArrayList<String> getWelcomeMessage() {
                 dialog(command);
                 break;
             case SAVE:
-                //Instance of business class in order to call non-static methods
-                BusinessFacade businessFacade = new BusinessFacade();
-                businessFacade.saveGame();
+                
                 break;
             default:
                 break;

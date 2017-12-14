@@ -86,7 +86,6 @@ public class DataFacade implements IData
                 break; 
             }
         }
-            
         
         System.out.println("Game has been saved. You scored: " + score + " points! ");
         
