@@ -5,14 +5,12 @@ import Acquaintance.IData;
 import Acquaintance.ISaveFile;
 import Acquaintance.IScore;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 
 
 public class BusinessFacade implements IBusiness {
-	private IData data;
-        private Game game = new Game();
+    private IData data;
+    private Game game = new Game();
 
     /**
      * Injects the datalayer into the business layer
@@ -102,7 +100,7 @@ public class BusinessFacade implements IBusiness {
             rooms.add((Room)room);
         }
         
-        //Change variables
+        //Change variables in game
         game.rooms = rooms;
         game.characters =  characters;
         game.player = (MainCharacter)saveFile.getPlayer();

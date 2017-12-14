@@ -6,12 +6,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
-
-
-/**
- * @author Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
 public class Game {
 
     private Parser parser;
@@ -46,9 +40,6 @@ public class Game {
 
     //Creating the main character
     MainCharacter player = new MainCharacter();
-    
-    //Instance of business class in order to call non-static methods
-    BusinessFacade businessFacade = new BusinessFacade();
     
     /**
      * Game constructor instantiate the required objects at the beginning of 
@@ -98,7 +89,7 @@ public class Game {
 
     /**
      * Iterates through the characters and checks who the murderer is if any.
-     * @return the name of the murderer if any is set or the string 
+     * @return the name of the murderer if any is set or the string: 
      * "No murderer found".
      */
     public String getMurderer() {
@@ -483,7 +474,8 @@ public class Game {
         }
         
         if (!playerHasQuit) {
-            
+            //Instance of business class in order to call non-static methods
+            BusinessFacade businessFacade = new BusinessFacade();
             //Save Highscore
             businessFacade.saveHighscore();
             
@@ -491,8 +483,9 @@ public class Game {
             System.out.println(">The murderer was: " + getMurderer());
             System.out.println(">Thank you for playing. Goodbye.");
         } else {
+            BusinessFacade businessFacade = new BusinessFacade();
             //Save game
-            
+            //Instance of business class in order to call non-static methods
             businessFacade.saveGame();
             
             
@@ -598,6 +591,8 @@ public ArrayList<String> getWelcomeMessage() {
                 dialog(command);
                 break;
             case SAVE:
+                //Instance of business class in order to call non-static methods
+                BusinessFacade businessFacade = new BusinessFacade();
                 businessFacade.saveGame();
                 break;
             default:

@@ -35,7 +35,7 @@ public class FXMLDocumentController implements Initializable {
     private void amountButtonAction(ActionEvent event) {
         //textField.setText("amount");
         
-        LinkedList scores = business.getHighscore();
+        //LinkedList scores = business.getHighscore();
         
         LinkedList<IScore> IScores = new LinkedList<>();
         
@@ -44,6 +44,7 @@ public class FXMLDocumentController implements Initializable {
             IScores.add((IScore)score);
             
         }
+        
         System.out.println("get Highscore");
         
     }
