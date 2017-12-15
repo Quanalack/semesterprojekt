@@ -361,9 +361,10 @@ public class Game {
      * Adds the magnifying glass to players inventory
      */
     public void addMagnifyingGlass() {
-
         inventory.add(new Item("Magnifying Glass",true));
     }
+    
+    
 
     /**
      * Pick up a specific item from current room
@@ -390,17 +391,17 @@ public class Game {
 
             //Check if item exist
             if (nextItem == null) {
-                System.out.println(">There is no item named that!");
+                System.out.println(">There is no item named that.");
                 
-            } else if (!nextItem.isPickupAble()) {
-                System.out.println(">You can't pick up stuff like that.");
+            } else if (!nextItem.pickupAble == true) {
+                System.out.println(">You can't pick up stuff like that!");
                 
             } else {
                 //add item to inventory and remove from room.
                 inventory.add((Item)nextItem);
                 player.getCurrentRoom().removeItem(item);
                 
-                System.out.println("Picked up:" + item); 
+                System.out.println("Picked up: " + item); 
                 
             }
         }
@@ -577,7 +578,8 @@ public ArrayList<String> getWelcomeMessage() {
                 endGame = accuse(command);
                 break;
             case INVESTIGATE:
-                //Call investigate to investigate an item in a room
+                //Call investigate to investigate an item in a room if 
+                
                 investigate();
                 break;
             case DROP:

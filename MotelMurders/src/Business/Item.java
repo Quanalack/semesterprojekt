@@ -15,7 +15,7 @@ public class Item {
     
     public Item(String itemName, boolean pickupAble) {
         this.itemName = itemName;   
-        this.pickupAble = false;
+        this.pickupAble = pickupAble;
     }
 
 
