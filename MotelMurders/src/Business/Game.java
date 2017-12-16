@@ -656,16 +656,21 @@ public ArrayList<String> getWelcomeMessage() {
 
         //Checks if the room has a door at the specified direction 
         if (nextRoom == null) {
-            System.out.println(">There is no door!"); }
+            System.out.println(">There is no door!");
+        }
         if (nextRoom == basement) {
-            if (!inventory.contains("key")) {
-                System.out.println(">The door is locked.");
+            if (inventory.contains("key")) {
+                //Change room
+                player.goRoom(nextRoom);
+                System.out.println(player.getCurrentRoom().getLongDescription());
+            } else {
+                System.out.println("\n>The door is locked. You remain in the hallway");
             }
-            
-        } else {
+        }
+        else { 
             //Change room
-            player.goRoom(nextRoom);
-            System.out.println(player.getCurrentRoom().getLongDescription());
+                player.goRoom(nextRoom);
+                System.out.println(player.getCurrentRoom().getLongDescription());
         }
     }
 
