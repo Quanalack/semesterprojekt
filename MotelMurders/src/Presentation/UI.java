@@ -20,12 +20,21 @@ public class UI extends Application implements IUI{
     
     private static UI ui;
     
+    private IBusiness business;
+    
+    /**
+     * Get the UI
+     * @return an instance of the UI
+     */
     public static UI getInstance(){
         return ui;
     }
     
-    private IBusiness business;
-
+    /**
+     * Starts the application. @override from Application
+     * @param primaryStage the starting stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -35,12 +44,20 @@ public class UI extends Application implements IUI{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    
+    /**
+     * Injects the business layer into the UI
+     * @param businessLayer the business layer
+     */
     @Override
     public void injectBusiness(IBusiness businessLayer) {
         business = businessLayer;
     }
 
+    /**
+     * Starts the game
+     * @param args 
+     */
     @Override
     public void startApplication(String[] args) {
         System.out.println("Is in UI startApplication");
