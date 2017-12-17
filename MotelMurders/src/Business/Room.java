@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 
+/**
+ * The room class creates an object representing a room in the game.
+ * 
+ */
 public class Room 
 {
     //Room description
@@ -29,29 +33,53 @@ public class Room
         exits = new HashMap<String, Room>();
     }
     
-    //Getters and setters
+    /**
+     * 
+     * @return the name of the room
+     */
     public String getRoomName() {
         return roomName;
     }
 
+    /**
+     * Change the name of a room
+     * @param roomName the new room name
+     */
     public void setRoomName(String roomName) {
         this.roomName = roomName;
     }
 
+    /**
+     * Set a new exit for another room.
+     * @param direction the direction that leads to the other room
+     * @param neighbor the room 
+     */
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
     }
 
+    /**
+     * Get the short description of the room
+     * @return the short description of the room
+     */
     public String getShortDescription()
     {
         return description;
     }
     
+    /**
+     * Get the string that comes when the player use the investigate command
+     * @return the investigate string
+     */
     public String getInvestigateString() {
         return investigateString;
     }
 
+    /**
+     * Change the investigate string
+     * @param investigateString  the investigate string
+     */
     public void setInvestigateString(String investigateString) {
         this.investigateString = investigateString;
     }

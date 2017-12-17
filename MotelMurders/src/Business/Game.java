@@ -537,7 +537,7 @@ public ArrayList<String> getWelcomeMessage() {
         if (stopwatch.elapsedTime(TimeUnit.SECONDS) >= MAXTIME) { 
             endGame = true;
             System.out.println("!! TIME'S UP !! \n>Before you could finish "
-            + "your work, the cops took over and you're kicked out of the crime scene.");
+            + "your work, the cops took over and you got kicked out of the crime scene.");
         }
 
         //Getting the commandWord from the user 

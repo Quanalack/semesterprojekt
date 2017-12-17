@@ -3,15 +3,19 @@ package Business;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * @author  Michael Kolling and David J. Barnes
- * @version 2006.03.30
- */
 
+/**
+ * Contains all the commands 
+ * 
+ */
 public class CommandWords
 {
+    //Hashmap with all the commands
     private HashMap<String, CommandWord> validCommands;
 
+    /**
+     * Constructor puts all valid commands into validCommands hashmap
+     */
     public CommandWords()
     {
         validCommands = new HashMap<String, CommandWord>();
@@ -22,6 +26,11 @@ public class CommandWords
         }
     }
 
+    /**
+     * Get a commandword from a string (player input)
+     * @param commandWord the player input
+     * @return the command from the list or unknown
+     */
     public CommandWord getCommandWord(String commandWord)
     {
         CommandWord command = validCommands.get(commandWord);
@@ -33,11 +42,20 @@ public class CommandWords
         }
     }
     
+    /**
+     * Check if a string (player input) is a valid command
+     * @param aString player input string
+     * @return true if command exists
+     */
     public boolean isCommand(String aString)
     {
         return validCommands.containsKey(aString);
     }
 
+    /**
+     * Shows all the calid commands
+     * @return an arrayList of the valid commands
+     */
     public ArrayList<String> showAll() 
     {
         ArrayList<String> commands = new ArrayList<>();
