@@ -697,7 +697,7 @@ public ArrayList<String> getWelcomeMessage() {
                 
             if (name.equalsIgnoreCase("cleaning")) {
                 characterExists = true;
-                //set the accused character equal to the cleaning lady's name
+                //set the talked to character equal to the cleaning lady's name
                 name = characters.get(3).getName();
             }
                 
