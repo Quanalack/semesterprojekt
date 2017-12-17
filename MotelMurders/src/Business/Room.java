@@ -156,7 +156,7 @@ public class Room
      * @return the item from searched for
      */
     public Item getItem(String itemName) {
-      //pointing to nothing in memory. Nullpointerexception; cant grab things u havent created
+      
         for (Item item : items) {
             if (item.getItemName().equalsIgnoreCase(itemName)) {
                 return item;
