@@ -15,10 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author madsd
- */
+
 public class UI extends Application implements IUI{
     
     private static UI ui;
