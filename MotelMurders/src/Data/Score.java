@@ -10,7 +10,7 @@ import java.util.Date;
 import java.io.Serializable;
 
 
-public class Score implements Serializable, Comparable<Score>, IScore{
+public class Score implements Serializable, IScore{
     
     //UID in order to read and write the object
     private static final long serialVersionUID = 1L;
@@ -60,14 +60,4 @@ public class Score implements Serializable, Comparable<Score>, IScore{
     public void setScore(int score) {
         this.score = score;
     }
-
-    @Override
-    public int compareTo(Score score) {
-
-        return this.getScore() - score.getScore();
-        
-    }
-    
-    
-    
 }
